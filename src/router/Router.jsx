@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/auth/login",
-        element: <Login></Login>,
+        element: <Login />,
       },
       {
         path: "/auth/register",
