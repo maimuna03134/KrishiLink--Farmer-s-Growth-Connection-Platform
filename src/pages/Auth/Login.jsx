@@ -92,7 +92,7 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
-        <h2 className="text-2xl text-orange-500 font-bold text-center mb-2">
+        <h2 className="text-2xl text-green-600 hover:text-green-700 font-bold text-center mb-2">
           Login your account
         </h2>
         <div className=" flex items-center justify-center mt-8">
@@ -102,7 +102,7 @@ const Login = () => {
           {/* email */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-orange-400 font-bold my-2">
+              <span className="label-text text-green-500 hover:text-green-700 font-bold my-2">
                 Email address
               </span>
             </label>
@@ -119,7 +119,7 @@ const Login = () => {
           {/* password */}
           <div className="form-control relative">
             <label className="label">
-              <span className="label-text text-orange-400 font-bold my-2">
+              <span className="label-text text-green-500 hover:text-green-700 font-bold my-2">
                 Password
               </span>
             </label>
@@ -141,7 +141,7 @@ const Login = () => {
               <Link
                 to="/auth/forgot-password"
                 state={email ? { email } : null}
-                className="label-text-alt link link-hover hover:text-orange-500"
+                className="label-text-alt link link-hover hover:text-blue-600"
               >
                 Forgot password?
               </Link>
@@ -177,7 +177,7 @@ const Login = () => {
           </button>
         </form>
         <p className="text-sm text-gray-500 font-semibold text-center">
-          <span className="hover:text-orange-500">Don't Have An Account ?</span>
+          <span className="hover:text-red-500">Don't Have An Account ?</span>
 
           <Link to="/auth/register">
             <span className="text-red-500 hover:font-bold"> Register</span>

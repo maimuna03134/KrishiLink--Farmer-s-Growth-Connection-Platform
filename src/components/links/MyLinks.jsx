@@ -7,13 +7,15 @@ const MyLinks = ({ to, children, className = "" }) => {
       to={to}
       className={({ isActive }) =>
         isActive
-          ? `bg-linear-to-br from-orange-400 to-orange-600 text-white px-3 py-2 rounded-md font-semibold shadow-sm ${className}`
-          : `text-orange-600 hover:text-orange-700 px-3 py-2 font-semibold rounded-md transition ${className}`
+          ? `bg-green-100 hover:bg-green-700 hover:text-green-100 text-green-700 px-3 py-2 rounded-full font-semibold shadow-sm transition ${className}`
+          : `text-green-600 hover:text-green-700 px-3 py-2 font-semibold rounded-md transition ${className}`
       }
     >
       {children}
     </NavLink>
   );
 };
+
+// border-2 border-green-500 bg-white hover:bg-green-700 hover:text-green-100 text-green-700 font-semibold rounded-full cursor-pointer
 
 export default MyLinks;

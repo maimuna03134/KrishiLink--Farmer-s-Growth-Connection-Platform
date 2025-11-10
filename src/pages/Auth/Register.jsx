@@ -119,7 +119,7 @@ const Register = () => {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
-        <h2 className="text-2xl text-orange-500 font-bold text-center mb-2">
+        <h2 className="text-2xl text-green-600 hover:text-green-700 font-bold text-center mb-2">
           Register your account
         </h2>
         <div className=" flex items-center justify-center mt-8">
@@ -130,7 +130,7 @@ const Register = () => {
           {/* name */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-orange-400 font-bold my-2">
+              <span className="label-text text-green-500 hover:text-green-700 font-bold my-2">
                 Your Name
               </span>
             </label>
@@ -145,7 +145,7 @@ const Register = () => {
           {/* photo url */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-orange-400 font-bold my-2">
+              <span className="label-text text-green-500 hover:text-green-700 font-bold my-2">
                 Photo URL
               </span>
             </label>
@@ -159,7 +159,7 @@ const Register = () => {
           {/* email */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-orange-400 font-bold my-2">
+              <span className="label-text text-green-500 hover:text-green-700 font-bold my-2">
                 Email address
               </span>
             </label>
@@ -174,7 +174,7 @@ const Register = () => {
           {/* password */}
           <div className="form-control relative">
             <label className="label">
-              <span className="label-text text-orange-400 font-bold my-2">
+              <span className="label-text text-green-500 hover:text-green-700 font-bold my-2">
                 Password
               </span>
             </label>
@@ -226,7 +226,7 @@ const Register = () => {
           </button>
         </form>
         <p className="text-sm text-gray-500 font-semibold text-center">
-          <span className="hover:text-orange-500 ">
+          <span className="hover:text-red-500 ">
             Already Have An Account ?{" "}
           </span>
           <Link to="/auth/login">

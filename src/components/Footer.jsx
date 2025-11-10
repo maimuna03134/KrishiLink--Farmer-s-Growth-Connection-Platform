@@ -2,13 +2,14 @@ import React from 'react';
 import { FaFacebookF, FaGithub, FaInstagram, FaLeaf, FaSeedling, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { GiCorn, GiWheat } from 'react-icons/gi';
 import { Link } from 'react-router';
+import MyContainer from './myContainer/MyContainer';
 
 const Footer = () => {
     return (
-      <footer className="bg-linear-to-b from-green-50 to-white border-t border-green-100">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+      <footer className="bg-linear-to-b from-green-50 to-white border-t border-green-100 rounded-2xl">
+        <MyContainer className="px-6 py-10">
           {/* Logo */}
-          <div className="mb-12">
+          <div className="mb-8">
             <Link to="/">
               <svg
                 width="36"
@@ -271,7 +272,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
-        </div>
+        </MyContainer>
       </footer>
     );
 };
