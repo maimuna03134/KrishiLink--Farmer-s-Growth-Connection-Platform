@@ -7,7 +7,7 @@ import { IoLogIn } from 'react-icons/io5';
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); 
   
     const handleLogOut = () => {
       // console.log('user trying to logout')
@@ -71,7 +71,7 @@ const privateLinks = [
               </span>
             </div>
 
-            <nav>
+            <nav className="hidden md:flex items-center gap-2">
               {(user ? privateLinks : publicLinks).map((link) => (
                 <MyLinks key={link.to} to={link.to}>
                   {link.label}
@@ -92,14 +92,13 @@ const privateLinks = [
                     </div>
                   )}
                   <button
-                onClick={handleLogOut}
-                className="flex items-center gap-2 px-3 py-2 text-sm bg-red-50 text-red-700 rounded-md hover:bg-red-100 transition"
-              >
-                <IoLogIn /> LogOut
-              </button>
+                    onClick={handleLogOut}
+                    className="flex items-center gap-2 px-3 py-2 text-sm bg-red-50 text-red-700 rounded-md hover:bg-red-100 transition"
+                  >
+                    <IoLogIn /> LogOut
+                  </button>
                 </div>
               )}
-              
             </nav>
             {/* mobile hamburger */}
             <div className="md:hidden flex items-center">

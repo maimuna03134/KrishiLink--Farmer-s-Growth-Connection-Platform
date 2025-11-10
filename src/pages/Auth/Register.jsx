@@ -68,7 +68,7 @@ const Register = () => {
             "Oops! That email is already taken. Please try logging in instead."
           );
         } else if (e.code === "auth/weak-password") {
-          toast.error("Bhai tomake at least 6 ta digit er pass dite hobe");
+          toast.error("You need to add at least 6 characters!");
         } else if (e.code === "auth/invalid-email") {
           toast.error("Invalid email format. Please check your email.");
         } else if (e.code === "auth/user-not-found") {
