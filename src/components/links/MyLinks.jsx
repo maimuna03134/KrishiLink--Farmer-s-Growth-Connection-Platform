@@ -16,6 +16,6 @@ const MyLinks = ({ to, children, className = "" }) => {
   );
 };
 
-// border-2 border-green-500 bg-white hover:bg-green-700 hover:text-green-100 text-green-700 font-semibold rounded-full cursor-pointer
+
 
 export default MyLinks;

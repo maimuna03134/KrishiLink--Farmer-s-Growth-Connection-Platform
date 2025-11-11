@@ -8,31 +8,36 @@ import { Link } from 'react-router';
 
 const slides = [
   {
-    image: "https://i.ibb.co/8dZc5qf/farmer-harvesting-field.jpg",
-    title: "Connecting Farmers Across the Nation 🌾",
+    image:
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&h=600&fit=crop",
+    title: "Connect Directly with Farmers 🌾",
+    subtitle: "Fresh crops from farm to your doorstep — no middlemen!",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1200&h=600&fit=crop",
+    title: "Sell Your Crops with Ease 🚜",
+    subtitle: "Reach buyers nationwide — fair prices, quick transactions!",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1595855759920-86582396756a?w=1200&h=600&fit=crop",
+    title: "Join the Agriculture Community 👨‍🌾",
     subtitle:
-      "Join the KrishiLink community to share, learn, and grow together.",
+      "Connect with thousands of farmers, traders, and buyers to grow your business!",
   },
   {
-    image: "https://i.ibb.co/9sMgcVZ/fresh-vegetables-market.jpg",
-    title: "Fresh Crops, Direct from the Source 🥦",
-    subtitle: "Discover quality produce grown by trusted farmers near you.",
-  },
-  {
-    image: "https://i.ibb.co/1TtLR6T/modern-agriculture-technology.jpg",
-    title: "Empowering Farmers with Smart Technology 🚜",
+    image:
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1200&h=600&fit=crop",
+    title: "Organic & Fresh Produce Market 🥬",
     subtitle:
-      "Stay ahead with modern tools, real-time updates, and market insights.",
+      "Healthy food, eco-friendly farming — delivered with just one click!",
   },
   {
-    image: "https://i.ibb.co/Wp1xZz1/organic-farming-hand-soil.jpg",
-    title: "Grow Organic, Grow Healthy 🌱",
-    subtitle: "Promoting sustainable farming practices for a greener tomorrow.",
-  },
-  {
-    image: "https://i.ibb.co/sybZdbK/farmers-meeting-community.jpg",
-    title: "Together for a Better Harvest 🌤️",
-    subtitle: "Collaborate, share knowledge, and uplift the farming community.",
+    image:
+      "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=1200&h=600&fit=crop",
+    title: "Start the Digital Agriculture Revolution 📱",
+    subtitle: "Take your agri-business to new heights with modern technology!",
   },
 ];
 
@@ -56,7 +61,7 @@ const Banner = () => {
 
               <div className="hero-content text-neutral-content ">
                 <div className="relative z-10 text-center px-4 lg:mt-30 py-10 lg:mr-36">
-                  <h1 className="animate-textPing mb-5 text-2xl md:text-3xl lg:text-5xl font-bold lg:leading-16 ">
+                  <h1 className="mb-5 text-2xl md:text-3xl lg:text-5xl font-bold lg:leading-16 ">
                     {slide.title}
                   </h1>
                   <p className="text-sm md:text-base leading-5 md:leading-7 text-white my-4 ">

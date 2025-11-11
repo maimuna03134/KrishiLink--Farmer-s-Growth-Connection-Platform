@@ -9,6 +9,7 @@ import MyPosts from "../pages/myPosts/MyPosts";
 import MyInterests from "../pages/myInterests/MyInterests";
 import Profile from "../pages/profile/Profile";
 import AuthLayout from "../layouts/AuthLayout";
+import CropDetails from "../pages/cropDetails/CropDetails";
 
 
 export const router = createBrowserRouter([
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "/all-crops",
         element: <AllCrops />,
+      },
+      {
+        path: "/crop-details",
+        element: <CropDetails/>
       },
       {
         path: "/add-crop",
