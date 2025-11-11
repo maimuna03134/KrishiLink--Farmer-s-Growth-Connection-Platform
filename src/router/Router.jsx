@@ -10,12 +10,15 @@ import MyInterests from "../pages/myInterests/MyInterests";
 import Profile from "../pages/profile/Profile";
 import AuthLayout from "../layouts/AuthLayout";
 import CropDetails from "../pages/cropDetails/CropDetails";
+import PrivateRouter from "./PrivateRouter";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+     errorElement: <p>Error</p>,
+    hydrateFallbackElement: <p>Loading...</p>,
     children: [
       {
         path: "/",
@@ -24,27 +27,48 @@ export const router = createBrowserRouter([
       {
         path: "/all-crops",
         element: <AllCrops />,
+        loader: () => fetch("http://localhost:3000/crops"),
       },
       {
         path: "/crop-details",
-        element: <CropDetails/>
+        element: (
+          <PrivateRouter>
+            <CropDetails />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/add-crop",
-        element: <AddCrop />,
+        element: (
+          <PrivateRouter>
+            <AddCrop />
+          </PrivateRouter>
+        ),
       },
 
       {
         path: "/my-posts",
-        element: <MyPosts />,
+        element: (
+          <PrivateRouter>
+            <MyPosts />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/my-interests",
-        element: <MyInterests />,
+        element: (
+          <PrivateRouter>
+            <MyInterests />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <PrivateRouter>
+            <Profile />
+          </PrivateRouter>
+        ),
       },
     ],
   },
