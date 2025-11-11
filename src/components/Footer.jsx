@@ -1,8 +1,9 @@
 import React from 'react';
-import { FaFacebookF, FaGithub, FaInstagram, FaLeaf, FaSeedling, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaFacebookF, FaGithub, FaInstagram, FaLeaf, FaSeedling,  FaYoutube } from 'react-icons/fa';
 import { GiCorn, GiWheat } from 'react-icons/gi';
 import { Link } from 'react-router';
 import MyContainer from './myContainer/MyContainer';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
     return (
@@ -256,7 +257,7 @@ const Footer = () => {
                 href="#"
                 className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-all"
               >
-                <FaTwitter size={18} />
+                <FaXTwitter size={18} />
               </a>
               <a
                 href="#"

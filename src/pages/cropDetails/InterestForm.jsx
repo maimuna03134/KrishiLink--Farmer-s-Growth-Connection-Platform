@@ -1,50 +1,130 @@
-import React from "react";
-import { BiCalculator } from "react-icons/bi";
+import React, { use, useEffect, useState } from "react";
+import { BiCalculator, BiSend } from "react-icons/bi";
+import { AuthContext } from "../../context/AuthContext";
+import toast from "react-hot-toast";
+import { FiAlertCircle } from "react-icons/fi";
+import ConfirmationModal from "./ConfirmationModal";
 
 const InterestForm = ({ crop }) => {
+    const { user } = use(AuthContext);
+
+    const [quantity, setQuantity] = useState(1);
+    const [message, setMessage] = useState('');
+    const [showModel, setShowModel] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [alreadyInterested, setAlreadyInterested] = useState(false);
+    
+    useEffect(() => {
+        if (crop.interests && user) {
+            setAlreadyInterested(crop.interests.some(i=>i.userEmail === user.email));
+        }
+    }, [crop, user])
+    
+    const totalPrice = quantity * crop.pricePerUnit;
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (quantity < 1) return toast.error("Quantity cannot be less than 1");
+        if (quantity > crop.quantity) return toast.error("You cannot order more than then available quantity");
+        setShowModel(true);
+    };
+        const confirmSubmit = () => {
+            setSubmitted(true);
+
+            fetch('http://localhost:3000/crops', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+      cropId: crop._id,
+      userEmail: user.email,
+      userName: user.name,
+      quantity,
+      message,
+      status: 'pending'
+    })
+            }).then((res) => {
+                if (!res.ok) {
+                    throw new Error('Failed to send interest');
+                } return res.json();
+            }).then((data) => {
+                console.log(data)
+                toast.success('Interest sent successfully!');
+                setShowModel(false);
+      setQuantity(1);
+      setMessage('');
+    //   onInterestSubmitted();
+
+            })
+                .catch(err => {
+                toast.error(err.message)
+                })
+                .finally(() => {
+                setSubmitted(false)
+            })
+        }
+
+    if (alreadyInterested) {
+        return (
+          <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6 mb-8">
+            <div className="flex items-start gap-3">
+              <FiAlertCircle className="w-6 h-6 text-yellow-600 mt-1" />
+              <div>
+                <h3 className="text-lg font-semibold text-yellow-800 mb-1">
+                  You have already expressed interest 
+                </h3>
+                <p className="text-yellow-700">
+                  The Owner will review your request
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+    }
+
+
   return (
     <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
       <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center gap-2">
-        আগ্রহ প্রকাশ করুন
+        Express Your Interest
       </h2>
 
       {/* interest form */}
-
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <form className="card-body space-y-6">
-          {/* quentity */}
+        <form onSubmit={handleSubmit} className="card-body space-y-6">
+          {/* quantity */}
           <div className="form-control">
             <label className="label">
-              <span className="label-style">পরিমাণ</span>
+              <span className="label-style">Quantity ({crop.unit})</span>
             </label>
             <input
               type="number"
               min="1"
-              //   max={crop.quentity}
-              //   value = {quentity}
-              //   inChange ={(e)=>setQuantity(Number(e.target.value))}
-              //   placeholder={`সর্বোচ্চ ${crop.quantity} ${crop.unit}`}
-              placeholder="Maximum Quentity"
+              max={crop.quantity}
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              placeholder={`Maximum ${crop.quantity} ${crop.unit}`}
               className="input-style"
               required
             />
             <p className="text-sm text-gray-500 mt-1">
-              উপলব্ধ:
-              {/* {crop.quantity} {crop.unit} */}
+              Available: {crop.quantity} {crop.unit}
             </p>
           </div>
 
           {/*  text area*/}
           <div className="form-control">
             <label className="label-style">
-              <span>বার্তা</span>
+              <span>Message</span>
             </label>
             <textarea
-              //   value={message}
-              //   onChange={(e)=>setMessage(e.target.value)}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               rows="4"
               required
-              placeholder="মালিককে আপনার বার্তা লিখুন..."
+              placeholder="Write your message to the owner..."
               className="input-style"
             />
           </div>
@@ -59,38 +139,40 @@ const InterestForm = ({ crop }) => {
                 </span>
               </div>
               <div className="text-right">
-                <p className="text-2xl font-bold text-green-600">
-                  {/* $ {totalPrice.toLocaleString()} */}$ 200
+                <p className="text-2xl font-semibold text-green-600">
+                  $ {totalPrice.toLocaleString()}
                 </p>
-                <p className="text-lg font-bold text-green-600">
-                  {/* ({quantity} {crop.unit} × ৳{crop.pricePerUnit}) */}$200 *
-                  3
+                <p className="text-md font-semibold text-green-600">
+                  ({quantity} {crop.unit} × $ {crop.pricePerUnit})
                 </p>
               </div>
             </div>
           </div>
           {/* submit btn */}
-          <button
-            className="btn btn-style"
-            type="submit"
-          >
-            {/* disabled={submitting} */}
-            আগ্রহ পাঠান
+          <button disabled={submitted} className="btn btn-style" type="submit">
+            {submitted ? (
+              <>Sending..</>
+            ) : (
+              <>
+                <BiSend className="w-5 h-5" /> Send Interest
+              </>
+            )}
+            Send Interest
           </button>
         </form>
       </div>
       {/* Confirmation Modal */}
-      {/* {showModal && (
+      {showModel && (
         <ConfirmationModal
-          title="আগ্রহ নিশ্চিত করুন"
-          message={`আপনি কি ${quantity} ${crop.unit} ${crop.name} এর জন্য ৳${totalPrice} মূল্যে আগ্রহ পাঠাতে চান?`}
+          title="Confirm Interest"
+          message={`Do you want to send interest for ${quantity} ${crop.unit} of ${crop.name} at a price of ${totalPrice} ?`}
           onConfirm={confirmSubmit}
-          onCancel={() => setShowModal(false)}
-          confirmText="হ্যাঁ, পাঠান"
-          cancelText="না"
-          loading={submitting}
+          onCancel={() => setShowModel(false)}
+          confirmText="Yeah, Send"
+          cancelText="No"
+          loading={submitted}
         />
-      )} */}
+      )}
     </div>
   );
 };
