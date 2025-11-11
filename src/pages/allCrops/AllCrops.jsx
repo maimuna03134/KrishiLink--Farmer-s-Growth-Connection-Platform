@@ -4,9 +4,10 @@ import { Link, useLoaderData } from "react-router";
 import MyContainer from "../../components/myContainer/MyContainer";
 import cropsNotFound from '../../assets/not_found.png'
 import { GoSearch } from "react-icons/go";
+import { IoMdArrowBack } from "react-icons/io";
 
 const AllCrops = () => {
-  const data = useLoaderData();
+  const data = useLoaderData() || [];
   // console.log(data)
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,9 +21,9 @@ const AllCrops = () => {
     } else {
       const filtered = data.filter(
         (crop) =>
-          crop.name.toLowerCase().includes(term) ||
-          crop.type.toLowerCase().includes(term) ||
-          crop.location.toLowerCase().includes(term)
+          crop?.name.toLowerCase().includes(term) ||
+          crop?.type.toLowerCase().includes(term) ||
+          crop?.location.toLowerCase().includes(term)
       );
       setCrops(filtered);
     }
@@ -51,13 +52,7 @@ const AllCrops = () => {
           </div>
         </div>
 
-        {crops.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {crops.map((crop) => (
-              <CropCard key={crop._id} crop={crop} />
-            ))}
-          </div>
-        ) : (
+        {crops.length === 0 ? (
           <div className="min-h-screen flex flex-col justify-center items-center gap-2">
             <img
               src={cropsNotFound}
@@ -74,12 +69,18 @@ const AllCrops = () => {
               </p>
             </div>
 
-            <Link to="/all-crops">
+            <a href="/all-crops">
               <span className="bg-[#025b3633] text-green-500 px-3 py-1 rounded-full text-sm   mb-3 font-bold flex items-center justify-center lg:justify-start gap-1 bg-clip-text">
                 <IoMdArrowBack />
                 <span>Go Back</span>
               </span>
-            </Link>
+            </a>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {crops.map((crop) => (
+              <CropCard key={crop._id} crop={crop} />
+            ))}
           </div>
         )}
       </MyContainer>
