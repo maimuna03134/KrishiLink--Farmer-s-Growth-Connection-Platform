@@ -27,15 +27,15 @@ const CropCard = ({ crop }) => {
         <div className="badge text-xs badge-xs badge-secondary rounded-full">
           {type}
         </div>
-        <div className="text-xs text-secondary">{location}</div>
+        <div className="text-xs text-secondary">Location: {location}</div>
         <p className="line-clamp-1">{description}</p>
         <div className="card-actions justify-between items-center mt-4">
-          <div className="flex justify-between items-center mb-4 gap-1.5">
+          <div className="flex flex-col  mb-4">
             <span className="text-xl font-bold text-green-600 ">
-              $ {pricePerUnit}/{unit}
+              Price: $ {pricePerUnit}/{unit}
             </span>
             <span className="text-gray-500">
-              {quantity} {unit}
+              Quantity : {quantity} {unit}
             </span>
           </div>
           <div className="flex gap-4 text-sm text-base-content/60"></div>

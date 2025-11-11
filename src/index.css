@@ -12,3 +12,12 @@
 .btn-style{
   @apply border-2 border-green-500 bg-white hover:bg-green-700 hover:text-green-100 text-green-700 font-semibold rounded-full mb-10 md:mb-6 lg:mb-10 cursor-pointer
 }
+
+.label-style{
+  @apply block text-gray-700 font-semibold mb-2
+}
+
+.input-style{
+  @apply w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition
+              
+}

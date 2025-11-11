@@ -114,7 +114,7 @@ const CropInformation = ({crop}) => {
                   </span>
                 </div>
                 <p className="text-2xl font-bold text-gray-900">
-                  {crop.location}
+                 {crop.location}
                 </p>
               </div>
             </div>
