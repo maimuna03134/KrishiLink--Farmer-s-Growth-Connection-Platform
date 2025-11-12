@@ -4,8 +4,9 @@ import { AuthContext } from "../../context/AuthContext";
 import toast from "react-hot-toast";
 import { FiAlertCircle } from "react-icons/fi";
 import ConfirmationModal from "./ConfirmationModal";
+import MyContainer from "../../components/myContainer/MyContainer";
 
-const InterestForm = ({ crop, onInterestSubmitted }) => {
+const InterestForm = ({ crop }) => {
   const { user } = use(AuthContext);
 
   const [quantity, setQuantity] = useState(1);
@@ -21,13 +22,12 @@ const InterestForm = ({ crop, onInterestSubmitted }) => {
       setIsOwner(isOwnerCheck);
 
       if (crop?.interests && Array.isArray(crop.interests)) {
-      const alreadySent = crop.interests.some(
-        (interest) => interest.userEmail === user.email
-      );
-      setAlreadyInterested(alreadySent);
+        const alreadySent = crop.interests.some(
+          (interest) => interest.userEmail === user.email
+        );
+        setAlreadyInterested(alreadySent);
+      }
     }
-    }
-    
   }, [crop, user]);
 
   const totalPrice = quantity * crop?.pricePerUnit;
@@ -60,6 +60,15 @@ const InterestForm = ({ crop, onInterestSubmitted }) => {
     setShowModel(true);
   };
 
+  const interest = {
+    cropId: crop?._id,
+    userEmail: user.email,
+    userName: user.displayName || user.email.split("@")[0],
+    quantity: parseInt(quantity),
+    message,
+    status: "pending",
+  };
+
   const confirmSubmit = () => {
     setSubmitted(true);
 
@@ -69,18 +78,11 @@ const InterestForm = ({ crop, onInterestSubmitted }) => {
         "Content-Type": "application/json",
       },
 
-      body: JSON.stringify({
-        cropId: crop?._id,
-        userEmail: user.email,
-        userName: user.displayName || user.email.split("@")[0],
-        quantity: parseInt(quantity),
-        message,
-        status: "pending",
-      }),
+      body: JSON.stringify(interest),
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Failed to send interest");
+          toast.err("Failed to send interest");
         }
         return res.json();
       })
@@ -91,9 +93,7 @@ const InterestForm = ({ crop, onInterestSubmitted }) => {
         setQuantity(1);
         setMessage("");
         setAlreadyInterested(true);
-        if (onInterestSubmitted) {
-          onInterestSubmitted();
-        }
+        
       })
       .catch((err) => {
         toast.error(err.message || "Failed to send interest");
@@ -121,24 +121,23 @@ const InterestForm = ({ crop, onInterestSubmitted }) => {
     );
   }
 
-   if (isOwner) {
-     return (
-       <div className="bg-purple-50 border-2 border-purple-200 rounded-xl p-6 mb-8">
-         <div className="flex items-start gap-3">
-           <FiAlertCircle className="w-6 h-6 text-purple-600 mt-1" />
-           <div>
-             <h3 className="text-lg font-semibold text-purple-800 mb-1">
-               Your Crop
-             </h3>
-             <p className="text-purple-700">
-               This is your own crop. You cannot send interest on your own
-               crops.
-             </p>
-           </div>
-         </div>
-       </div>
-     );
-   }
+  if (isOwner) {
+    return (
+      <div className="bg-purple-50 border-2 border-purple-200 rounded-xl p-6 mb-8">
+        <div className="flex items-start gap-3">
+          <FiAlertCircle className="w-6 h-6 text-purple-600 mt-1" />
+          <div>
+            <h3 className="text-lg font-semibold text-purple-800 mb-1">
+              Your Crop
+            </h3>
+            <p className="text-purple-700">
+              This is your own crop. You cannot send interest on your own crops.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (alreadyInterested) {
     return (
@@ -159,14 +158,18 @@ const InterestForm = ({ crop, onInterestSubmitted }) => {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+    <MyContainer
+      className={
+        "bg-linear-to-t from-white to-green-100 rounded-xl shadow-2xl px-20 py-10 mb-8"
+      }
+    >
       <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center gap-2">
         Express Your Interest
       </h2>
 
       {/* interest form */}
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <form onSubmit={handleSubmit} className="card-body space-y-6">
+      <div className="card bg-linear-to-t from-green-100 to-white w-full max-w-sm shrink-0 ">
+        <form onSubmit={handleSubmit} className="card-body space-y-4">
           {/* quantity */}
           <div className="form-control">
             <label className="label">
@@ -240,7 +243,7 @@ const InterestForm = ({ crop, onInterestSubmitted }) => {
           loading={submitted}
         />
       )}
-    </div>
+    </MyContainer>
   );
 };
 

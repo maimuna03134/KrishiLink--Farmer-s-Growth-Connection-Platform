@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import MyContainer from "../../components/myContainer/MyContainer";
 import CropInformation from "./CropInformation";
 import { useLoaderData } from "react-router";
 import InterestForm from "./InterestForm";
 import ReceivedInterests from "./ReceivedInterests";
+import { AuthContext } from "../../context/AuthContext";
 
 
 const CropDetails = () => {
   const data = useLoaderData();
-const crop = data?.result;
- const [refreshKey, setRefreshKey] = useState(0);
+  const crop = data?.result;
+  
+  const { user } = use(AuthContext);
 
-  const handleInterestSubmitted = () => {
-    setRefreshKey(prev => prev + 1);
-  }
+  const [testOwner, setTestOwner] = useState(null);
+
+  const isOwner = user?.email === crop?.owner?.ownerEmail;
+ 
+  const showAsOwner = testOwner !== null ? testOwner : isOwner;
 
   if (!crop) {
     return (
@@ -26,22 +30,27 @@ const crop = data?.result;
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <MyContainer className={"px-4 sm:px-6 lg:px-8"}>
-        <CropInformation crop={crop} key={`crop-${refreshKey}`} />
+        <CropInformation crop={crop} />
 
-        <div className="mt-8">
-          <InterestForm
-            crop={crop}
-            onInterestSubmitted={handleInterestSubmitted}
-            key={`interest-form-${refreshKey}`}
-          />
+        <div className=" p-4 text-center mb-4 flex justify-center ">
+          <button
+            onClick={() => setTestOwner(!testOwner)}
+            className="btn btn-style"
+          >
+            {testOwner ? "👤 Show as Buyer" : "👨‍🌾 Show as Owner"}
+          </button>
+          
         </div>
 
-        <div className="mt-8">
-          <ReceivedInterests
-            crop={crop}
-            key={`received-interests-${refreshKey}`}
-          />
-        </div>
+        {!showAsOwner ? (
+          <div className="mt-8 flex justify-center">
+            <InterestForm crop={crop} />
+          </div>
+        ) : (
+          <div className="mt-8">
+            <ReceivedInterests crop={crop} />
+          </div>
+        )}
       </MyContainer>
     </div>
   );
