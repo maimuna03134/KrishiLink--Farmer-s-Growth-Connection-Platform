@@ -18,7 +18,7 @@ import MyContainer from "../../components/myContainer/MyContainer";
 
 const CropInformation = ({crop}) => {
   
-  // console.log(crop)
+  console.log(crop)
 
 //   const navigate = useNavigate();
   return (

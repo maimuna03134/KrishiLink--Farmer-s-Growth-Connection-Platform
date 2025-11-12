@@ -5,85 +5,158 @@ import toast from "react-hot-toast";
 import { FiAlertCircle } from "react-icons/fi";
 import ConfirmationModal from "./ConfirmationModal";
 
-const InterestForm = ({ crop }) => {
-    const { user } = use(AuthContext);
+const InterestForm = ({ crop, onInterestSubmitted }) => {
+  const { user } = use(AuthContext);
 
-    const [quantity, setQuantity] = useState(1);
-    const [message, setMessage] = useState('');
-    const [showModel, setShowModel] = useState(false);
-    const [submitted, setSubmitted] = useState(false);
-    const [alreadyInterested, setAlreadyInterested] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [message, setMessage] = useState("");
+  const [showModel, setShowModel] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [alreadyInterested, setAlreadyInterested] = useState(false);
+  const [isOwner, setIsOwner] = useState(false);
+
+  useEffect(() => {
+    if (crop && user) {
+      const isOwnerCheck = crop.owner?.ownerEmail === user.email;
+      setIsOwner(isOwnerCheck);
+
+      if (crop?.interests && Array.isArray(crop.interests)) {
+      const alreadySent = crop.interests.some(
+        (interest) => interest.userEmail === user.email
+      );
+      setAlreadyInterested(alreadySent);
+    }
+    }
     
-    useEffect(() => {
-        if (crop.interests && user) {
-            setAlreadyInterested(crop.interests.some(i=>i.userEmail === user.email));
-        }
-    }, [crop, user])
-    
-    const totalPrice = quantity * crop.pricePerUnit;
+  }, [crop, user]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (quantity < 1) return toast.error("Quantity cannot be less than 1");
-        if (quantity > crop.quantity) return toast.error("You cannot order more than then available quantity");
-        setShowModel(true);
-    };
-        const confirmSubmit = () => {
-            setSubmitted(true);
+  const totalPrice = quantity * crop?.pricePerUnit;
 
-            fetch('http://localhost:3000/crops', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-                body: JSON.stringify({
-      cropId: crop._id,
-      userEmail: user.email,
-      userName: user.name,
-      quantity,
-      message,
-      status: 'pending'
-    })
-            }).then((res) => {
-                if (!res.ok) {
-                    throw new Error('Failed to send interest');
-                } return res.json();
-            }).then((data) => {
-                console.log(data)
-                toast.success('Interest sent successfully!');
-                setShowModel(false);
-      setQuantity(1);
-      setMessage('');
-    //   onInterestSubmitted();
-
-            })
-                .catch(err => {
-                toast.error(err.message)
-                })
-                .finally(() => {
-                setSubmitted(false)
-            })
-        }
-
-    if (alreadyInterested) {
-        return (
-          <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6 mb-8">
-            <div className="flex items-start gap-3">
-              <FiAlertCircle className="w-6 h-6 text-yellow-600 mt-1" />
-              <div>
-                <h3 className="text-lg font-semibold text-yellow-800 mb-1">
-                  You have already expressed interest 
-                </h3>
-                <p className="text-yellow-700">
-                  The Owner will review your request
-                </p>
-              </div>
-            </div>
-          </div>
-        );
+    if (!user) {
+      toast.error("Please login first");
+      return;
     }
 
+    if (isOwner) {
+      toast.error("You cannot send interest on your own crop");
+      return;
+    }
+
+    if (quantity < 1) {
+      return toast.error("Quantity cannot be less than 1");
+    }
+
+    if (quantity > crop?.quantity) {
+      return toast.error("You cannot order more than then available quantity");
+    }
+
+    if (!message.trim()) {
+      return toast.error("Please write a message");
+    }
+
+    setShowModel(true);
+  };
+
+  const confirmSubmit = () => {
+    setSubmitted(true);
+
+    fetch(`http://localhost:3000/crops/${crop._id}/interests`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        cropId: crop?._id,
+        userEmail: user.email,
+        userName: user.displayName || user.email.split("@")[0],
+        quantity: parseInt(quantity),
+        message,
+        status: "pending",
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to send interest");
+        }
+        return res.json();
+      })
+      .then(() => {
+        // console.log(data);
+        toast.success("Interest sent successfully!");
+        setShowModel(false);
+        setQuantity(1);
+        setMessage("");
+        setAlreadyInterested(true);
+        if (onInterestSubmitted) {
+          onInterestSubmitted();
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message || "Failed to send interest");
+      })
+      .finally(() => {
+        setSubmitted(false);
+      });
+  };
+
+  if (!user) {
+    return (
+      <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mb-8">
+        <div className="flex items-start gap-3">
+          <FiAlertCircle className="w-6 h-6 text-blue-600 mt-1" />
+          <div>
+            <h3 className="text-lg font-semibold text-blue-800 mb-1">
+              Login Required
+            </h3>
+            <p className="text-blue-700">
+              Please login to express interest in this crop
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+   if (isOwner) {
+     return (
+       <div className="bg-purple-50 border-2 border-purple-200 rounded-xl p-6 mb-8">
+         <div className="flex items-start gap-3">
+           <FiAlertCircle className="w-6 h-6 text-purple-600 mt-1" />
+           <div>
+             <h3 className="text-lg font-semibold text-purple-800 mb-1">
+               Your Crop
+             </h3>
+             <p className="text-purple-700">
+               This is your own crop. You cannot send interest on your own
+               crops.
+             </p>
+           </div>
+         </div>
+       </div>
+     );
+   }
+
+  if (alreadyInterested) {
+    return (
+      <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6 mb-8">
+        <div className="flex items-start gap-3">
+          <FiAlertCircle className="w-6 h-6 text-yellow-600 mt-1" />
+          <div>
+            <h3 className="text-lg font-semibold text-yellow-800 mb-1">
+              You have already expressed interest
+            </h3>
+            <p className="text-yellow-700">
+              The Owner will review your request
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
@@ -97,20 +170,20 @@ const InterestForm = ({ crop }) => {
           {/* quantity */}
           <div className="form-control">
             <label className="label">
-              <span className="label-style">Quantity ({crop.unit})</span>
+              <span className="label-style">Quantity ({crop?.unit})</span>
             </label>
             <input
               type="number"
               min="1"
-              max={crop.quantity}
+              max={crop?.quantity}
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
-              placeholder={`Maximum ${crop.quantity} ${crop.unit}`}
+              placeholder={`Maximum ${crop?.quantity} ${crop?.unit}`}
               className="input-style"
               required
             />
             <p className="text-sm text-gray-500 mt-1">
-              Available: {crop.quantity} {crop.unit}
+              Available: {crop?.quantity} {crop?.unit}
             </p>
           </div>
 
@@ -143,21 +216,15 @@ const InterestForm = ({ crop }) => {
                   $ {totalPrice.toLocaleString()}
                 </p>
                 <p className="text-md font-semibold text-green-600">
-                  ({quantity} {crop.unit} × $ {crop.pricePerUnit})
+                  ({quantity} {crop?.unit} × $ {crop?.pricePerUnit})
                 </p>
               </div>
             </div>
           </div>
           {/* submit btn */}
           <button disabled={submitted} className="btn btn-style" type="submit">
-            {submitted ? (
-              <>Sending..</>
-            ) : (
-              <>
-                <BiSend className="w-5 h-5" /> Send Interest
-              </>
-            )}
-            Send Interest
+            <BiSend className="w-5 h-5" />
+            {submitted ? "Sending..." : "Send Interest"}
           </button>
         </form>
       </div>
@@ -165,7 +232,7 @@ const InterestForm = ({ crop }) => {
       {showModel && (
         <ConfirmationModal
           title="Confirm Interest"
-          message={`Do you want to send interest for ${quantity} ${crop.unit} of ${crop.name} at a price of ${totalPrice} ?`}
+          message={`Do you want to send interest for ${quantity} ${crop?.unit} of ${crop?.name} at a price of ${totalPrice} ?`}
           onConfirm={confirmSubmit}
           onCancel={() => setShowModel(false)}
           confirmText="Yeah, Send"

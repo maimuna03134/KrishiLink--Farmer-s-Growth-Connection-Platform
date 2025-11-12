@@ -73,7 +73,7 @@ const privateLinks = [
                 </span>
               </div>
 
-              <nav className="hidden md:flex items-center gap-2">
+              <nav className="hidden lg:flex items-center gap-2">
                 {(user ? privateLinks : publicLinks).map((link) => (
                   <MyLinks key={link.to} to={link.to}>
                     {link.label}
@@ -102,8 +102,8 @@ const privateLinks = [
                   </div>
                 )}
               </nav>
-              {/* mobile hamburger */}
-              <div className="md:hidden flex items-center">
+              {/* mobile and laptop hamburger */}
+              <div className="lg:hidden flex items-center">
                 <button
                   onClick={() => setOpen((s) => !s)}
                   className="p-2 rounded-md hover:bg-gray-100"
@@ -145,9 +145,9 @@ const privateLinks = [
             </div>
           </div>
 
-          {/* menu for mobile device */}
+          {/* menu for mobile and laptop device */}
           {open && (
-            <div className="md:hidden border-t bg-white">
+            <div className="lg:hidden border-t bg-white">
               <div className="px-4 py-3 space-y-1">
                 {(user ? privateLinks : publicLinks).map((link) => (
                   <MyLinks
