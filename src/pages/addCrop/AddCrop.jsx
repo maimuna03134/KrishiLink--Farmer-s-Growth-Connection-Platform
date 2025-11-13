@@ -64,7 +64,7 @@ const AddCrop = () => {
     setLoading(true);
 
     const cropData = {
-      _id: `crop_${Date.now()}`, 
+      _id: `crop_${Date.now()}`,
       name: formData.name,
       type: formData.type,
       pricePerUnit: parseFloat(formData.pricePerUnit),
@@ -81,13 +81,16 @@ const AddCrop = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/add-crop", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(cropData),
-      });
+      const res = await fetch(
+        "https://farmers-growth-connection-platform.vercel.app/add-crop",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(cropData),
+        }
+      );
 
       const data = await res.json();
 
@@ -105,9 +108,37 @@ const AddCrop = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
     <div className=" bg-gray-100 py-8">
-      <MyContainer className={"px-4 sm:px-6 lg:px-8"}>
+      <div className="relative h-96 md:h-[520px] overflow-hidden rounded-b-3xl shadow-2xl">
+        <img
+          src="https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTAxL3Jhd3BpeGVsX29mZmljZV8yOV9waG90b19vZl9hX3Byb3VkX2Zhcm1lcl9zdGFuZHNfaW5fYV92aWJyYW50X19kYmUwNDVjMC04ZjIyLTQyZDQtOGU1Zi1hYWNhMGM0YWJiM2ZfMS5qcGc.jpg"
+          alt="Fresh farm crops"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+              Farm-Fresh Today <br />
+              <span className="text-green-400">At Your Door Tomorrow</span>
+            </h1>
+            <p className="text-lg md:text-xl mb-6 opacity-90 max-w-2xl drop-shadow">
+              List your harvest, set your price, and sell straight to buyers –
+              no middlemen.
+            </p>
+          </div>
+        </div>
+      </div>
+      <MyContainer className={"px-4 sm:px-6 lg:px-8 mt-10"}>
         <div className="max-w-2xl mx-auto">
           {/* Header */}
           <div className="mb-8">
@@ -250,8 +281,6 @@ const AddCrop = () => {
                   Paste image URL from image hosting service (imgbb, etc.)
                 </p>
               </div>
-
-              
 
               {/* Submit Button */}
               <div className="flex gap-4 pt-6">

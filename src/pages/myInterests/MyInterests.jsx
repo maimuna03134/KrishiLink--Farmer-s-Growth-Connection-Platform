@@ -9,16 +9,16 @@ import { BiCheckCircle, BiXCircle } from "react-icons/bi";
 const MyInterests = () => {
   const { user } = use(AuthContext);
   const navigate = useNavigate();
-    const [interests, setInterests] = useState([]);
-    const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState("status"); 
+  const [interests, setInterests] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("status");
 
   const fetchMyInterests = async () => {
     try {
       setLoading(true);
 
       const res = await fetch(
-        `http://localhost:3000/my-interests/${user.email}`
+        `https://farmers-growth-connection-platform.vercel.app/my-interests/${user.email}`
       );
       const data = await res.json();
 
@@ -26,7 +26,7 @@ const MyInterests = () => {
         setInterests(data.result);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast.error("Failed to load interests");
     } finally {
       setLoading(false);
@@ -38,8 +38,6 @@ const MyInterests = () => {
       fetchMyInterests();
     }
   }, [user]);
-
-  
 
   // sorting by name or status
   const sortedInterests = [...interests].sort((a, b) => {
@@ -80,18 +78,14 @@ const MyInterests = () => {
       </span>
     );
   };
-  
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin">
-          
-        </div>
+        <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
-
 
   return (
     <div className="bg-gray-100 py-8">
@@ -111,57 +105,54 @@ const MyInterests = () => {
           </div>
         </div>
 
-        {
-          interests.length === 0 ? (
-            <div className="text-center py-16">
-          <p className="text-gray-500 text-lg">
-            You haven't expressed interest in any crops yet
-          </p>
-            </div>
-          ) : (
-            <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-green-50">
-              <tr>
-                <th className="px-6 py-4 text-left">Crop Name</th>
-                <th className="px-6 py-4 text-left">Owner</th>
-                <th className="px-6 py-4 text-left">Quantity</th>
-                <th className="px-6 py-4 text-left">Message</th>
-                <th className="px-6 py-4 text-left">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortedInterests.map((interest) => (
-                <tr key={interest._id} className="border-b hover:bg-gray-50">
-                  <td className="px-6 py-4">
-                    <button
-                      onClick={() => navigate(`/crops/${interest.cropId}`)}
-                      className="text-green-600 hover:underline font-semibold"
-                    >
-                      {interest.cropName}
-                    </button>
-                  </td>
-                  <td className="px-6 py-4">{interest.ownerName}</td>
-                  <td className="px-6 py-4">
-                    {interest.quantity} {interest.unit}
-                  </td>
-                  
-                  <td className="px-6 py-4 max-w-xs">
-                    <p className="truncate" title={interest.message}>
-                      {interest.message}
-                    </p>
-                  </td>
-                  <td className="px-6 py-4">
-                    {getStatusBadge(interest.status)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {interests.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-gray-500 text-lg">
+              You haven't expressed interest in any crops yet
+            </p>
           </div>
-          )}
-        
-        
+        ) : (
+          <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-green-50">
+                <tr>
+                  <th className="px-6 py-4 text-left">Crop Name</th>
+                  <th className="px-6 py-4 text-left">Owner</th>
+                  <th className="px-6 py-4 text-left">Quantity</th>
+                  <th className="px-6 py-4 text-left">Message</th>
+                  <th className="px-6 py-4 text-left">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedInterests.map((interest) => (
+                  <tr key={interest._id} className="border-b hover:bg-gray-50">
+                    <td className="px-6 py-4">
+                      <button
+                        onClick={() => navigate(`/crops/${interest.cropId}`)}
+                        className="text-green-600 hover:underline font-semibold"
+                      >
+                        {interest.cropName}
+                      </button>
+                    </td>
+                    <td className="px-6 py-4">{interest.ownerName}</td>
+                    <td className="px-6 py-4">
+                      {interest.quantity} {interest.unit}
+                    </td>
+
+                    <td className="px-6 py-4 max-w-xs">
+                      <p className="truncate" title={interest.message}>
+                        {interest.message}
+                      </p>
+                    </td>
+                    <td className="px-6 py-4">
+                      {getStatusBadge(interest.status)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </MyContainer>
     </div>
   );

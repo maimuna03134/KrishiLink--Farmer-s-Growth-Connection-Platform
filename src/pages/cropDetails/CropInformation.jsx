@@ -18,9 +18,8 @@ import MyContainer from "../../components/myContainer/MyContainer";
 
 const CropInformation = ({crop}) => {
   
-  console.log(crop)
 
-//   const navigate = useNavigate();
+
   return (
     <MyContainer className={"p-4 md:p-6 lg:p-8"}>
       <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">

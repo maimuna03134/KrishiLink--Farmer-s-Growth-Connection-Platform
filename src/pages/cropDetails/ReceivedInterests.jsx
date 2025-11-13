@@ -1,19 +1,23 @@
-import React, { use, useState } from 'react';
-import toast from 'react-hot-toast';
-import { BiCheckCircle, BiUserPlus, BiXCircle } from 'react-icons/bi';
-import { CiLock } from 'react-icons/ci';
-import { FaUserShield } from 'react-icons/fa';
-import ConfirmationModal from './ConfirmationModal';
-import { AuthContext } from '../../context/AuthContext';
+import React, { use, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { BiCheckCircle, BiUserPlus, BiXCircle } from "react-icons/bi";
+import { CiLock } from "react-icons/ci";
+import { FaUserShield } from "react-icons/fa";
+import ConfirmationModal from "./ConfirmationModal";
+import { AuthContext } from "../../context/AuthContext";
 
 const ReceivedInterests = ({ crop }) => {
   const { user } = use(AuthContext);
   const [updatingId, setUpdatingId] = useState(null);
   const [modalData, setModalData] = useState(null);
-
+const [loading, setLoading] = useState(true);
   const [localCrop, setLocalCrop] = useState(crop);
-  
+
   const isOwner = user && localCrop.owner?.ownerEmail === user.email;
+
+  useEffect(() => {
+    if (crop) setLoading(false);
+  }, [crop]);
 
   if (!isOwner) {
     return null;
@@ -37,7 +41,7 @@ const ReceivedInterests = ({ crop }) => {
       setUpdatingId(interest._id);
 
       const statusRes = await fetch(
-        `http://localhost:3000/crops/${localCrop._id}/interests/${interest._id}`,
+        `https://farmers-growth-connection-platform.vercel.app/crops/${localCrop._id}/interests/${interest._id}`,
         {
           method: "PUT",
           headers: {
@@ -47,12 +51,10 @@ const ReceivedInterests = ({ crop }) => {
         }
       );
 
-    
-
       if (!statusRes.ok) {
         toast.error("Failed to update interest status");
         return;
-      } 
+      }
 
       let newQuantity = localCrop.quantity;
 
@@ -60,14 +62,13 @@ const ReceivedInterests = ({ crop }) => {
         newQuantity = localCrop.quantity - interest.quantity;
 
         const quantityRes = await fetch(
-          `http://localhost:3000/crops/${localCrop._id}`,
+          `https://farmers-growth-connection-platform.vercel.app/crops/${localCrop._id}`,
           {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              ...localCrop,
               quantity: newQuantity,
             }),
           }
@@ -93,13 +94,7 @@ const ReceivedInterests = ({ crop }) => {
         ),
       }));
 
-  
-     setModalData(null);
-    //  setTimeout(() => window.location.reload(), 1000);
-
-
-    
-      
+      setModalData(null);
     } catch (err) {
       toast.error(err.message || "Failed to update interest");
     } finally {
@@ -126,21 +121,24 @@ const ReceivedInterests = ({ crop }) => {
       },
     };
     const item = map[status];
-    return <span
-      className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold ${item.color}`}
-    >
-      {item.icon}
-      {item.label}
-    </span>
-  }
+    return (
+      <span
+        className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold ${item.color}`}
+      >
+        {item.icon}
+        {item.label}
+      </span>
+    );
+  };
 
-if (!crop) {
-  return (
-    <div className="text-center py-8 text-gray-500">
-      Loading crop details...
-    </div>
-  );
-}
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+ 
   return (
     <>
       <div className="bg-white rounded-xl shadow-lg p-8">

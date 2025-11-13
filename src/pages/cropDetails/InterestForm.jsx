@@ -16,7 +16,7 @@ const InterestForm = ({ crop }) => {
   const [submitted, setSubmitted] = useState(false);
   const [alreadyInterested, setAlreadyInterested] = useState(false);
   const [isOwner, setIsOwner] = useState(false);
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (crop && user) {
@@ -74,14 +74,17 @@ const InterestForm = ({ crop }) => {
   const confirmSubmit = () => {
     setSubmitted(true);
 
-    fetch(`http://localhost:3000/crops/${crop._id}/interests`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    fetch(
+      `https://farmers-growth-connection-platform.vercel.app/crops/${crop._id}/interests`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-      body: JSON.stringify(interest),
-    })
+        body: JSON.stringify(interest),
+      }
+    )
       .then((res) => {
         if (!res.ok) {
           toast.err("Failed to send interest");
