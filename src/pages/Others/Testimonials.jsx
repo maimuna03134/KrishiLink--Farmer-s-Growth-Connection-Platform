@@ -27,7 +27,7 @@ const Testimonials = () => {
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className="bg-gradient-to-br from-emerald-50 to-green-100 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow"
+                className="bg-linear-to-br from-emerald-50 to-green-100 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow"
               >
                 <FaQuoteLeft className="text-4xl text-green-600 mb-4" />
                 <p className="text-lg italic text-gray-800 mb-6">"{t.text}"</p>
