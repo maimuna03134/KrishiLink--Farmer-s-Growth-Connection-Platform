@@ -1,14 +1,12 @@
 import React, { use, useEffect, useState } from "react";
 import MyContainer from "../../components/myContainer/MyContainer";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { CiLock } from "react-icons/ci";
 import { BiCheckCircle, BiXCircle } from "react-icons/bi";
 
 const MyInterests = () => {
   const { user } = use(AuthContext);
-  const navigate = useNavigate();
   const [interests, setInterests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState("status");
@@ -128,7 +126,7 @@ const MyInterests = () => {
                   <tr key={interest._id} className="border-b hover:bg-gray-50">
                     <td className="px-6 py-4">
                       <button
-                        onClick={() => navigate(`/crops/${interest.cropId}`)}
+                        
                         className="text-green-600 hover:underline font-semibold"
                       >
                         {interest.cropName}

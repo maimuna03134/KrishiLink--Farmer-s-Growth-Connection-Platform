@@ -1,16 +1,31 @@
-# React + Vite
+# KrishiLink - Farmer’s Growth & Connection Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**KrishiLink** is a modern social agro-network that connects farmers, traders, and consumers in a single digital ecosystem. Break free from traditional e-commerce and build real agricultural relationships through direct interaction, collaboration, and knowledge sharing.
 
-Currently, two official plugins are available:
+🌾 **Live Site**: https://crop-trading-platform-design.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+### 🚀 Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Post Crops & Products**  
+  Share what you're growing or selling with photos, descriptions, and real-time updates.
 
-## Expanding the ESLint configuration
+- **Browse Community Posts**  
+  Explore crops, produce, and offers from farmers and traders across regions.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Show Interest & Connect**  
+  Express interest in posts to initiate direct conversations and collaborations.
+
+- **Social Agro Network**  
+  Not just buying/selling — build partnerships, share knowledge, and grow together.
+
+- **User-Friendly Interface**  
+  Clean, intuitive design optimized for desktop and mobile users in rural and urban areas.
+
+---
+
+**Empowering Agriculture Through Connection**  
+KrishiLink is more than a platform — it's a movement to strengthen the agricultural community through digital collaboration.
+
+---

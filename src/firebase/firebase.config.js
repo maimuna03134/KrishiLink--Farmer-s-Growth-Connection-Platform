@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDv3aCucdePjJKR67zgeFmT6alFYmYschA",
-  authDomain: "crop-trading-platform-design.firebaseapp.com",
-  projectId: "crop-trading-platform-design",
-  storageBucket: "crop-trading-platform-design.firebasestorage.app",
-  messagingSenderId: "67065743607",
-  appId: "1:67065743607:web:2b479cc0ac2d87b9db6bf2",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
