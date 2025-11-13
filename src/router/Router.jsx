@@ -7,11 +7,11 @@ import AllCrops from "../pages/allCrops/AllCrops";
 import AddCrop from "../pages/addCrop/AddCrop";
 import MyPosts from "../pages/myPosts/MyPosts";
 import MyInterests from "../pages/myInterests/MyInterests";
-import Profile from "../pages/profile/Profile";
 import AuthLayout from "../layouts/AuthLayout";
 import CropDetails from "../pages/cropDetails/CropDetails";
 import PrivateRouter from "./PrivateRouter";
-import CropInformation from "../pages/cropDetails/CropInformation";
+import MyProfile from "../pages/profile/MyProfile";
+
 
 
 export const router = createBrowserRouter([
@@ -40,15 +40,6 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) => fetch(`http://localhost:3000/crops/${params.id}`),
       },
-      // {
-      //   path: "/crop-details/:id",
-      //   element: (
-      //     <PrivateRouter>
-      //       <CropInformation />
-      //     </PrivateRouter>
-      //   ),
-      //   loader: ({ params }) => fetch(`http://localhost:3000/crops/${params.id}`),
-      // },
       {
         path: "/add-crop",
         element: (
@@ -57,7 +48,6 @@ export const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
-
       {
         path: "/my-posts",
         element: (
@@ -78,7 +68,7 @@ export const router = createBrowserRouter([
         path: "/profile",
         element: (
           <PrivateRouter>
-            <Profile />
+            <MyProfile/>
           </PrivateRouter>
         ),
       },

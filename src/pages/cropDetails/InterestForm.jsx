@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { FiAlertCircle } from "react-icons/fi";
 import ConfirmationModal from "./ConfirmationModal";
 import MyContainer from "../../components/myContainer/MyContainer";
+import { useNavigate } from "react-router";
 
 const InterestForm = ({ crop }) => {
   const { user } = use(AuthContext);
@@ -15,6 +16,7 @@ const InterestForm = ({ crop }) => {
   const [submitted, setSubmitted] = useState(false);
   const [alreadyInterested, setAlreadyInterested] = useState(false);
   const [isOwner, setIsOwner] = useState(false);
+   const navigate = useNavigate();
 
   useEffect(() => {
     if (crop && user) {
@@ -93,7 +95,7 @@ const InterestForm = ({ crop }) => {
         setQuantity(1);
         setMessage("");
         setAlreadyInterested(true);
-        
+        navigate("/my-interests");
       })
       .catch((err) => {
         toast.error(err.message || "Failed to send interest");

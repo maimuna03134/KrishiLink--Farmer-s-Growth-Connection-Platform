@@ -8,10 +8,12 @@ import { AuthContext } from '../../context/AuthContext';
 
 const ReceivedInterests = ({ crop }) => {
   const { user } = use(AuthContext);
-  const [updatIngId, setUpdateIngId] = useState(null);
+  const [updatingId, setUpdatingId] = useState(null);
   const [modalData, setModalData] = useState(null);
 
-  const isOwner = user && crop.owner?.ownerEmail === user.email;
+  const [localCrop, setLocalCrop] = useState(crop);
+  
+  const isOwner = user && localCrop.owner?.ownerEmail === user.email;
 
   if (!isOwner) {
     return null;
@@ -32,10 +34,10 @@ const ReceivedInterests = ({ crop }) => {
   const confirmUpdate = async () => {
     const { interest, newStatus } = modalData;
     try {
-      setUpdateIngId(interest._id);
+      setUpdatingId(interest._id);
 
-      const res = await fetch(
-        `http://localhost:3000/crops/${crop._id}/interests/${interest._id}`,
+      const statusRes = await fetch(
+        `http://localhost:3000/crops/${localCrop._id}/interests/${interest._id}`,
         {
           method: "PUT",
           headers: {
@@ -45,24 +47,63 @@ const ReceivedInterests = ({ crop }) => {
         }
       );
 
-      const data = await res.json();
-      console.log("Response data:", data);
+    
 
-      if (!res.ok) throw new Error("Failed to update");
+      if (!statusRes.ok) {
+        toast.error("Failed to update interest status");
+        return;
+      } 
 
-      toast.success(
-        newStatus === "accepted"
-          ? "Interest accepted successfully!"
-          : "Interest rejected successfully!"
-      );
-      setModalData(null);
-       setTimeout(() => {
-         window.location.reload();
-       }, 1500);
+      let newQuantity = localCrop.quantity;
+
+      if (newStatus === "accepted") {
+        newQuantity = localCrop.quantity - interest.quantity;
+
+        const quantityRes = await fetch(
+          `http://localhost:3000/crops/${localCrop._id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              ...localCrop,
+              quantity: newQuantity,
+            }),
+          }
+        );
+
+        if (!quantityRes.ok) {
+          toast.error("Failed to update crop quantity");
+          return;
+        }
+
+        toast.success(
+          `Interest accepted! Crop quantity reduced by ${interest.quantity} ${localCrop.unit}`
+        );
+      } else {
+        toast.success("Interest rejected successfully!");
+      }
+
+      setLocalCrop((prevCrop) => ({
+        ...prevCrop,
+        quantity: newQuantity,
+        interests: prevCrop.interests.map((int) =>
+          int._id === interest._id ? { ...int, status: newStatus } : int
+        ),
+      }));
+
+  
+     setModalData(null);
+    //  setTimeout(() => window.location.reload(), 1000);
+
+
+    
+      
     } catch (err) {
       toast.error(err.message || "Failed to update interest");
     } finally {
-      setUpdateIngId(null);
+      setUpdatingId(null);
     }
   };
 
@@ -106,7 +147,15 @@ if (!crop) {
         <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center gap-2">
           <FaUserShield className="w-6 h-6" /> Received Interests
         </h2>
-        {crop.interests && crop.interests.length > 0 ? (
+
+        <div className="mb-4 bg-green-50 p-4 rounded-lg">
+          <p className="text-sm text-gray-600">
+            <strong>Available Quantity:</strong> {localCrop.quantity}{" "}
+            {localCrop.unit}
+          </p>
+        </div>
+
+        {localCrop.interests && localCrop.interests.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
@@ -119,7 +168,7 @@ if (!crop) {
                 </tr>
               </thead>
               <tbody>
-                {crop.interests.map((interest,i) => (
+                {localCrop.interests.map((interest, i) => (
                   <tr
                     key={interest._id}
                     className={`border-b hover:bg-gray-50 ${
@@ -145,31 +194,41 @@ if (!crop) {
                     <td className="px-6 py-4">
                       {getStatusBadge(interest.status)}
                     </td>
-                    
+
                     <td className="px-6 py-4">
                       {interest.status === "pending" ? (
                         <div className="flex gap-2">
-                          <button
-                            onClick={() =>
-                              handleAcceptReject(interest, "accepted")
-                            }
-                            disabled={updatIngId === interest._id}
-                            className="flex items-center gap-1 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 text-sm disabled:opacity-50"
-                          >
-                            <BiCheckCircle className="w-4 h-4" /> Accept
-                          </button>
-                          <button
-                            onClick={() =>
-                              handleAcceptReject(interest, "rejected")
-                            }
-                            disabled={updatIngId === interest._id}
-                            className="flex items-center gap-1 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm disabled:opacity-50"
-                          >
-                            <BiXCircle className="w-4 h-4" /> Reject
-                          </button>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() =>
+                                handleAcceptReject(interest, "accepted")
+                              }
+                              disabled={
+                                interest.status !== "pending" ||
+                                updatingId === interest._id
+                              }
+                              className="flex items-center gap-1 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 text-sm disabled:opacity-50"
+                            >
+                              <BiCheckCircle className="w-4 h-4" /> Accept
+                            </button>
+                            <button
+                              onClick={() =>
+                                handleAcceptReject(interest, "rejected")
+                              }
+                              disabled={
+                                interest.status !== "pending" ||
+                                updatingId === interest._id
+                              }
+                              className="flex items-center gap-1 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm disabled:opacity-50"
+                            >
+                              <BiXCircle className="w-4 h-4" /> Reject
+                            </button>
+                          </div>
                         </div>
                       ) : (
-                        <span className="text-gray-400 text-sm">Completed</span>
+                        <span className="text-gray-400 text-sm">
+                          Action Completed
+                        </span>
                       )}
                     </td>
                   </tr>
@@ -181,6 +240,9 @@ if (!crop) {
           <div className="text-center py-16">
             <BiUserPlus className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <p className="text-gray-500 text-lg">No interests received yet</p>
+            <p className="text-gray-400 text-sm mt-2">
+              Buyers will appear here when they show interest
+            </p>
           </div>
         )}
       </div>
@@ -191,8 +253,8 @@ if (!crop) {
           message={modalData.message}
           onConfirm={confirmUpdate}
           onCancel={() => setModalData(null)}
-          confirmText='Yeah'
-          loading={updatIngId !== null}
+          confirmText="Yeah"
+          loading={updatingId !== null}
         />
       )}
     </>

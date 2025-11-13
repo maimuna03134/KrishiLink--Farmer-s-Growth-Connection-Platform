@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 
 const HomeLayout = () => {
     return (
-      <div>
+      <div className="bg-gray-100">
         <header>
           <Navbar />
         </header>

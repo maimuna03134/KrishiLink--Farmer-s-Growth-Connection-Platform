@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import MyContainer from './myContainer/MyContainer';
 
 const CropCard = ({ crop }) => {
   const {
@@ -14,7 +15,8 @@ const CropCard = ({ crop }) => {
     _id
   } = crop;
   return (
-    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+    <MyContainer>
+      <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
       <figure className="h-48 overflow-hidden">
         <img
           src={image}
@@ -45,6 +47,8 @@ const CropCard = ({ crop }) => {
         </div>
       </div>
     </div>
+    </MyContainer>
+    
   );
 };
 

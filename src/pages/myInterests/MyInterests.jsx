@@ -1,222 +1,167 @@
-import React from "react";
+import React, { use, useEffect, useState } from "react";
 import MyContainer from "../../components/myContainer/MyContainer";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
+import { CiLock } from "react-icons/ci";
+import { BiCheckCircle, BiXCircle } from "react-icons/bi";
 
 const MyInterests = () => {
+  const { user } = use(AuthContext);
+  const navigate = useNavigate();
+    const [interests, setInterests] = useState([]);
+    const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("status"); 
+
+  const fetchMyInterests = async () => {
+    try {
+      setLoading(true);
+
+      const res = await fetch(
+        `http://localhost:3000/my-interests/${user.email}`
+      );
+      const data = await res.json();
+
+      if (data.success) {
+        setInterests(data.result);
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error("Failed to load interests");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (user?.email) {
+      fetchMyInterests();
+    }
+  }, [user]);
+
+  
+
+  // sorting by name or status
+  const sortedInterests = [...interests].sort((a, b) => {
+    if (sortBy === "status") {
+      return (a.status || "").localeCompare(b.status || "");
+    } else if (sortBy === "cropName") {
+      return (a.cropName || "").localeCompare(b.cropName || "");
+    }
+    return 0;
+  });
+
+  const getStatusBadge = (status) => {
+    const config = {
+      pending: {
+        icon: <CiLock className="w-4 h-4" />,
+        label: "Pending",
+        color: "bg-yellow-100 text-yellow-800",
+      },
+      accepted: {
+        icon: <BiCheckCircle className="w-4 h-4" />,
+        label: "Accepted",
+        color: "bg-green-100 text-green-800",
+      },
+      rejected: {
+        icon: <BiXCircle className="w-4 h-4" />,
+        label: "Rejected",
+        color: "bg-red-100 text-red-800",
+      },
+    };
+
+    const item = config[status];
+    return (
+      <span
+        className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold ${item.color}`}
+      >
+        {item.icon}
+        {item.label}
+      </span>
+    );
+  };
+  
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin">
+          
+        </div>
+      </div>
+    );
+  }
+
+
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="bg-gray-100 py-8">
       <MyContainer className={"px-4 sm:px-6 lg:px-8"}>
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-green-800">My Interest</h1>
+          <h1 className="text-3xl font-bold text-green-800">My Interests</h1>
           <div>
-            <label className="mr-2 font-semibold">সাজান:</label>
+            <label className="mr-2 font-semibold">Sort by:</label>
             <select
-              //   value={sortBy}
-              //   onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border rounded-lg"
             >
-              <option value="status">অবস্থা অনুযায়ী</option>
-              <option value="cropName">ফসলের নাম অনুযায়ী</option>
+              <option value="status">Status</option>
+              <option value="cropName">Crop Name</option>
             </select>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          {/* <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-green-100">
-                <tr>
-                  <th className="px-4 py-3 text-left">ফসলের নাম</th>
-                  <th className="px-4 py-3 text-left">মালিক</th>
-                  <th className="px-4 py-3 text-left">পরিমাণ</th>
-                  <th className="px-4 py-3 text-left">বার্তা</th>
-                  <th className="px-4 py-3 text-left">অবস্থা</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b hover:bg-gray-50">
-                  <td className="px-4 py-3">
-                    <button className="btn btn-style">Tomato</button>
-                                  </td>
-                                  <td>MR.XYZ</td>
-                                  <td>20</td>
-                                  <td>GGG</td>
-                                  <td>status</td>
-                </tr>
-              </tbody>
-            </table>
-          </div> */}
-
-          <div className="overflow-x-auto">
-            <table className="table">
-              {/* head */}
-              <thead>
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* row 1 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-bold">Hart Hagerty</div>
-                        <div className="text-sm opacity-50">United States</div>
-                      </div>
-                    </div>
+        {
+          interests.length === 0 ? (
+            <div className="text-center py-16">
+          <p className="text-gray-500 text-lg">
+            You haven't expressed interest in any crops yet
+          </p>
+            </div>
+          ) : (
+            <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-green-50">
+              <tr>
+                <th className="px-6 py-4 text-left">Crop Name</th>
+                <th className="px-6 py-4 text-left">Owner</th>
+                <th className="px-6 py-4 text-left">Quantity</th>
+                <th className="px-6 py-4 text-left">Message</th>
+                <th className="px-6 py-4 text-left">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedInterests.map((interest) => (
+                <tr key={interest._id} className="border-b hover:bg-gray-50">
+                  <td className="px-6 py-4">
+                    <button
+                      onClick={() => navigate(`/crops/${interest.cropId}`)}
+                      className="text-green-600 hover:underline font-semibold"
+                    >
+                      {interest.cropName}
+                    </button>
                   </td>
-                  <td>
-                    Zemlak, Daniel and Leannon
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Desktop Support Technician
-                    </span>
+                  <td className="px-6 py-4">{interest.ownerName}</td>
+                  <td className="px-6 py-4">
+                    {interest.quantity} {interest.unit}
                   </td>
-                  <td>Purple</td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </th>
+                  
+                  <td className="px-6 py-4 max-w-xs">
+                    <p className="truncate" title={interest.message}>
+                      {interest.message}
+                    </p>
+                  </td>
+                  <td className="px-6 py-4">
+                    {getStatusBadge(interest.status)}
+                  </td>
                 </tr>
-                {/* row 2 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/images/profile/demo/3@94.webp"
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-bold">Brice Swyre</div>
-                        <div className="text-sm opacity-50">China</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    Carroll Group
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Tax Accountant
-                    </span>
-                  </td>
-                  <td>Red</td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </th>
-                </tr>
-                {/* row 3 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-bold">Marjy Ferencz</div>
-                        <div className="text-sm opacity-50">Russia</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    Rowe-Schoen
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Office Assistant I
-                    </span>
-                  </td>
-                  <td>Crimson</td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </th>
-                </tr>
-                {/* row 4 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-bold">Yancy Tear</div>
-                        <div className="text-sm opacity-50">Brazil</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    Wyman-Ledner
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Community Outreach Specialist
-                    </span>
-                  </td>
-                  <td>Indigo</td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </th>
-                </tr>
-              </tbody>
-              {/* foot */}
-              <tfoot>
-                <tr>
-                  <th></th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
-                  <th></th>
-                </tr>
-              </tfoot>
-            </table>
+              ))}
+            </tbody>
+          </table>
           </div>
-        </div>
+          )}
+        
+        
       </MyContainer>
     </div>
   );

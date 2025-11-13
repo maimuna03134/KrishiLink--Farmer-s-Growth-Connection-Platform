@@ -106,7 +106,7 @@ const AddCrop = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className=" bg-gray-100 py-8">
       <MyContainer className={"px-4 sm:px-6 lg:px-8"}>
         <div className="max-w-2xl mx-auto">
           {/* Header */}
@@ -119,21 +119,19 @@ const AddCrop = () => {
             </p>
           </div>
 
-          {/* Form Card */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          {/* Form filed */}
+          <div className="bg-green-50 rounded-xl shadow-lg p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Crop Name */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Crop Name *
-                </label>
+                <label className="label-style">Crop Name *</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="e.g., Tomato, Rice, Wheat"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="input-style"
                   required
                 />
               </div>
@@ -141,14 +139,12 @@ const AddCrop = () => {
               {/* Crop Type and Unit */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Crop Type *
-                  </label>
+                  <label className="label-style">Crop Type *</label>
                   <select
                     name="type"
                     value={formData.type}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="input-style"
                   >
                     <option>Vegetable</option>
                     <option>Fruit</option>
@@ -160,14 +156,12 @@ const AddCrop = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Unit *
-                  </label>
+                  <label className="label-style">Unit *</label>
                   <select
                     name="unit"
                     value={formData.unit}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="input-style"
                   >
                     <option>kg</option>
                     <option>ton</option>
@@ -181,9 +175,7 @@ const AddCrop = () => {
               {/* Price and Quantity */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Price per Unit ($) *
-                  </label>
+                  <label className="label-style">Price per Unit ($) *</label>
                   <input
                     type="number"
                     name="pricePerUnit"
@@ -192,15 +184,13 @@ const AddCrop = () => {
                     placeholder="0.00"
                     step="0.01"
                     min="0"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="input-style"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Estimated Quantity *
-                  </label>
+                  <label className="label-style">Estimated Quantity *</label>
                   <input
                     type="number"
                     name="quantity"
@@ -208,7 +198,7 @@ const AddCrop = () => {
                     onChange={handleChange}
                     placeholder="0"
                     min="0"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="input-style"
                     required
                   />
                 </div>
@@ -216,41 +206,35 @@ const AddCrop = () => {
 
               {/* Location */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Location *
-                </label>
+                <label className="label-style">Location *</label>
                 <input
                   type="text"
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
                   placeholder="e.g., Bogura, Dhaka, Chittagong"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="input-style"
                   required
                 />
               </div>
 
               {/* Description */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Description *
-                </label>
+                <label className="label-style">Description *</label>
                 <textarea
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                   placeholder="Describe your crop, farming methods, quality, etc."
                   rows="5"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+                  className="input-style"
                   required
                 />
               </div>
 
               {/* Image URL */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Image URL *
-                </label>
+                <label className="label-style">Image URL *</label>
                 <div className="flex gap-2">
                   <input
                     type="url"
@@ -258,7 +242,7 @@ const AddCrop = () => {
                     value={formData.image}
                     onChange={handleChange}
                     placeholder="https://example.com/crop.jpg"
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="flex-1 input-style"
                     required
                   />
                 </div>
@@ -267,16 +251,7 @@ const AddCrop = () => {
                 </p>
               </div>
 
-              {/* Image Preview */}
-              {formData.image && (
-                <div className="border-2 border-dashed border-green-300 rounded-lg p-4 bg-green-50">
-                  <img
-                    src={formData.image}
-                    alt="Preview"
-                    className="max-h-48 mx-auto rounded-lg object-cover"
-                  />
-                </div>
-              )}
+              
 
               {/* Submit Button */}
               <div className="flex gap-4 pt-6">
