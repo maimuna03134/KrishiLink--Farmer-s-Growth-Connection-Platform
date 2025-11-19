@@ -75,7 +75,7 @@ Make sure you have the following installed on your machine:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/krishilink.git
+git clone https://github.com/maimuna03134/KrishiLink--Farmer-s-Growth-Connection-Platform.git
 cd krishilink
 ```
 
@@ -93,20 +93,7 @@ Or using yarn:
 yarn install
 ```
 
-### Step 3: Set Up Environment Variables
-
-Create a `.env.local` file in the root directory and add your Firebase configuration:
-
-```env
-VITE_FIREBASE_API_KEY=your_api_key_here
-VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain_here
-VITE_FIREBASE_PROJECT_ID=your_project_id_here
-VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket_here
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id_here
-VITE_FIREBASE_APP_ID=your_app_id_here
-```
-
-### Step 4: Run Development Server
+### Step 3: Run Development Server
 
 ```bash
 npm run dev
@@ -114,7 +101,7 @@ npm run dev
 
 The application will start at `http://localhost:5173` (or another available port)
 
-### Step 5: Build for Production
+### Step 4: Build for Production
 
 ```bash
 npm run build
@@ -122,34 +109,10 @@ npm run build
 
 The optimized production build will be generated in the `dist` folder.
 
-### Step 6: Preview Production Build
+### Step 5: Preview Production Build
 
 ```bash
 npm run preview
-```
-
----
-
-## 📁 Project Structure
-
-```
-krishilink/
-├── src/
-│   ├── components/       # Reusable React components
-│   ├── pages/           # Page components
-│   ├── layouts/         # Layout components
-│   ├── routes/          # Route configuration
-│   ├── assets/          # Images, icons, and static files
-│   ├── styles/          # Global styles
-│   ├── App.jsx          # Main app component
-│   └── main.jsx         # Entry point
-├── public/              # Static public files
-├── .env.local           # Environment variables (not tracked in git)
-├── index.html           # HTML template
-├── vite.config.js       # Vite configuration
-├── tailwind.config.js   # Tailwind CSS configuration
-├── package.json         # Project dependencies and scripts
-└── README.md           # This file
 ```
 
 ---
@@ -199,7 +162,6 @@ npm run build
 firebase deploy
 ```
 
-Your application will be live at the URL provided by Firebase.
 
 ---
 
@@ -236,9 +198,7 @@ Connect with local farmers and traders in your area. Location-based features hel
 
 ### Repository
 
-- **GitHub Repository:** https://github.com/your-username/krishilink
-- **Issues & Bug Reports:** https://github.com/your-username/krishilink/issues
-- **Pull Requests:** https://github.com/your-username/krishilink/pulls
+- **GitHub Repository:** https://github.com/maimuna03134/KrishiLink--Farmer-s-Growth-Connection-Platform.git
 
 ### Documentation
 
@@ -250,12 +210,7 @@ Connect with local farmers and traders in your area. Location-based features hel
 - **Swiper JS:** https://swiperjs.com/
 - **DaisyUI Components:** https://daisyui.com/
 
-### Social & Contact
 
-- **📧 Email:** your-email@example.com
-- **💼 LinkedIn:** https://linkedin.com/in/your-profile
-- **🐦 Twitter:** https://twitter.com/your-handle
-- **💬 WhatsApp Community:** [Add community link if available]
 
 ### Tools & Services
 
@@ -265,94 +220,6 @@ Connect with local farmers and traders in your area. Location-based features hel
 
 ---
 
-## 🤝 Contributing
-
-We love contributions! Follow these steps to contribute to KrishiLink:
-
-### 1. Fork the Repository
-
-Click the **Fork** button on GitHub to create your own copy.
-
-### 2. Clone Your Fork
-
-```bash
-git clone https://github.com/your-username/krishilink.git
-cd krishilink
-```
-
-### 3. Create a Feature Branch
-
-```bash
-git checkout -b feature/YourFeatureName
-```
-
-Use descriptive names like:
-- `feature/add-messaging-system`
-- `fix/post-upload-bug`
-- `docs/update-readme`
-
-### 4. Make Your Changes
-
-Edit files and test your changes locally:
-
-```bash
-npm run dev
-```
-
-### 5. Commit Your Changes
-
-```bash
-git add .
-git commit -m "Brief description of changes"
-```
-
-### 6. Push to Your Fork
-
-```bash
-git push origin feature/YourFeatureName
-```
-
-### 7. Create a Pull Request
-
-- Go to the original repository on GitHub
-- Click **"Compare & pull request"**
-- Add a clear title and description
-- Click **"Create pull request"**
-
-### Guidelines
-
-- Keep commits clean and descriptive
-- Test your code before submitting
-- Follow the existing code style
-- Update documentation if needed
-- Be respectful and constructive in discussions
-
-### Reporting Issues
-
-Found a bug? Create an issue with:
-- Clear title and description
-- Steps to reproduce
-- Expected vs actual behavior
-- Screenshots if applicable
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## 💬 Support & Feedback
-
-For questions, feedback, or support:
-
-- Create an issue in the repository
-- Contact the development team via email
-- Visit the live website: https://crop-trading-platform-design.web.app/
-- Join our community discussions
-
----
 
 ## 🙏 Acknowledgments
 
@@ -368,4 +235,3 @@ For questions, feedback, or support:
 
 KrishiLink is dedicated to strengthening the agricultural community by breaking down barriers between farmers, traders, and consumers. Together, we're building a stronger, more connected agricultural ecosystem.
 
-**Grow Your Business with KrishiLink! 🌾**
