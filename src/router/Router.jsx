@@ -11,13 +11,14 @@ import AuthLayout from "../layouts/AuthLayout";
 import CropDetails from "../pages/cropDetails/CropDetails";
 import PrivateRouter from "./PrivateRouter";
 import MyProfile from "../pages/profile/MyProfile";
+import Loading from "../pages/Loading";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
     errorElement: <p>Error</p>,
-    hydrateFallbackElement: <p>Loading...</p>,
+    hydrateFallbackElement: <Loading/>,
     children: [
       {
         path: "/",
