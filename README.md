@@ -4,6 +4,10 @@ A modern social agro-network that connects farmers, traders, and consumers in a 
 
 **Live Link:** https://crop-trading-platform-design.web.app/
 
+<p align="center">
+  <img src="./farmarlink ss.png" width="100%" alt="Banner" />
+</p>
+
 ---
 
 ## 📋 Project Overview
