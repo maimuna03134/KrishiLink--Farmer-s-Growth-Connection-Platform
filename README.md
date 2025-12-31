@@ -66,14 +66,6 @@ KrishiLink is more than just a platform — it's a movement to strengthen the ag
 
 ## 🚀 Installation & Setup Guide
 
-### Prerequisites
-
-Make sure you have the following installed on your machine:
-
-- **Node.js** (v16 or higher)
-- **npm** or **yarn** package manager
-- **Git** for version control
-
 ### Step 1: Clone the Repository
 
 ```bash
@@ -89,19 +81,13 @@ Using npm:
 npm install
 ```
 
-Or using yarn:
-
-```bash
-yarn install
-```
-
 ### Step 3: Run Development Server
 
 ```bash
 npm run dev
 ```
 
-The application will start at `http://localhost:5173` (or another available port)
+The application will start at `http://localhost:5173` 
 
 ### Step 4: Build for Production
 
@@ -116,17 +102,6 @@ The optimized production build will be generated in the `dist` folder.
 ```bash
 npm run preview
 ```
-
----
-
-## 🔧 Available Scripts
-
-In the project directory, you can run:
-
-- `npm run dev` - Start the development server
-- `npm run build` - Create an optimized production build
-- `npm run preview` - Preview the production build locally
-- `npm run lint` - Run linting (if configured)
 
 ---
 
