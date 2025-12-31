@@ -2,17 +2,19 @@
 
 A modern social agro-network that connects farmers, traders, and consumers in a single digital ecosystem. Break free from traditional e-commerce and build real agricultural relationships through direct interaction, collaboration, and knowledge sharing.
 
-**Live Link:** https://crop-trading-platform-design.web.app/
-
-<p align="center">
-  <img src="./farmarlink ss.png" width="100%" alt="Banner" />
-</p>
-
 ---
 
 ## 📋 Project Overview
 
 KrishiLink is more than just a platform — it's a movement to strengthen the agricultural community through digital collaboration. The application connects farmers, traders, and consumers, enabling them to share products, build partnerships, and grow together. Whether you're a farmer looking to sell your crops, a trader seeking quality produce, or a consumer supporting local agriculture, KrishiLink brings everyone together in one welcoming digital ecosystem.
+
+---
+
+**Live Link:** https://crop-trading-platform-design.web.app/
+
+<p align="center">
+  <img src="./farmarlink ss.png" width="100%" alt="Banner" />
+</p>
 
 ---
 
