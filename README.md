@@ -177,38 +177,6 @@ Connect with local farmers and traders in your area. Location-based features hel
 
 - **GitHub Repository:** https://github.com/maimuna03134/KrishiLink--Farmer-s-Growth-Connection-Platform.git
 
-### Documentation
-
-- **React Documentation:** https://react.dev
-- **Firebase Docs:** https://firebase.google.com/docs
-- **Tailwind CSS:** https://tailwindcss.com
-- **Vite Guide:** https://vitejs.dev/guide/
-- **React Router:** https://reactrouter.com
-- **Swiper JS:** https://swiperjs.com/
-- **DaisyUI Components:** https://daisyui.com/
 
 
-
-### Tools & Services
-
-- **Firebase Console:** https://console.firebase.google.com
-- **Vercel Deployment:** https://vercel.com
-- **Netlify Deployment:** https://netlify.com
-
----
-
-
-## 🙏 Acknowledgments
-
-- All contributors and supporters
-- Firebase for hosting and backend services
-- The open-source community for amazing libraries and tools
-- Farmers and agricultural entrepreneurs who inspired this platform
-- Our users who believe in the power of digital agriculture
-
----
-
-## 🌾 Empowering Agriculture Through Connection
-
-KrishiLink is dedicated to strengthening the agricultural community by breaking down barriers between farmers, traders, and consumers. Together, we're building a stronger, more connected agricultural ecosystem.
 
