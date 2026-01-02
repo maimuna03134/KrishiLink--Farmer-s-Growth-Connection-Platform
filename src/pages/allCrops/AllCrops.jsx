@@ -112,7 +112,7 @@ const [loading, setLoading] = useState(true);
             </a>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {crops.map((crop) => (
               <CropCard key={crop._id} crop={crop} />
             ))}

@@ -8,6 +8,8 @@ import Features from '../Others/Features';
 import Testimonials from '../Others/Testimonials';
 import MyContainer from '../../components/myContainer/MyContainer';
 
+
+
 const Home = () => {
   const data = useLoaderData();
   // console.log(data)
@@ -16,9 +18,9 @@ const Home = () => {
         <Banner />
         {/* latest section */}
         <MyContainer>
-          <div className="text-center text-xl font-bold">Latest Model</div>
+          <div className="text-center text-xl font-bold mt-10">Latest Model</div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 mt-6">
             {data.map((crop) => (
               <CropCard key={crop._id} crop={crop} />
             ))}
@@ -29,6 +31,7 @@ const Home = () => {
             </Link>
           </div>
         </MyContainer>
+        
         <div>
           <HowItWorks/>
         </div>
