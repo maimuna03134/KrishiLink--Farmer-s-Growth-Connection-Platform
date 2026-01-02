@@ -57,8 +57,9 @@ const Navbar = () => {
   ] : [];
 
   return (
-    <header className="bg-gradient-to-b from-green-50 to-white shadow-sm sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
-      <MyContainer>
+    <>
+    <header className="bg-gradient-to-b from-green-50 to-white shadow-sm fixed top-0 left-0 w-full z-50 backdrop-blur-sm bg-opacity-95">
+      <MyContainer className={"px-4 sm:px-6 lg:px-8"}>
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
@@ -247,7 +248,9 @@ const Navbar = () => {
           </div>
         </div>
       )}
-    </header>
+      </header>
+      <div className='h-12'></div>
+    </>
   );
 };
 
