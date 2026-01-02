@@ -39,7 +39,7 @@ const Footer = () => {
 
           {/* Footer Links */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-            {/* Solutions */}
+            
             <div>
               <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2">
                 <FaSeedling className="text-green-600" />
@@ -47,44 +47,45 @@ const Footer = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/"
                     className="text-gray-600 hover:text-green-700 transition-colors"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/all-crops"
                     className="text-gray-600 hover:text-green-700 transition-colors"
                   >
                     All Crops
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/add-crop"
                     className="text-gray-600 hover:text-green-700 transition-colors"
                   >
                     Add Crops
-                  </a>
+                  </Link >
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/my-posts"
                     className="text-gray-600 hover:text-green-700 transition-colors"
                   >
                     My Posts
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/my-interests"
                     className="text-gray-600 hover:text-green-700 transition-colors"
+                   
                   >
                     My Interests
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
