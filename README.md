@@ -1,14 +1,16 @@
 # KrishiLink – Farmer's Growth & Connection Platform 🌾
 
-A modern social agro-network that connects farmers, traders, and consumers in a single digital ecosystem. Break free from traditional e-commerce and build real agricultural relationships through direct interaction, collaboration, and knowledge sharing.
-
-**Live Link:** https://crop-trading-platform-design.web.app/
-
----
-
 ## 📋 Project Overview
 
 KrishiLink is more than just a platform — it's a movement to strengthen the agricultural community through digital collaboration. The application connects farmers, traders, and consumers, enabling them to share products, build partnerships, and grow together. Whether you're a farmer looking to sell your crops, a trader seeking quality produce, or a consumer supporting local agriculture, KrishiLink brings everyone together in one welcoming digital ecosystem.
+
+---
+
+**Live Link:** https://crop-trading-platform-design.web.app/
+
+<p align="center">
+  <img src="./farmarlink ss.png" width="100%" alt="Banner" />
+</p>
 
 ---
 
@@ -64,14 +66,6 @@ KrishiLink is more than just a platform — it's a movement to strengthen the ag
 
 ## 🚀 Installation & Setup Guide
 
-### Prerequisites
-
-Make sure you have the following installed on your machine:
-
-- **Node.js** (v16 or higher)
-- **npm** or **yarn** package manager
-- **Git** for version control
-
 ### Step 1: Clone the Repository
 
 ```bash
@@ -87,19 +81,13 @@ Using npm:
 npm install
 ```
 
-Or using yarn:
-
-```bash
-yarn install
-```
-
 ### Step 3: Run Development Server
 
 ```bash
 npm run dev
 ```
 
-The application will start at `http://localhost:5173` (or another available port)
+The application will start at `http://localhost:5173` 
 
 ### Step 4: Build for Production
 
@@ -114,17 +102,6 @@ The optimized production build will be generated in the `dist` folder.
 ```bash
 npm run preview
 ```
-
----
-
-## 🔧 Available Scripts
-
-In the project directory, you can run:
-
-- `npm run dev` - Start the development server
-- `npm run build` - Create an optimized production build
-- `npm run preview` - Preview the production build locally
-- `npm run lint` - Run linting (if configured)
 
 ---
 
@@ -200,38 +177,6 @@ Connect with local farmers and traders in your area. Location-based features hel
 
 - **GitHub Repository:** https://github.com/maimuna03134/KrishiLink--Farmer-s-Growth-Connection-Platform.git
 
-### Documentation
-
-- **React Documentation:** https://react.dev
-- **Firebase Docs:** https://firebase.google.com/docs
-- **Tailwind CSS:** https://tailwindcss.com
-- **Vite Guide:** https://vitejs.dev/guide/
-- **React Router:** https://reactrouter.com
-- **Swiper JS:** https://swiperjs.com/
-- **DaisyUI Components:** https://daisyui.com/
 
 
-
-### Tools & Services
-
-- **Firebase Console:** https://console.firebase.google.com
-- **Vercel Deployment:** https://vercel.com
-- **Netlify Deployment:** https://netlify.com
-
----
-
-
-## 🙏 Acknowledgments
-
-- All contributors and supporters
-- Firebase for hosting and backend services
-- The open-source community for amazing libraries and tools
-- Farmers and agricultural entrepreneurs who inspired this platform
-- Our users who believe in the power of digital agriculture
-
----
-
-## 🌾 Empowering Agriculture Through Connection
-
-KrishiLink is dedicated to strengthening the agricultural community by breaking down barriers between farmers, traders, and consumers. Together, we're building a stronger, more connected agricultural ecosystem.
 
