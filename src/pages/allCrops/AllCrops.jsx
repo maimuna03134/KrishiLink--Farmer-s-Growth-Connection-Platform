@@ -5,6 +5,7 @@ import MyContainer from "../../components/myContainer/MyContainer";
 import cropsNotFound from '../../assets/not_found.png'
 import { GoSearch } from "react-icons/go";
 import { IoMdArrowBack } from "react-icons/io";
+import CropsSkeleton from "../../components/CropsSkeleton";
 
 const AllCrops = () => {
   const data = useLoaderData();
@@ -18,7 +19,7 @@ const [loading, setLoading] = useState(true);
    const timer = setTimeout(() => {
      setCrops(data);
      setLoading(false);
-   }, 500); 
+   }, 1000); 
 
    return () => clearTimeout(timer);
  }, [data]);
@@ -39,18 +40,12 @@ const [loading, setLoading] = useState(true);
     }
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
+  
 
 
   return (
     <div className="bg-linear-to-br from-green-50 via-lime-50 to-green-50 py-8">
-      <div className="relative h-96 md:h-[520px] overflow-hidden rounded-b-3xl shadow-2xl">
+      <div className="relative h-96 md:h-[400px] overflow-hidden rounded-b-3xl shadow-2xl">
         <img
           src="https://tse4.mm.bing.net/th/id/OIP.th4CxzJANWB8jx1wMpbhDAHaE8?cb=ucfimgc2&rs=1&pid=ImgDetMain&o=7&rm=3"
           alt="Fresh farm crops"
@@ -78,7 +73,7 @@ const [loading, setLoading] = useState(true);
                 placeholder="Search by crop, type, or location..."
                 value={searchTerm}
                 onChange={handleSearch}
-                className="w-full pl-14 pr-6 py-4 rounded-full text-white border-2 border-green-300 text-lg shadow-xl focus:outline-none focus:ring-4 focus:ring-green-400 transition-all"
+                className="w-full pl-14 pr-6 py-2 rounded-full text-white border-2 border-green-300 text-lg shadow-xl focus:outline-none focus:ring-4 focus:ring-green-400 transition-all"
               />
             </div>
           </div>
@@ -112,11 +107,18 @@ const [loading, setLoading] = useState(true);
             </a>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {crops.map((crop) => (
-              <CropCard key={crop._id} crop={crop} />
-            ))}
-          </div>
+            <div className="flex gap-6 flex-wrap">
+              {loading
+                ? Array.from({ length: 6 }).map((_, i) => (
+                  <CropsSkeleton key={i} />
+                ))
+                : <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 justify-items-center">
+                  {crops.map((crop) => (
+                    <CropCard key={crop._id} crop={crop} />
+                  ))}
+                </div>
+              }
+            </div>
         )}
       </MyContainer>
     </div>

@@ -19,8 +19,8 @@ const CropCard = ({ crop }) => {
     _id
   } = crop;
   return (
-    <MyContainer>
-      <div className={`group relative w-[190px] h-[254px] bg-white rounded-[20px] border border-white/20 shadow-lg overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:shadow-2xl hover:border-green-400/20 ${isHovered ? "shadow-2xl -translate-y-2" : ""}`}
+    <MyContainer >
+      <div className={`group relative w-full bg-white rounded-[20px] border border-white/20 shadow-lg overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:shadow-2xl hover:border-green-400/20 ${isHovered ? "shadow-2xl -translate-y-2" : ""}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -80,7 +80,7 @@ const CropCard = ({ crop }) => {
           </div>
 
           
-          <div className="mt-auto flex items-center justify-between">
+          <div className="mt-auto mb-2 flex items-center justify-between ">
             <span className="font-bold text-slate-800 transition-all duration-300 group-hover:text-green-600 group-hover:translate-x-0.5">
               ${pricePerUnit}<span className="text-sm font-normal">/{unit}</span>
             </span>
