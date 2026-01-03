@@ -17,7 +17,7 @@ import {Link} from "react-router";
 import MyContainer from "../../components/myContainer/MyContainer";
 
 const CropInformation = ({crop}) => {
-  
+  console.log(crop)
 
 
   return (

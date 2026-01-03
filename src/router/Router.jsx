@@ -36,11 +36,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/crop-details/:id",
-        element: (
-          <PrivateRouter>
-            <CropDetails />
-          </PrivateRouter>
-        ),
+        element: <CropDetails />,
         loader: ({ params }) =>
           fetch(
             `https://farmers-growth-connection-platform.vercel.app/crops/${params.id}`
