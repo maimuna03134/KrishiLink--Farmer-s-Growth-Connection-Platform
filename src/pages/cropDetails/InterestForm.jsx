@@ -108,7 +108,7 @@ const InterestForm = ({ crop }) => {
 
   if (!user) {
     return (
-      <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mb-8">
+      <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mb-8 ">
         <div className="flex items-start gap-3">
           <FiAlertCircle className="w-6 h-6 text-blue-600 mt-1" />
           <div>
@@ -163,10 +163,10 @@ const InterestForm = ({ crop }) => {
   return (
     <MyContainer
       className={
-        "bg-linear-to-t from-white to-green-100 rounded-xl shadow-2xl"
+        "bg-linear-to-t from-white to-green-100 rounded-xl shadow-md p-3 my-10"
       }
     >
-      <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center gap-2">
+      <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center gap-2 mx-auto pt-3 justify-center">
         Express Your Interest
       </h2>
 
@@ -246,6 +246,7 @@ const InterestForm = ({ crop }) => {
           loading={submitted}
         />
       )}
+      
     </MyContainer>
   );
 };

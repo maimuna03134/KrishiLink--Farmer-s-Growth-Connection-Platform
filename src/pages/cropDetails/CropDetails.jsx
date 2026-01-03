@@ -34,7 +34,7 @@ const CropDetails = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <MyContainer>
-        <CropInformation crop={crop} />
+        
         <CropDetailsPage crop={crop} />
 
         <div className=" p-4 text-center mb-4 flex justify-center ">
@@ -49,7 +49,7 @@ const CropDetails = () => {
 
         {
           user ? (
-            // User is logged in - Show interest form or received interests
+            
             <>
               {!showAsOwner ? (
                 <div className="mt-8 flex justify-center">

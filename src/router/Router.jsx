@@ -12,6 +12,7 @@ import CropDetails from "../pages/cropDetails/CropDetails";
 import PrivateRouter from "./PrivateRouter";
 import MyProfile from "../pages/profile/MyProfile";
 import Loading from "../pages/Loading";
+import InterestForm from "../pages/cropDetails/InterestForm";
 
 export const router = createBrowserRouter([
   {
@@ -31,8 +32,7 @@ export const router = createBrowserRouter([
       {
         path: "/all-crops",
         element: <AllCrops />,
-        // loader: () =>
-        //   fetch("https://farmers-growth-connection-platform.vercel.app/crops"),
+        
       },
       {
         path: "/crop-details/:id",
@@ -41,6 +41,14 @@ export const router = createBrowserRouter([
           fetch(
             `https://farmers-growth-connection-platform.vercel.app/crops/${params.id}`
           ),
+      },
+      {
+        path: "/interest-form",
+        element: (
+          <PrivateRouter>
+            < InterestForm />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/add-crop",
