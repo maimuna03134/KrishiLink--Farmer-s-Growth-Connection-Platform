@@ -64,7 +64,6 @@ const AddCrop = () => {
     setLoading(true);
 
     const cropData = {
-      _id: `crop_${Date.now()}`,
       name: formData.name,
       type: formData.type,
       pricePerUnit: parseFloat(formData.pricePerUnit),
@@ -76,21 +75,18 @@ const AddCrop = () => {
       owner: {
         ownerEmail: user.email,
         ownerName: user.displayName || user.email.split("@")[0],
-      },
-      interests: [],
+      }
     };
 
+
     try {
-      const res = await fetch(
-        "https://farmers-growth-connection-platform.vercel.app/add-crop",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(cropData),
-        }
-      );
+      const res = await await fetch("http://localhost:5000/crops", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cropData),
+      });
 
       const data = await res.json();
 

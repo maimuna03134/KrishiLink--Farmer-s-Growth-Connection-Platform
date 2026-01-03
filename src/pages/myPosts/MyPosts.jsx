@@ -21,13 +21,13 @@ const MyPosts = () => {
       setLoading(true);
 
       const res = await fetch(
-        `https://farmers-growth-connection-platform.vercel.app/my-crops/${user.email}`
+        `http://localhost:5000/my-crops/${user.email}`
       );
 
       const data = await res.json();
 
       if (data.success) {
-        setCrops(data.result);
+        setCrops(data.data);
       }
     } catch (error) {
       console.log(error);
@@ -40,26 +40,31 @@ const MyPosts = () => {
     setEditingCrop(crop);
   };
 
-  const handleUpdate = async (e) => {
+  const handleUpdate = async (e, id) => {
     e.preventDefault();
 
+    if (!id) {
+      toast.error("Crop ID is missing!");
+      return;
+    }
+
     try {
-      const res = await fetch(
-        `https://farmers-growth-connection-platform.vercel.app/crops/${editingCrop._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(editingCrop),
-        }
-      );
+      const res = await fetch(`http://localhost:5000/crops/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(editingCrop),
+      });
+
       const data = await res.json();
 
       if (data.success) {
-        toast.success("Crop update successfully!");
+        toast.success("Crop updated successfully!");
         setEditingCrop(null);
         fetchMyCropPost();
+      } else {
+        toast.error(data.message || "Failed to update crop");
       }
     } catch (error) {
       console.log(error);
@@ -67,13 +72,14 @@ const MyPosts = () => {
     }
   };
 
+
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this crop?")) {
       return;
     }
     try {
       const res = await fetch(
-        `https://farmers-growth-connection-platform.vercel.app/crops/${id}`,
+        `http://localhost:5000/crops/${id}`,
         {
           method: "DELETE",
         }
@@ -106,7 +112,7 @@ const MyPosts = () => {
           My Posts
         </h1>
 
-        {crops.length === 0 ? (
+        {crops && crops.length === 0 ? (
           <div className="text-center py-16">
             <p className="text-gray-500 text-lg">
               You haven't posted any crops yet
@@ -127,7 +133,7 @@ const MyPosts = () => {
                 </tr>
               </thead>
               <tbody>
-                {crops.map((crop) => (
+                  {crops && crops.map((crop) => (
                   <tr key={crop._id} className="border-b hover:bg-gray-50">
                     <td className="px-6 py-4">
                       <img
@@ -154,7 +160,7 @@ const MyPosts = () => {
                           <BiEdit className="w-5 h-5" />
                         </button>
                         <button
-                          onClick={() => handleDelete(crop._id)}
+                            onClick={() => handleDelete(crop._id)}
                           className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
                         >
                           <BiTrash className="w-5 h-5" />
@@ -254,7 +260,7 @@ const MyPosts = () => {
 
               <div className="flex gap-4 mt-6">
                 <button
-                  onClick={handleUpdate}
+                  onClick={(e) => handleUpdate(e, editingCrop._id)}
                   className="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700"
                 >
                   Update
