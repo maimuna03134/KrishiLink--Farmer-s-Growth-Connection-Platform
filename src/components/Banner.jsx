@@ -63,7 +63,7 @@ const Banner = () => {
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="relative w-full h-full">
-              {/* Background Image with Ken Burns Effect */}
+              
               <div
                 className={`absolute inset-0 bg-cover bg-center transition-transform duration-[6000ms] ease-out ${activeIndex === index ? "scale-110" : "scale-100"
                   }`}
@@ -75,7 +75,7 @@ const Banner = () => {
 
               {/* Content Container */}
               <div className="absolute inset-0 flex items-center">
-                <div className="container mx-auto px-6 md:px-12 lg:px-20">
+                <div className="container mx-auto md:px-12 lg:px-20">
                   <div className="max-w-min ">
                     {/* Animated Content Box with Semi-Transparent Background */}
                     <div className={`md:bg-transparent md:backdrop-blur-sm p-4 md:p-8 rounded-lg shadow-2xl ${activeIndex === index ? 'animate-content' : 'opacity-0'}`}>

@@ -21,7 +21,7 @@ const Home = () => {
         <MyContainer >
           <div className="mt-10 text-center text-xl font-bold ">Latest Model</div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-2 mt-6">
             {data.map((crop) => (
               <CropCard key={crop._id} crop={crop} />
             ))}

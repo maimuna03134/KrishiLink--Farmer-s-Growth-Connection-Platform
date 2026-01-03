@@ -31,8 +31,8 @@ export const router = createBrowserRouter([
       {
         path: "/all-crops",
         element: <AllCrops />,
-        loader: () =>
-          fetch("https://farmers-growth-connection-platform.vercel.app/crops"),
+        // loader: () =>
+        //   fetch("https://farmers-growth-connection-platform.vercel.app/crops"),
       },
       {
         path: "/crop-details/:id",
