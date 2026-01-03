@@ -165,7 +165,7 @@ const InterestForm = ({ crop }) => {
   return (
     <MyContainer
       className={
-        "bg-linear-to-t from-white to-green-100 rounded-xl shadow-2xl px-20 py-10 mb-8"
+        "bg-linear-to-t from-white to-green-100 rounded-xl shadow-2xl"
       }
     >
       <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center gap-2">

@@ -7,6 +7,7 @@ import AgroNews from '../Others/AgroNews';
 import Features from '../Others/Features';
 import Testimonials from '../Others/Testimonials';
 import MyContainer from '../../components/myContainer/MyContainer';
+import CropDetailsPage from '../cropDetails/CropDetailsPage';
 
 
 
@@ -17,8 +18,8 @@ const Home = () => {
       <div>
         <Banner />
         {/* latest section */}
-        <MyContainer>
-          <div className="text-center text-xl font-bold mt-10">Latest Model</div>
+        <MyContainer >
+          <div className="mt-10 text-center text-xl font-bold ">Latest Model</div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 mt-6">
             {data.map((crop) => (
@@ -31,6 +32,8 @@ const Home = () => {
             </Link>
           </div>
         </MyContainer>
+
+        {/* <CropDetailsPage/> */}
         
         <div>
           <HowItWorks/>

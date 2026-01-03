@@ -8,7 +8,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 const Footer = () => {
     return (
       <footer className="bg-linear-to-b from-green-50 to-white border-t border-green-100 rounded-2xl">
-        <MyContainer className="px-6 py-10">
+        <MyContainer>
           {/* Logo */}
           <div className="mb-8">
             <Link to="/">

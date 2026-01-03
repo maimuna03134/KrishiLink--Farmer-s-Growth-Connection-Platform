@@ -53,7 +53,7 @@ const [loading, setLoading] = useState(true);
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
-          <div className="max-w-7xl mx-auto">
+          <MyContainer>
             <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
               Fresh Crops <br />
               <span className="text-green-400">Direct from Farmers</span>
@@ -76,11 +76,11 @@ const [loading, setLoading] = useState(true);
                 className="w-full pl-14 pr-6 py-2 rounded-full text-white border-2 border-green-300 text-lg shadow-xl focus:outline-none focus:ring-4 focus:ring-green-400 transition-all"
               />
             </div>
-          </div>
+          </MyContainer>
         </div>
       </div>
-      <MyContainer className={"px-4 sm:px-6 lg:px-8 mt-10"}>
-        <h1 className="text-4xl font-bold text-green-800 mb-8 text-center">All Crops</h1>
+      <MyContainer>
+        <h1 className="my-10 text-4xl font-bold text-green-800 mb-8 text-center">All Crops</h1>
 
         {crops.length === 0 ? (
           <div className="min-h-screen flex flex-col justify-center items-center gap-2">
@@ -112,7 +112,7 @@ const [loading, setLoading] = useState(true);
                 ? Array.from({ length: 6 }).map((_, i) => (
                   <CropsSkeleton key={i} />
                 ))
-                : <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 justify-items-center">
+                : <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
                   {crops.map((crop) => (
                     <CropCard key={crop._id} crop={crop} />
                   ))}

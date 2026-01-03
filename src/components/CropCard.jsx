@@ -20,7 +20,7 @@ const CropCard = ({ crop }) => {
   } = crop;
   return (
     <MyContainer >
-      <div className={`group relative w-full bg-white rounded-[20px] border border-white/20 shadow-lg overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:shadow-2xl hover:border-green-400/20 ${isHovered ? "shadow-2xl -translate-y-2" : ""}`}
+      <div className={`group relative w-full md:w-[190px] md:h-[230px] lg:w-[200px] lg:h-[250px] bg-white rounded-[20px] border border-white/20 shadow-lg overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:shadow-2xl hover:border-green-400/20 ${isHovered ? "shadow-2xl -translate-y-2" : ""}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >

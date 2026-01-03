@@ -21,7 +21,7 @@ const CropInformation = ({crop}) => {
 
 
   return (
-    <MyContainer className={"p-4 md:p-6 lg:p-8"}>
+    <MyContainer >
       <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
         <div className="flex flex-col md:flex-row gap-8 p-8 md:p-8">
           {/* left side - Image  */}

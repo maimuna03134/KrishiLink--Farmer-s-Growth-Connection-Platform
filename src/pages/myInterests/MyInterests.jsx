@@ -87,7 +87,7 @@ const MyInterests = () => {
 
   return (
     <div className="bg-gray-100 py-8">
-      <MyContainer className={"px-4 sm:px-6 lg:px-8"}>
+      <MyContainer >
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-green-800">My Interests</h1>
           <div>

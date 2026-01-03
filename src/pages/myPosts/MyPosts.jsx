@@ -101,7 +101,7 @@ const MyPosts = () => {
 
   return (
     <div className="bg-gray-100 py-8">
-      <MyContainer className={"px-4 sm:px-6 lg:px-8"}>
+      <MyContainer>
         <h1 className="text-3xl font-bold text-center text-green-800 mb-8">
           My Posts
         </h1>
