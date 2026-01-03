@@ -152,11 +152,11 @@ const AllCrops = () => {
           <span className="text-green-400">Direct from Farmers</span>
         </h1>
 
-        <p className="text-center text-lg md:text-xl mb-6 opacity-90 max-w-2xl drop-shadow">
+        <p className="text-center text-lg md:text-xl mb-6 opacity-90 max-w-2xl drop-shadow px-3 mx-auto">
           Connect with farmers across the country. Buy high-quality,
           organic, and affordable crops — straight to your table.
         </p>
-        <div className="relative w-full">
+        <div className="relative w-11/12 mx-auto">
           <GoSearch
             size={24}
             className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600"
@@ -173,9 +173,9 @@ const AllCrops = () => {
 
       
       <MyContainer className="py-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+        <div className="flex flex-col md:flex-row justify-center items-center md:justify-between md:items-center md:px-4 gap-4 mb-8 ">
           <div>
-            <h1 className="text-4xl font-bold text-green-800 mb-2">
+            <h1 className="text-4xl font-bold text-green-800 mb-2 ">
               All Crops
             </h1>
             <p className="text-gray-600">
@@ -187,7 +187,7 @@ const AllCrops = () => {
 
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition shadow-lg lg:hidden"
+            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition shadow-lg lg:hidden w-11/12 mx-auto justify-center md:w-auto md:mx-0  "
           >
             <BiFilterAlt size={20} />
             Filters
@@ -321,7 +321,7 @@ const AllCrops = () => {
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">
                   No Crops Found
                 </h2>
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-600 mb-6 ">
                   We couldn't find any crops matching your criteria. Try
                   adjusting your filters or search terms.
                 </p>
@@ -336,7 +336,7 @@ const AllCrops = () => {
               </div>
             ) : (
                 <>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-8">
+                  <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-8">
                     {loading
                       ? Array.from({ length: itemsPerPage }).map((_, i) => (
                         <CropsSkeleton key={i} />
