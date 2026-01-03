@@ -74,25 +74,22 @@ const InterestForm = ({ crop }) => {
   const confirmSubmit = () => {
     setSubmitted(true);
 
-    fetch(
-      `https://farmers-growth-connection-platform.vercel.app/crops/${crop._id}/interests`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+    fetch('http://localhost:5000/interests', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(interest),
+    })
+      .then(async (res) => {
+        const data = await res.json();
 
-        body: JSON.stringify(interest),
-      }
-    )
-      .then((res) => {
         if (!res.ok) {
-          toast.err("Failed to send interest");
+          
+          toast.error(data.message || "Failed to send interest");
+          return;
         }
-        return res.json();
-      })
-      .then(() => {
-        // console.log(data);
+
         toast.success("Interest sent successfully!");
         setShowModel(false);
         setQuantity(1);
@@ -107,6 +104,7 @@ const InterestForm = ({ crop }) => {
         setSubmitted(false);
       });
   };
+
 
   if (!user) {
     return (

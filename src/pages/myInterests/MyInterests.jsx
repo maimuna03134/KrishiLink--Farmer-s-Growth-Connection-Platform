@@ -16,13 +16,14 @@ const MyInterests = () => {
       setLoading(true);
 
       const res = await fetch(
-        `https://farmers-growth-connection-platform.vercel.app/my-interests/${user.email}`
+        `http://localhost:5000/interests/${user.email}`
       );
+      
       const data = await res.json();
-
       if (data.success) {
-        setInterests(data.result);
+        setInterests(data.data); 
       }
+      
     } catch (error) {
       console.log(error);
       toast.error("Failed to load interests");
