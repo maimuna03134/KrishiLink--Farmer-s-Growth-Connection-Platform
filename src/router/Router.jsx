@@ -13,20 +13,22 @@ import PrivateRouter from "./PrivateRouter";
 import MyProfile from "../pages/profile/MyProfile";
 import Loading from "../pages/Loading";
 import InterestForm from "../pages/cropDetails/InterestForm";
+import DashboardLayout from "../layouts/DashboardLayout";
+import ReceivedInterests from "../pages/cropDetails/ReceivedInterests";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
     errorElement: <p>Error</p>,
-    hydrateFallbackElement: <Loading/>,
+    hydrateFallbackElement: <Loading />,
     children: [
       {
         path: "/",
         element: <Home />,
         loader: () =>
           fetch(
-            "https://farmers-growth-connection-platform.vercel.app/latest-crops"
+            "http://localhost:5000/latest-crops"
           ),
       },
       {
@@ -39,49 +41,10 @@ export const router = createBrowserRouter([
         element: <CropDetails />,
         loader: ({ params }) =>
           fetch(
-            `https://farmers-growth-connection-platform.vercel.app/crops/${params.id}`
+            `http://localhost:5000/crops/${params.id}`
           ),
       },
-      {
-        path: "/interest-form",
-        element: (
-          <PrivateRouter>
-            < InterestForm />
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "/add-crop",
-        element: (
-          <PrivateRouter>
-            <AddCrop />
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "/my-posts",
-        element: (
-          <PrivateRouter>
-            <MyPosts />
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "/my-interests",
-        element: (
-          <PrivateRouter>
-            <MyInterests />
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "/profile",
-        element: (
-          <PrivateRouter>
-            <MyProfile />
-          </PrivateRouter>
-        ),
-      },
+     
     ],
   },
   {
@@ -97,5 +60,45 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRouter>
+        <DashboardLayout />
+      </PrivateRouter>
+    ),
+    children: [
+      // {
+      //   index: true,
+      //   element: <DefaultDashboardRedirect />,
+      // },
+      {
+        path: "/dashboard/interest-form",
+        element: 
+            < InterestForm />
+          
+      },
+      {
+        path: "/dashboard/add-crop",
+        element: <AddCrop />
+      },
+      {
+        path: "/dashboard/my-posts",
+        element: <MyPosts />
+      },
+      {
+        path: "/dashboard/my-interests",
+        element: <MyInterests />
+      },
+      {
+        path: "/dashboard/received-interests/:cropId",
+        element: <ReceivedInterests />
+      },
+      {
+        path: "/dashboard/profile",
+        element: <MyProfile />
+      },
+    ]
   },
 ]);

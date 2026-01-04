@@ -12,31 +12,31 @@ const slides = [
     image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&h=600&fit=crop",
     title: "Connect Directly with Farmers 🌾",
     subtitle: "Fresh crops from farm to your doorstep — no middlemen!",
-   
+
   },
   {
     image: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1200&h=600&fit=crop",
     title: "Sell Your Crops with Ease 🚜",
     subtitle: "Reach buyers nationwide — fair prices, quick transactions!",
-    
+
   },
   {
     image: "https://images.unsplash.com/photo-1595855759920-86582396756a?w=1200&h=600&fit=crop",
     title: "Join the Agriculture Community 👨‍🌾",
     subtitle: "Connect with thousands of farmers, traders, and buyers to grow your business!",
-    
+
   },
   {
     image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1200&h=600&fit=crop",
     title: "Organic & Fresh Produce Market 🥬",
     subtitle: "Healthy food, eco-friendly farming — delivered with just one click!",
-   
+
   },
   {
     image: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=1200&h=600&fit=crop",
     title: "Digital Agriculture Revolution 📱",
     subtitle: "Take your agri-business to new heights with modern technology!",
-  
+
   },
 ];
 
@@ -55,7 +55,7 @@ const Banner = () => {
           bulletClass: 'swiper-pagination-bullet !bg-white/60',
           bulletActiveClass: 'swiper-pagination-bullet-active !bg-white'
         }}
-     
+
         loop={true}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         className="w-full h-full hero-swiper"
@@ -63,15 +63,15 @@ const Banner = () => {
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="relative w-full h-full">
-              
+
               <div
                 className={`absolute inset-0 bg-cover bg-center transition-transform duration-[6000ms] ease-out ${activeIndex === index ? "scale-110" : "scale-100"
                   }`}
                 style={{ backgroundImage: `url(${slide.image})` }}
               />
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+              {/* linear Overlay */}
+              <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-transparent" />
 
               {/* Content Container */}
               <div className="absolute inset-0 flex items-center">
@@ -80,7 +80,7 @@ const Banner = () => {
                     {/* Animated Content Box with Semi-Transparent Background */}
                     <div className={`md:bg-transparent md:backdrop-blur-sm p-4 md:p-8 rounded-lg shadow-2xl ${activeIndex === index ? 'animate-content' : 'opacity-0'}`}>
 
-                     
+
 
                       {/* Title */}
                       <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-white leading-tight animate-fade-in-up animation-delay-300 mt-4 w-70 md:w-60">

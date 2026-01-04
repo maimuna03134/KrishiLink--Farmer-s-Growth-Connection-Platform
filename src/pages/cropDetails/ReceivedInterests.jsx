@@ -7,22 +7,53 @@ import ConfirmationModal from "./ConfirmationModal";
 import { AuthContext } from "../../context/AuthContext";
 
 const ReceivedInterests = ({ crop }) => {
+  console.log(crop)
+  
   const { user } = use(AuthContext);
+
+  const [localCrop, setLocalCrop] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState(null);
   const [modalData, setModalData] = useState(null);
-const [loading, setLoading] = useState(true);
-  const [localCrop, setLocalCrop] = useState(crop);
-
-  const isOwner = user && localCrop.owner?.ownerEmail === user.email;
 
   useEffect(() => {
-    if (crop) setLoading(false);
+    if (!crop) return;
+   
+      setLocalCrop(crop);
+      setLoading(false);
+ 
   }, [crop]);
 
+  // ⏳ Loader
+  // if (loading || !localCrop) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+  //     </div>
+  //   );
+  // }
+
+  const isOwner =
+    !!user &&
+    !!localCrop?.owner?.ownerEmail &&
+    user.email === localCrop.owner.ownerEmail;
+
+
+
   if (!isOwner) {
-    return null;
+    return (
+      <div className="bg-white rounded-xl shadow-lg p-8">
+        <p className="text-center text-gray-600">
+          Only crop owner can see interests
+        </p>
+      </div>
+    );
   }
 
+  if (!crop) {
+  return <div>Loading...</div>;
+  }
+  
   const handleAcceptReject = (interest, newStatus) => {
     setModalData({
       interest,
@@ -40,68 +71,46 @@ const [loading, setLoading] = useState(true);
     try {
       setUpdatingId(interest._id);
 
-      const statusRes = await fetch(
-        `https://farmers-growth-connection-platform.vercel.app/crops/${localCrop._id}/interests/${interest._id}`,
+      // Single API call - backend handles quantity update
+      const response = await fetch(
+        `http://localhost:5000/crops/${localCrop._id}/interests/${interest._id}`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ status: newStatus }),
         }
       );
 
-      if (!statusRes.ok) {
-        toast.error("Failed to update interest status");
+      if (!response.ok) {
+        toast.error("Failed to update interest");
         return;
       }
 
+      // Calculate new quantity locally
       let newQuantity = localCrop.quantity;
-
       if (newStatus === "accepted") {
         newQuantity = localCrop.quantity - interest.quantity;
-
-        const quantityRes = await fetch(
-          `https://farmers-growth-connection-platform.vercel.app/crops/${localCrop._id}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              quantity: newQuantity,
-            }),
-          }
-        );
-
-        if (!quantityRes.ok) {
-          toast.error("Failed to update crop quantity");
-          return;
-        }
-
-        toast.success(
-          `Interest accepted! Crop quantity reduced by ${interest.quantity} ${localCrop.unit}`
-        );
+        toast.success(`Interest accepted! Quantity reduced by ${interest.quantity}`);
       } else {
-        toast.success("Interest rejected successfully!");
+        toast.success("Interest rejected!");
       }
 
-      setLocalCrop((prevCrop) => ({
-        ...prevCrop,
+      // Update local state
+      setLocalCrop((prev) => ({
+        ...prev,
         quantity: newQuantity,
-        interests: prevCrop.interests.map((int) =>
+        interests: prev.interests.map((int) =>
           int._id === interest._id ? { ...int, status: newStatus } : int
         ),
       }));
 
       setModalData(null);
     } catch (err) {
-      toast.error(err.message || "Failed to update interest");
+      toast.error("Failed to update interest");
     } finally {
       setUpdatingId(null);
     }
   };
-
   const getStatusBadge = (status) => {
     const map = {
       pending: {
@@ -130,6 +139,7 @@ const [loading, setLoading] = useState(true);
       </span>
     );
   };
+  
 
   if (loading) {
     return (
@@ -176,9 +186,13 @@ const [loading, setLoading] = useState(true);
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-700 font-semibold">
-                          {interest.userName.charAt(0)}
+                          {interest.userName?.charAt(0) || "?"}
+
                         </div>
-                        <span className="font-medium">{interest.userName}</span>
+                        <span className="font-medium">
+                          {interest.userName || "Unknown User"}
+                        </span>
+
                       </div>
                     </td>
                     <td className="px-6 py-4">

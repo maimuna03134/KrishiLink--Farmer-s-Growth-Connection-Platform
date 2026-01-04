@@ -26,10 +26,10 @@ const CropCard = ({ crop }) => {
       >
 
         {/* Shine Effect */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 animate-shine bg-[linear-gradient(120deg,rgba(255,255,255,0)_40%,rgba(255,255,255,0.8)_50%,rgba(255,255,255,0)_60%)]" />
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 animate-shine bg-[linear-linear(120deg,rgba(255,255,255,0)_40%,rgba(255,255,255,0.8)_50%,rgba(255,255,255,0)_60%)]" />
 
         {/* Glow */}
-        <div className="absolute -inset-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_50%_0%,rgba(124,58,237,0.3)_0%,transparent_70%)]" />
+        <div className="absolute -inset-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-linear(circle_at_50%_0%,rgba(124,58,237,0.3)_0%,transparent_70%)]" />
 
         {/* Content */}
         <div className="relative z-10 h-full p-3 flex flex-col gap-3">
@@ -64,7 +64,7 @@ const CropCard = ({ crop }) => {
               `}
               >
                 <MdOutlinePageview className="w-4 h-4" />
-                
+
               </Link>
             </div>
           </div>
@@ -79,7 +79,7 @@ const CropCard = ({ crop }) => {
             </p>
           </div>
 
-          
+
           <div className="mt-auto mb-2 flex items-center justify-between ">
             <span className="font-bold text-slate-800 transition-all duration-300 group-hover:text-green-600 group-hover:translate-x-0.5">
               ${pricePerUnit}<span className="text-sm font-normal">/{unit}</span>
@@ -87,11 +87,11 @@ const CropCard = ({ crop }) => {
             <span className="font-semibold text-slate-800 transition-all duration-300 group-hover:text-green-600 group-hover:translate-x-0.5 ">
               {location}
             </span>
-           
+
           </div>
         </div>
       </div>
-      
+
     </MyContainer>
   );
 };

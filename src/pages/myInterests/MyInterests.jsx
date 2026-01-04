@@ -130,10 +130,10 @@ const MyInterests = () => {
                         
                         className="text-green-600 hover:underline font-semibold"
                       >
-                        {interest.cropName}
+                        {interest.cropDetails?.name || "N/A"}
                       </button>
                     </td>
-                    <td className="px-6 py-4">{interest.ownerName}</td>
+                    <td className="px-6 py-4"> {interest.cropDetails?.owner?.ownerName || "N/A"}</td>
                     <td className="px-6 py-4">
                       {interest.quantity} {interest.unit}
                     </td>

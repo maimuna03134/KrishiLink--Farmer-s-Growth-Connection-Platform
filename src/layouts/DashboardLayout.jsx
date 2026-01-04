@@ -1,4 +1,9 @@
 import React from 'react'
+import { FaUserAlt } from 'react-icons/fa'
+import { FiHome } from 'react-icons/fi'
+import { LuLayoutDashboard, LuSettings, LuTrees } from 'react-icons/lu'
+import { TbLayoutSidebarRightExpandFilled } from 'react-icons/tb'
+import { Link, Outlet } from 'react-router'
 
 export default function DashboardLayout() {
   return (
@@ -43,6 +48,57 @@ export default function DashboardLayout() {
                               <span className="is-drawer-close:hidden">Homepage</span>
                           </Link>
                       </li>
+
+                      <li>
+                          <Link
+                              to="/dashboard/profile"
+                              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                              data-tip="My Profile"
+                          >
+                              <FaUserAlt />
+                              <span className="is-drawer-close:hidden">My Profile</span>
+                          </Link>
+                      </li>
+                      <li>
+                          <Link
+                              to="/dashboard/add-crop"
+                              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                              data-tip="Add Crop"
+                          >
+                              <LuTrees />
+                              <span className="is-drawer-close:hidden">Add Crop</span>
+                          </Link>
+                      </li>
+                      <li>
+                          <Link
+                              to="/dashboard/my-posts"
+                              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                              data-tip="My Posts"
+                          >
+                              < LuLayoutDashboard />
+                              <span className="is-drawer-close:hidden">My Posts</span>
+                          </Link>
+                      </li>
+                      <li>
+                          <Link
+                              to="/dashboard/my-interests"
+                              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                              data-tip="My Interests"
+                          >
+                              <LuSettings />
+                              <span className="is-drawer-close:hidden">My Interests</span>
+                          </Link>
+                      </li>
+                      {/* <li>
+                          <Link
+                              to={`/dashboard/received-interests`}
+                              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                              data-tip="Received Interests"
+                          >
+                              <FaUserAlt />
+                              <span className="is-drawer-close:hidden">Received Interests</span>
+                          </Link>
+                      </li> */}
 
                       <li>
                           <button

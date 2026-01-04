@@ -95,7 +95,7 @@ const AddCrop = () => {
       }
 
       toast.success("Crop added successfully!");
-      navigate("/my-posts");
+      navigate("/dashboard/my-posts");
     } catch (error) {
       console.error(error);
       toast.error(error.message || "Failed to add crop");

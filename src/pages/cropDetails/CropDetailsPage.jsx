@@ -21,7 +21,7 @@ import toast from "react-hot-toast";
 import { Link, useParams } from "react-router";
 
 const CropDetailsPage = ({ crop:propCrop }) => {
-    console.log(propCrop);
+    // console.log(propCrop);
   const { id } = useParams();
   const [crop, setCrop] = useState(propCrop || null);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -46,7 +46,7 @@ const CropDetailsPage = ({ crop:propCrop }) => {
   const fetchCropDetails = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`https://farmers-growth-connection-platform.vercel.app/crops/${id}`);
+      const response = await fetch(`http://localhost:5000/crops/${id}`);
       const data = await response.json();
       if (data.success) {
         setCrop(data.data || data.result);
@@ -310,7 +310,7 @@ const CropDetailsPage = ({ crop:propCrop }) => {
                   {/* Action Buttons */}
                   <div className=" mt-auto">
                     <Link
-                      to={'/interest-form'}
+                      to={'/dashboard/interest-form'}
                       className="flex-1">
                       <button
                        

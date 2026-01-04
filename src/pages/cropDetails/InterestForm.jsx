@@ -85,7 +85,7 @@ const InterestForm = ({ crop }) => {
         const data = await res.json();
 
         if (!res.ok) {
-          
+
           toast.error(data.message || "Failed to send interest");
           return;
         }
@@ -95,7 +95,7 @@ const InterestForm = ({ crop }) => {
         setQuantity(1);
         setMessage("");
         setAlreadyInterested(true);
-        navigate("/my-interests");
+        navigate("/dashboard/my-interests");
       })
       .catch((err) => {
         toast.error(err.message || "Failed to send interest");
@@ -209,7 +209,7 @@ const InterestForm = ({ crop }) => {
           </div>
 
           {/* total price count */}
-          <div className="bg--gradient-to-r from-green-50 to-green-100 rounded-lg p-6 ">
+          <div className="bg--linear-to-r from-green-50 to-green-100 rounded-lg p-6 ">
             <div className="flex items-center justify-between ">
               <div className="flex items-center gap-2">
                 <BiCalculator className="w-6 h-6 text-green-600" />
@@ -246,7 +246,7 @@ const InterestForm = ({ crop }) => {
           loading={submitted}
         />
       )}
-      
+
     </MyContainer>
   );
 };
