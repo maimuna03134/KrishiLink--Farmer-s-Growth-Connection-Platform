@@ -309,15 +309,14 @@ const CropDetailsPage = ({ crop: propCrop }) => {
 
                 {/* Action Buttons */}
                 <div className=" mt-auto">
-                  <Link
-                    to={'/dashboard/interest-form'}
+                  <a href="#interest-section"
                     className="flex-1">
                     <button
 
                       className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl">
                       Express Interest
                     </button>
-                  </Link>
+                  </a>
 
                 </div>
 

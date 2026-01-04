@@ -89,12 +89,7 @@ export const router = createBrowserRouter([
         index: true,
         element: <DefaultDashboardRedirect />,
       },
-      {
-        path: "/dashboard/interest-form",
-        element:
-          < InterestForm />
 
-      },
       {
         path: "/dashboard/add-crop",
         element: <AddCrop />
