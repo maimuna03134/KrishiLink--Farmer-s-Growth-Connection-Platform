@@ -41,7 +41,7 @@ const MeetExpertMembers = () => {
                             Our Team Members
                         </span>
                     </div>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+                    <h2 className="text-2xl text-green-700 md:text-3xl lg:text-4xl font-bold ">
                         Meet Expert Members
                     </h2>
                 </div>

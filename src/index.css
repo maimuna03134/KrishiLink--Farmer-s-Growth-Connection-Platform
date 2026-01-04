@@ -1,13 +1,11 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light --default;
- };
- @plugin "daisyui/theme" {
-  name: "light";
-  default: true;
-  --color-primary: blue;
-  --color-secondary: teal;
+  themes: winter --default, night --prefersdark;
 }
+
+@custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
+
+
 
 .btn-style{
   @apply border-2 border-green-500 bg-white hover:bg-green-700 hover:text-green-100 text-green-700 font-semibold rounded-full cursor-pointer

@@ -18,6 +18,23 @@ const Navbar = () => {
   const userDropdownRef = useRef(null);
   const moreDropdownRef = useRef(null);
 
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+
+
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "night" : "winter");
+
+  };
+
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
@@ -55,7 +72,10 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="bg-linear-to-b from-green-50 to-white shadow-sm fixed top-0 left-0 w-full z-50 backdrop-blur-sm bg-opacity-95">
+      <header className=" bg-base-100 
+  shadow-sm 
+  fixed top-0 left-0 w-full z-50 
+  backdrop-blur-sm bg-opacity-95">
         <MyContainer className={''}>
           <div className="flex justify-between h-16 items-center px-2 lg:px-0">
             {/* Logo */}
@@ -67,6 +87,17 @@ const Navbar = () => {
               <span className="text-xl font-bold text-gray-800 group-hover:text-green-700 transition">KrishiLink</span>
             </Link>
 
+            <div>
+              <input
+                type="checkbox"
+                checked={theme === "night"}
+                onChange={(e) => handleTheme(e.target.checked)}
+                className="toggle"
+              />
+
+
+
+</div>
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1">
               {primaryLinks.map((link) => (
