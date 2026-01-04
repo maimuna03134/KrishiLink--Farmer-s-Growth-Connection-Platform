@@ -8,9 +8,9 @@ import { FaXTwitter } from 'react-icons/fa6';
 const Footer = () => {
     return (
       <footer className="bg-linear-to-b from-green-50 to-white border-t border-green-100 rounded-2xl">
-        <MyContainer>
+        <MyContainer className={''}>
           {/* Logo */}
-          <div className="mb-8">
+          <div className="mb-8 px-2">
             <Link to="/">
               <svg
                 width="36"
@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
 
           {/* Footer Links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 px-2">
             
             <div>
               <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2">
@@ -210,7 +210,7 @@ const Footer = () => {
           </div>
 
           {/* Newsletter Section */}
-          <div className="border-t border-gray-200 pt-8 mb-8">
+          <div className="border-t border-gray-200 pt-8 mb-8 px-2">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900 mb-2">
@@ -221,7 +221,7 @@ const Footer = () => {
                   to your inbox.
                 </p>
               </div>
-              <div className="flex gap-3 md:min-w-[400px]">
+              <div className="flex flex-col md:flex-row gap-3 md:min-w-[400px]">
                 <input
                   type="email"
                   placeholder="Enter your email"

@@ -56,8 +56,8 @@ const Navbar = () => {
   return (
     <>
       <header className="bg-linear-to-b from-green-50 to-white shadow-sm fixed top-0 left-0 w-full z-50 backdrop-blur-sm bg-opacity-95">
-        <MyContainer >
-          <div className="flex justify-between h-16 items-center">
+        <MyContainer className={''}>
+          <div className="flex justify-between h-16 items-center px-2 lg:px-0">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
               <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-green-600 group-hover:text-green-700 transition">
@@ -176,7 +176,8 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {mobileOpen && (
-          <div className="lg:hidden border-t bg-white">
+          <MyContainer>
+            <div className="lg:hidden border-t bg-white">
             <div className="px-4 py-3 space-y-1">
               {primaryLinks.map((link) => (
                 <MyLinks key={link.to} to={link.to} onClick={() => setMobileOpen(false)}
@@ -244,6 +245,8 @@ const Navbar = () => {
               )}
             </div>
           </div>
+          </MyContainer>
+          
         )}
       </header>
       <div className='h-12'></div>
