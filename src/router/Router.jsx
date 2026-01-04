@@ -17,6 +17,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import ContactUs from "../pages/Others/ContactUs";
 import AboutUs from "../pages/Others/AboutUs";
 import FAQPage from "../pages/Others/FAQPage";
+import DefaultDashboardRedirect from "../layouts/DefaultDashboardRedirect";
 
 
 export const router = createBrowserRouter([
@@ -83,10 +84,10 @@ export const router = createBrowserRouter([
       </PrivateRouter>
     ),
     children: [
-      // {
-      //   index: true,
-      //   element: <DefaultDashboardRedirect />,
-      // },
+      {
+        index: true,
+        element: <DefaultDashboardRedirect />,
+      },
       {
         path: "/dashboard/interest-form",
         element: 

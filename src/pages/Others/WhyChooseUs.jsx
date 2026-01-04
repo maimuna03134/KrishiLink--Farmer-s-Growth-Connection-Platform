@@ -1,11 +1,12 @@
 import React from 'react';
 import { BiLeaf, BiPackage, BiTrendingUp, BiCheckCircle, BiShieldAlt, BiTimer } from 'react-icons/bi';
 import { Link } from 'react-router';
+import MyContainer from '../../components/myContainer/MyContainer';
 
 const WhyChooseUs = () => {
     return (
-        <section className="bg-linear-to-br from-green-50 via-lime-50 to-green-50 py-16 px-4">
-            <div className="max-w-7xl mx-auto">
+        <section className="py-16 px-4">
+            <MyContainer>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left Side - Content */}
                     <div className="space-y-8">
@@ -104,7 +105,7 @@ const WhyChooseUs = () => {
                         </div>
 
                         
-                        <div className="absolute top-1/3 -left-8 z-20 bg-white rounded-2xl shadow-2xl overflow-hidden w-64 h-48 md:block hidden">
+                        <div className="absolute top-1/3 -left-8 z-20 bg-white rounded-2xl shadow-2xl overflow-hidden w-64 h-48 lg:block hidden">
                             <img
                                 src="https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGFncmljdWx0dXJlfGVufDB8fDB8fHww"
                                 alt="Farm field"
@@ -118,7 +119,7 @@ const WhyChooseUs = () => {
                         </div>
 
                         {/* Stats Card */}
-                        <div className="absolute bottom-8 -right-8 z-20 bg-white rounded-2xl shadow-2xl p-6 text-center md:block hidden">
+                        <div className="absolute bottom-8 -right-8 z-20 bg-white rounded-2xl shadow-2xl p-6 text-center lg:block hidden">
                             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
                                 <BiTrendingUp className="w-8 h-8 text-green-600" />
                             </div>
@@ -129,7 +130,7 @@ const WhyChooseUs = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </MyContainer>
         </section>
     );
 };

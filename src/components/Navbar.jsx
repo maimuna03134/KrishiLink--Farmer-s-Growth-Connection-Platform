@@ -91,7 +91,7 @@ const Navbar = () => {
                         key={link.to}
                         to={link.to}
                         onClick={() => setMoreDropdown(false)}
-                        className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600 transition flex items-center gap-2"
+                        className="px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600 transition flex items-center gap-2"
                       >
                         <link.icon className="w-4 h-4" />
                         <span> {link.label}</span>
