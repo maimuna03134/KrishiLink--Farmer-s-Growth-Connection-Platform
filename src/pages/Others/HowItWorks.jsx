@@ -5,7 +5,7 @@ import { FaArrowRight, FaHandshake, FaUserPlus, FaUsers } from 'react-icons/fa';
 const HowItWorks = () => {
     return (
       <MyContainer>
-        <section className="bg-emerald-50 p-10 rounded-3xl shadow-xl mb-12">
+        <section className=" p-10 rounded-3xl mb-12">
           <h2 className="text-4xl font-bold text-center text-emerald-800 mb-12">
             How It Works
           </h2>

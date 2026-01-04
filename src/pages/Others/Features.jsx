@@ -5,7 +5,7 @@ import { FaLeaf, FaComments, FaShoppingCart } from "react-icons/fa";
 const Features = () => {
     return (
         <MyContainer>
-            <section className="bg-blue-100 p-10 rounded-3xl shadow-xl mb-12">
+            <section className="p-10 mb-12">
       <h2 className="text-4xl font-bold text-center text-emerald-800 mb-12">Powerful Features</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {[

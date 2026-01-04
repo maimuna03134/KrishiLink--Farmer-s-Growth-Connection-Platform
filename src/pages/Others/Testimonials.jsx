@@ -19,7 +19,7 @@ const Testimonials = () => {
     ];
     return (
       <MyContainer>
-        <section className="bg-white p-10 rounded-3xl shadow-xl">
+        <section className="p-10 rounded-3xl ">
           <h2 className="text-4xl font-bold text-center text-emerald-800 mb-12">
             What Farmers Say
           </h2>

@@ -7,7 +7,11 @@ import AgroNews from '../Others/AgroNews';
 import Features from '../Others/Features';
 import Testimonials from '../Others/Testimonials';
 import MyContainer from '../../components/myContainer/MyContainer';
-import CropDetailsPage from '../cropDetails/CropDetailsPage';
+import FAQPage from '../Others/FAQPage';
+import CTApage from '../Others/CTApage';
+import WhyChooseUs from '../Others/WhyChooseUs';
+import MeetExpertMembers from '../Others/MeetExpertMembers';
+
 
 
 
@@ -33,8 +37,10 @@ const Home = () => {
           </div>
         </MyContainer>
 
-        {/* <CropDetailsPage/> */}
-        
+       
+        <div>
+          <WhyChooseUs/>
+        </div>
         <div>
           <HowItWorks/>
         </div>
@@ -42,10 +48,19 @@ const Home = () => {
           <AgroNews/>
         </div>
         <div>
+          <MeetExpertMembers/>
+        </div>
+        <div>
           <Features/>
         </div>
         <div className='mb-10'>
           <Testimonials/>
+        </div>
+        <div>
+          <FAQPage/>
+        </div>
+        <div>
+          <CTApage/>
         </div>
       </div>
     );
