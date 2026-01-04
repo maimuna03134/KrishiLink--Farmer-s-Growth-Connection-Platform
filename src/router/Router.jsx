@@ -14,7 +14,9 @@ import MyProfile from "../pages/profile/MyProfile";
 import Loading from "../pages/Loading";
 import InterestForm from "../pages/cropDetails/InterestForm";
 import DashboardLayout from "../layouts/DashboardLayout";
-import ReceivedInterests from "../pages/cropDetails/ReceivedInterests";
+import ContactUs from "../pages/Others/ContactUs";
+import AboutUs from "../pages/Others/AboutUs";
+
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +46,14 @@ export const router = createBrowserRouter([
             `http://localhost:5000/crops/${params.id}`
           ),
       },
-     
+      {
+        path: '/about',
+        element:<AboutUs />
+     },
+      {
+        path: '/contact',
+        element:<ContactUs />
+     }
     ],
   },
   {
@@ -91,10 +100,10 @@ export const router = createBrowserRouter([
         path: "/dashboard/my-interests",
         element: <MyInterests />
       },
-      {
-        path: "/dashboard/received-interests/:cropId",
-        element: <ReceivedInterests />
-      },
+      // {
+      //   path: "/dashboard/received-interests/:cropId",
+      //   element: <ReceivedInterests />
+      // },
       {
         path: "/dashboard/profile",
         element: <MyProfile />

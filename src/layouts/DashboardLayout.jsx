@@ -100,7 +100,7 @@ export default function DashboardLayout() {
                           </Link>
                       </li> */}
 
-                      <li>
+                      {/* <li>
                           <button
                               className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                               data-tip="Settings"
@@ -108,7 +108,7 @@ export default function DashboardLayout() {
                               <LuSettings />
                               <span className="is-drawer-close:hidden">Settings</span>
                           </button>
-                      </li>
+                      </li> */}
                   </ul>
               </div>
           </div>
