@@ -79,12 +79,12 @@ const Navbar = () => {
         <MyContainer className={''}>
           <div className="flex justify-between h-16 items-center px-2 lg:px-0">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 group">
+            <Link to="/" className="flex items-center gap-2 group  dark:brightness-200 dark:contrast-125">
               <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-green-600 group-hover:text-green-700 transition">
                 <path d="M3 21s6-7 10-7 8 7 8 7-4-10-8-10S3 21 3 21z" fill="currentColor" />
                 <path d="M7 10c1.5-1 4-2 7-2" stroke="white" strokeWidth="0.5" strokeLinecap="round" />
               </svg>
-              <span className="text-xl font-bold text-gray-800 group-hover:text-green-700 transition">KrishiLink</span>
+              <span className="text-xl font-bold text-gray-800 group-hover:text-green-700 transition dark:brightness-200 dark:contrast-125">KrishiLink</span>
             </Link>
 
             <div>

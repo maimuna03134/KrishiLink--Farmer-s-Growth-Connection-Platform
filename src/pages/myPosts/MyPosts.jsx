@@ -21,7 +21,7 @@ const MyPosts = () => {
       setLoading(true);
 
       const res = await fetch(
-        `http://localhost:5000/my-crops/${user.email}`
+        `https://krisilink-farmer-growth-connection.vercel.app/my-crops/${user.email}`
       );
 
       const data = await res.json();
@@ -49,10 +49,10 @@ const MyPosts = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/crops/${id}`, {
+      const res = await fetch(`https://krisilink-farmer-growth-connection.vercel.app/crops/${id}`, {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json", 
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(editingCrop),
       });
@@ -79,7 +79,7 @@ const MyPosts = () => {
     }
     try {
       const res = await fetch(
-        `http://localhost:5000/crops/${id}`,
+        `https://krisilink-farmer-growth-connection.vercel.app/crops/${id}`,
         {
           method: "DELETE",
         }
@@ -133,7 +133,7 @@ const MyPosts = () => {
                 </tr>
               </thead>
               <tbody>
-                  {crops && crops.map((crop) => (
+                {crops && crops.map((crop) => (
                   <tr key={crop._id} className="border-b hover:bg-gray-50">
                     <td className="px-6 py-4">
                       <img
@@ -160,7 +160,7 @@ const MyPosts = () => {
                           <BiEdit className="w-5 h-5" />
                         </button>
                         <button
-                            onClick={() => handleDelete(crop._id)}
+                          onClick={() => handleDelete(crop._id)}
                           className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
                         >
                           <BiTrash className="w-5 h-5" />

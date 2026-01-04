@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CropCard from "../../components/CropCard";
-import {  useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 import MyContainer from "../../components/myContainer/MyContainer";
 import cropsNotFound from '../../assets/not_found.png'
 import { GoSearch } from "react-icons/go";
@@ -37,12 +37,12 @@ const AllCrops = () => {
 
   useEffect(() => {
     fetchCrops();
-  }, [currentPage, selectedCategory, selectedLocation,searchTerm]);
+  }, [currentPage, selectedCategory, selectedLocation, searchTerm]);
 
   const fetchCategories = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5000/crops/categories"
+        "https://krisilink-farmer-growth-connection.vercel.app/crops/categories"
       );
       const data = await res.json();
       if (data.success) {
@@ -56,7 +56,7 @@ const AllCrops = () => {
   const fetchLocations = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5000/crops/locations"
+        "https://krisilink-farmer-growth-connection.vercel.app/crops/locations"
       );
       const data = await res.json();
       if (data.success) {
@@ -68,32 +68,32 @@ const AllCrops = () => {
   };
 
   const fetchCrops = async () => {
-   
-      setLoading(true);
-      try {
-        const params = new URLSearchParams({
-          page: currentPage,
-          limit: itemsPerPage
-        });
 
-        if (searchTerm) params.append("search", searchTerm);
-        if (selectedCategory) params.append("category", selectedCategory);
-        if (selectedLocation) params.append("location", selectedLocation);
+    setLoading(true);
+    try {
+      const params = new URLSearchParams({
+        page: currentPage,
+        limit: itemsPerPage
+      });
 
-        const res = await fetch(
-          `http://localhost:5000/crops?${params.toString()}`
-        );
-        const data = await res.json();
-        if (data.success) {
-          setCrops(data.data);
-          setPagination(data.pagination);
-        }
-      } catch (error) {
-        toast.error("Failed to fetch crops:", error);
-      } finally {
-        setLoading(false);
+      if (searchTerm) params.append("search", searchTerm);
+      if (selectedCategory) params.append("category", selectedCategory);
+      if (selectedLocation) params.append("location", selectedLocation);
+
+      const res = await fetch(
+        `https://krisilink-farmer-growth-connection.vercel.app/crops?${params.toString()}`
+      );
+      const data = await res.json();
+      if (data.success) {
+        setCrops(data.data);
+        setPagination(data.pagination);
       }
-    };
+    } catch (error) {
+      toast.error("Failed to fetch crops:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     if (currentPage !== 1) {
       setCurrentPage(1);
@@ -106,13 +106,13 @@ const AllCrops = () => {
     setSelectedLocation("");
     setCurrentPage(1);
   };
-  
+
   const hasActiveFilters = searchTerm || selectedCategory || selectedLocation;
 
 
   return (
     <div className="bg-linear-to-br from-green-50 via-lime-50 to-green-50 py-8">
-     
+
       <MyContainer>
         <h1 className="text-center text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg mb-3">
           Fresh Crops <br />
@@ -138,7 +138,7 @@ const AllCrops = () => {
         </div>
       </MyContainer>
 
-      
+
       <MyContainer className="py-8">
         <div className="flex flex-col md:flex-row justify-center items-center md:justify-between md:items-center md:px-4 gap-4 mb-8 ">
           <div>
@@ -274,34 +274,34 @@ const AllCrops = () => {
               )}
             </div>
           </div>
-        
 
-        <div className="flex-1">
-          {
-            crops.length === 0 && !loading ? (
-              <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-                <img
-                  src={cropsNotFound}
-                  alt="No Crops Found"
-                  className="animate-pulse bg-transparent w-[300px] h-[300px]"
-                />
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                  No Crops Found
-                </h2>
-                <p className="text-gray-600 mb-6 ">
-                  We couldn't find any crops matching your criteria. Try
-                  adjusting your filters or search terms.
-                </p>
-                <button
-                  onClick={handleClearFilters}
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition inline-flex items-center gap-2"
-                >
-                  <IoMdArrowBack />
-                  Clear Filters
-                </button>
-                
-              </div>
-            ) : (
+
+          <div className="flex-1">
+            {
+              crops.length === 0 && !loading ? (
+                <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
+                  <img
+                    src={cropsNotFound}
+                    alt="No Crops Found"
+                    className="animate-pulse bg-transparent w-[300px] h-[300px]"
+                  />
+                  <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                    No Crops Found
+                  </h2>
+                  <p className="text-gray-600 mb-6 ">
+                    We couldn't find any crops matching your criteria. Try
+                    adjusting your filters or search terms.
+                  </p>
+                  <button
+                    onClick={handleClearFilters}
+                    className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition inline-flex items-center gap-2"
+                  >
+                    <IoMdArrowBack />
+                    Clear Filters
+                  </button>
+
+                </div>
+              ) : (
                 <>
                   <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-8">
                     {loading
@@ -325,8 +325,8 @@ const AllCrops = () => {
                           onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
                           disabled={!pagination.hasPrevPage}
                           className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition ${!pagination.hasPrevPage
-                              ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                              : "bg-green-600 text-white hover:bg-green-700"
+                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            : "bg-green-600 text-white hover:bg-green-700"
                             }`}
                         >
                           <BiChevronLeft size={20} />
@@ -350,8 +350,8 @@ const AllCrops = () => {
                                 <button
                                   onClick={() => setCurrentPage(page)}
                                   className={`px-4 py-2 rounded-lg font-semibold transition ${currentPage === page
-                                      ? "bg-green-600 text-white"
-                                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                    ? "bg-green-600 text-white"
+                                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                     }`}
                                 >
                                   {page}
@@ -368,8 +368,8 @@ const AllCrops = () => {
                           }
                           disabled={!pagination.hasNextPage}
                           className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition ${!pagination.hasNextPage
-                              ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                              : "bg-green-600 text-white hover:bg-green-700"
+                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            : "bg-green-600 text-white hover:bg-green-700"
                             }`}
                         >
                           Next
@@ -379,8 +379,8 @@ const AllCrops = () => {
                     </div>
                   )}
                 </>
-            )}
-        </div>
+              )}
+          </div>
         </div>
       </MyContainer>
     </div>

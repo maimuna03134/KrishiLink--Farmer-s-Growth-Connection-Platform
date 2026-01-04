@@ -18,13 +18,14 @@ import ContactUs from "../pages/Others/ContactUs";
 import AboutUs from "../pages/Others/AboutUs";
 import FAQPage from "../pages/Others/FAQPage";
 import DefaultDashboardRedirect from "../layouts/DefaultDashboardRedirect";
+import Error from "../pages/Error";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
-    errorElement: <p>Error</p>,
+    errorElement: <Error />,
     hydrateFallbackElement: <Loading />,
     children: [
       {
@@ -32,34 +33,34 @@ export const router = createBrowserRouter([
         element: <Home />,
         loader: () =>
           fetch(
-            "http://localhost:5000/latest-crops"
+            "https://krisilink-farmer-growth-connection.vercel.app/latest-crops"
           ),
       },
       {
         path: "/all-crops",
         element: <AllCrops />,
-        
+
       },
       {
         path: "/crop-details/:id",
         element: <CropDetails />,
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/crops/${params.id}`
+            `https://krisilink-farmer-growth-connection.vercel.app/crops/${params.id}`
           ),
       },
       {
         path: '/about',
-        element:<AboutUs />
-     },
+        element: <AboutUs />
+      },
       {
         path: '/contact',
-        element:<ContactUs />
-     },
+        element: <ContactUs />
+      },
       {
         path: '/faq',
-        element:<FAQPage />
-     },
+        element: <FAQPage />
+      },
     ],
   },
   {
@@ -90,9 +91,9 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/interest-form",
-        element: 
-            < InterestForm />
-          
+        element:
+          < InterestForm />
+
       },
       {
         path: "/dashboard/add-crop",

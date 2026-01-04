@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const ReceivedInterests = ({ crop }) => {
   console.log(crop)
-  
+
   const { user } = use(AuthContext);
 
   const [localCrop, setLocalCrop] = useState(null);
@@ -18,10 +18,10 @@ const ReceivedInterests = ({ crop }) => {
 
   useEffect(() => {
     if (!crop) return;
-   
-      setLocalCrop(crop);
-      setLoading(false);
- 
+
+    setLocalCrop(crop);
+    setLoading(false);
+
   }, [crop]);
 
   // ⏳ Loader
@@ -51,9 +51,9 @@ const ReceivedInterests = ({ crop }) => {
   }
 
   if (!crop) {
-  return <div>Loading...</div>;
+    return <div>Loading...</div>;
   }
-  
+
   const handleAcceptReject = (interest, newStatus) => {
     setModalData({
       interest,
@@ -73,7 +73,7 @@ const ReceivedInterests = ({ crop }) => {
 
       // Single API call - backend handles quantity update
       const response = await fetch(
-        `http://localhost:5000/crops/${localCrop._id}/interests/${interest._id}`,
+        `https://krisilink-farmer-growth-connection.vercel.app/crops/${localCrop._id}/interests/${interest._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -139,7 +139,7 @@ const ReceivedInterests = ({ crop }) => {
       </span>
     );
   };
-  
+
 
   if (loading) {
     return (
@@ -148,7 +148,7 @@ const ReceivedInterests = ({ crop }) => {
       </div>
     );
   }
- 
+
   return (
     <>
       <div className="bg-white rounded-xl shadow-lg p-8">
@@ -179,9 +179,8 @@ const ReceivedInterests = ({ crop }) => {
                 {localCrop.interests.map((interest, i) => (
                   <tr
                     key={interest._id}
-                    className={`border-b hover:bg-gray-50 ${
-                      i % 2 === 0 ? "bg-white" : "bg-gray-50"
-                    }`}
+                    className={`border-b hover:bg-gray-50 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                      }`}
                   >
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">

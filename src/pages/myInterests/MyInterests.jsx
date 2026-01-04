@@ -16,14 +16,14 @@ const MyInterests = () => {
       setLoading(true);
 
       const res = await fetch(
-        `http://localhost:5000/interests/${user.email}`
+        `https://krisilink-farmer-growth-connection.vercel.app/interests/${user.email}`
       );
-      
+
       const data = await res.json();
       if (data.success) {
-        setInterests(data.data); 
+        setInterests(data.data);
       }
-      
+
     } catch (error) {
       console.log(error);
       toast.error("Failed to load interests");
@@ -127,7 +127,7 @@ const MyInterests = () => {
                   <tr key={interest._id} className="border-b hover:bg-gray-50">
                     <td className="px-6 py-4">
                       <button
-                        
+
                         className="text-green-600 hover:underline font-semibold"
                       >
                         {interest.cropDetails?.name || "N/A"}

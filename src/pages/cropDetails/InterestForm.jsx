@@ -74,7 +74,7 @@ const InterestForm = ({ crop }) => {
   const confirmSubmit = () => {
     setSubmitted(true);
 
-    fetch('http://localhost:5000/interests', {
+    fetch('https://krisilink-farmer-growth-connection.vercel.app/interests', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
