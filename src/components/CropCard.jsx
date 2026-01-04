@@ -41,7 +41,7 @@ const CropCard = ({ crop }) => {
 
 
           {/* Image */}
-          <div className="relative h-[100px] rounded-xl bg-gradient-to-br from-green-400 to-green-600 relative overflow-hidden transition-all duration-500 group-hover:-translate-y-1 group-hover:scale-[1.03] shadow-sm">
+          <div className=" h-[100px] rounded-xl bg-linear-to-br from-green-400 to-green-600 relative overflow-hidden transition-all duration-500 group-hover:-translate-y-1 group-hover:scale-[1.03] shadow-sm">
             <img
               src={image}
               alt={name}
@@ -56,7 +56,7 @@ const CropCard = ({ crop }) => {
             `}
             >
               <Link
-                to={`/crop-details/${_id}`}
+                to={`/crop-details/${crop._id}`}
                 className={`
                 px-2 py-2 rounded-full bg-white/90 text-green-700 
                 ${isHovered ? "scale-100 opacity-100" : "scale-75 opacity-0"}

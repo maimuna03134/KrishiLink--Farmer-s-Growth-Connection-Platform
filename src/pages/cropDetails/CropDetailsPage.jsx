@@ -31,24 +31,28 @@ const CropDetailsPage = ({ crop:propCrop }) => {
   const [selectedImage, setSelectedImage] = useState(0);
 
   useEffect(() => {
-    if (!propCrop && id) {
-            fetchCropDetails();
+    if (id) {
+      fetchCropDetails();
+      setSelectedImage(0);
         }
-  }, [id, propCrop]);
+  }, [id]);
   
   useEffect(() => {
     if (crop?.type) {
       fetchRelatedProducts();
     }
-  }, [crop]);
+  }, [crop,id]);
 
   const fetchCropDetails = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/crops/${id}`);
+      const response = await fetch(`https://farmers-growth-connection-platform.vercel.app/crops/${id}`);
       const data = await response.json();
       if (data.success) {
-        setCrop(data.data||data.result);
+        setCrop(data.data || data.result);
+
+        setSelectedImage(0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (error) {
       console.error("Error fetching crop details:", error);
@@ -64,7 +68,7 @@ const CropDetailsPage = ({ crop:propCrop }) => {
                 `http://localhost:5000/crops?category=${crop.type}&limit=4`
             );
             const data = await response.json();
-          if (data.data||data.success) {
+          if (data.success && data.data) {
                 
                 const filtered = data.data
                     .filter(item => item._id !== crop._id)
@@ -374,19 +378,19 @@ const CropDetailsPage = ({ crop:propCrop }) => {
                       <h3 className="font-bold text-gray-900 mb-2">Why Choose This Product?</h3>
                       <ul className="space-y-2 text-gray-700">
                         <li className="flex items-start gap-2">
-                          <BiCheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                          <BiCheckCircle className="w-5 h-5 text-green-600 mt-0.5 shrink-0" />
                           <span>Premium quality with organic certification</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <BiCheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                          <BiCheckCircle className="w-5 h-5 text-green-600 mt-0.5 shrink-0" />
                           <span>Fresh harvest from trusted local farmers</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <BiCheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                          <BiCheckCircle className="w-5 h-5 text-green-600 mt-0.5 shrink-0" />
                           <span>Competitive pricing with bulk discounts available</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <BiCheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                          <BiCheckCircle className="w-5 h-5 text-green-600 mt-0.5 shrink-0" />
                           <span>Verified quality and secure transactions</span>
                         </li>
                       </ul>
@@ -531,7 +535,7 @@ const CropDetailsPage = ({ crop:propCrop }) => {
                   {relatedProducts.map((product) => (
                     <Link
                       key={product._id}
-                      to={`/crop/${product._id}`}
+                      to={`/crop-details/${product._id}`}
                       className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300"
                     >
                       <div className="relative overflow-hidden">

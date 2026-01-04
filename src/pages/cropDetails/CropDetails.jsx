@@ -62,7 +62,7 @@ const CropDetails = () => {
               )}
             </>
           ) : (
-            // User is NOT logged in - Show login prompt
+            
             <div className="mt-8">
               <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center max-w-2xl mx-auto border-2 border-gray-200">
                 <div className="mb-6">
