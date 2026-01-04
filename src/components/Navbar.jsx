@@ -44,8 +44,6 @@ const Navbar = () => {
 
   const moreLinks = [
     { to: "/about", label: "About", icon: HiOutlineInformationCircle },
-    { to: "/services", label: "Services", icon: HiOutlineCog },
-    { to: "/blog", label: "Blog", icon: HiOutlineDocumentText },
     { to: "/faq", label: "FAQ", icon: HiOutlineQuestionMarkCircle },
     { to: "/contact", label: "Contact", icon: HiOutlineMail },
   ];

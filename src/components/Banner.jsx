@@ -65,7 +65,7 @@ const Banner = () => {
             <div className="relative w-full h-full">
 
               <div
-                className={`absolute inset-0 bg-cover bg-center transition-transform duration-[6000ms] ease-out ${activeIndex === index ? "scale-110" : "scale-100"
+                className={`absolute inset-0 bg-cover bg-center transition-transform duration-6000 ease-out ${activeIndex === index ? "scale-110" : "scale-100"
                   }`}
                 style={{ backgroundImage: `url(${slide.image})` }}
               />

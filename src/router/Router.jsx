@@ -16,6 +16,7 @@ import InterestForm from "../pages/cropDetails/InterestForm";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ContactUs from "../pages/Others/ContactUs";
 import AboutUs from "../pages/Others/AboutUs";
+import FAQPage from "../pages/Others/FAQPage";
 
 
 export const router = createBrowserRouter([
@@ -53,7 +54,11 @@ export const router = createBrowserRouter([
       {
         path: '/contact',
         element:<ContactUs />
-     }
+     },
+      {
+        path: '/faq',
+        element:<FAQPage />
+     },
     ],
   },
   {

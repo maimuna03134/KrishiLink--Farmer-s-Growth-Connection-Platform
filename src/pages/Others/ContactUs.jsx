@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const ContactUs = () => {
     return (
@@ -11,11 +12,9 @@ const ContactUs = () => {
                         "url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1470&q=80')",
                 }}
             >
-                <div className="text-center bg-black bg-opacity-40 p-4 rounded">
+                <div className="text-center flex flex-col items-center justify-center bg-black bg-opacity-40 p-4 rounded">
                     <h1 className="text-4xl font-semibold">Contact Us</h1>
-                    <p className="mt-2 text-yellow-100">
-                        Home &rarr; Contact Us
-                    </p>
+                    <p className="bg-gray-200 p-2 text-green-900 font-semibold mt-2"><Link to='/'><span>Home</span></Link> / Contact Us</p>
                 </div>
             </div>
 
@@ -143,7 +142,7 @@ const ContactUs = () => {
             </div>
 
             {/* Map */}
-            <div className="max-w-6xl mx-auto mt-12">
+            {/* <div className="max-w-6xl mx-auto mt-12">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19845.4377746521!2d-0.13429288811002916!3d51.515617749999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b333f45b8b5%3A0x7d6b9b6a914e0b36!2sLondon%2C%20UK!5e0!3m2!1sen!2sbd!4v1699999999999!5m2!1sen!2sbd"
                     width="100%"
@@ -152,7 +151,7 @@ const ContactUs = () => {
                     allowFullScreen=""
                     loading="lazy"
                 ></iframe>
-            </div>
+            </div> */}
         </div>
     );
 };
