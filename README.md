@@ -6,7 +6,7 @@ KrishiLink is more than just a platform — it's a movement to strengthen the ag
 
 ---
 
-**Live Link:** https://crop-trading-platform-design.web.app/
+**Live Link:** https://krisilink-farmer-growth-connection.vercel.app/
 
 <p align="center">
   <img src="./farmarlink ss.png" width="100%" alt="Banner" />
