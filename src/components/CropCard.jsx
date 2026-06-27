@@ -14,13 +14,13 @@ const CropCard = ({ crop }) => {
     location,
     description,
     pricePerUnit,
-    quantity,
+    
     unit,
     _id
   } = crop;
   return (
     <MyContainer >
-      <div className={`group relative w-full md:w-[190px] md:h-[230px] lg:w-[200px] lg:h-[250px] bg-white rounded-[20px] border border-white/20 shadow-lg overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:shadow-2xl hover:border-green-400/20 ${isHovered ? "shadow-2xl -translate-y-2" : ""}`}
+      <div className={`group relative w-full md:w-[190px] md:h-[230px] lg:w-[200px] lg:h-[250px] bg-transparent rounded-[20px] border border-white/20 shadow-lg overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:shadow-2xl hover:border-green-400/20 ${isHovered ? "shadow-2xl -translate-y-2" : ""}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -71,20 +71,20 @@ const CropCard = ({ crop }) => {
 
           {/* Text */}
           <div>
-            <h3 className="text-slate-800 font-bold text-lg transition-all duration-300 group-hover:text-green-600 group-hover:translate-x-0.5">
+            <h3 className="text-slate-800 dark:text-slate-100 font-bold text-lg transition-all duration-300 group-hover:text-green-600 group-hover:translate-x-0.5">
               {name}
             </h3>
-            <p className="text-slate-600 text-xs opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5">
+            <p className="text-slate-600 dark:text-slate-300 text-xs opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5">
               {description?.split(" ").slice(0, 6).join(" ")}...
             </p>
           </div>
 
 
           <div className="mt-auto mb-2 flex items-center justify-between ">
-            <span className="font-bold text-slate-800 transition-all duration-300 group-hover:text-green-600 group-hover:translate-x-0.5">
+            <span className="font-bold text-slate-800 dark:text-slate-100 transition-all duration-300 group-hover:text-green-600 group-hover:translate-x-0.5">
               ${pricePerUnit}<span className="text-sm font-normal">/{unit}</span>
             </span>
-            <span className="font-semibold text-slate-800 transition-all duration-300 group-hover:text-green-600 group-hover:translate-x-0.5 ">
+            <span className="font-semibold text-slate-800 dark:text-slate-100 transition-all duration-300 group-hover:text-green-600 group-hover:translate-x-0.5 ">
               {location}
             </span>
 

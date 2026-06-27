@@ -3,23 +3,27 @@ import { Link } from "react-router";
 
 const ContactUs = () => {
     return (
-        <div className="bg-cream min-h-screen p-6 md:p-12">
+        <div className=" min-h-screen p-6 md:p-12 bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100">
             {/* Header Section */}
             <div
-                className="w-full h-64 bg-cover bg-center flex items-center justify-center text-white"
+                className="w-full h-64 bg-cover bg-center flex items-center justify-center text-white bg-white dark:bg-gray-800 
+            dark:text-gray-100"
                 style={{
                     backgroundImage:
                         "url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1470&q=80')",
                 }}
             >
-                <div className="text-center flex flex-col items-center justify-center bg-black bg-opacity-40 p-4 rounded">
+                <div className="text-center flex flex-col items-center justify-center bg-black bg-opacity-40 p-4 rounded  dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100">
                     <h1 className="text-4xl font-semibold">Contact Us</h1>
                     <p className="bg-gray-200 p-2 text-green-900 font-semibold mt-2"><Link to='/'><span>Home</span></Link> / Contact Us</p>
                 </div>
             </div>
 
             {/* Contact Info */}
-            <div className="max-w-6xl mx-auto mt-12 grid md:grid-cols-3 gap-6 text-center">
+            <div className="max-w-6xl mx-auto mt-12 grid md:grid-cols-3 gap-6 text-center bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100">
                 {/* Address */}
                 <div className="border p-6 rounded-lg hover:shadow-lg transition">
                     <div className="text-green-700 mb-2">
@@ -43,7 +47,7 @@ const ContactUs = () => {
                         </svg>
                     </div>
                     <h3 className="font-semibold mb-2">Address</h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
                         245 Country Road, Meadow Valley, Springfield, Illinois 62701, USA
                     </p>
                 </div>
@@ -66,8 +70,8 @@ const ContactUs = () => {
                         </svg>
                     </div>
                     <h3 className="font-semibold mb-2">Phone</h3>
-                    <p className="text-gray-600 text-sm">+123 456 789 0</p>
-                    <p className="text-gray-600 text-sm">+123 456 789 0</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">+123 456 789 0</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">+123 456 789 0</p>
                 </div>
 
                 {/* Email */}
@@ -88,13 +92,14 @@ const ContactUs = () => {
                         </svg>
                     </div>
                     <h3 className="font-semibold mb-2">Email</h3>
-                    <p className="text-gray-600 text-sm">infoagro@mail.co.id</p>
-                    <p className="text-gray-600 text-sm">hallooagro@gmail.com</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">infoagro@mail.co.id</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">hallooagro@gmail.com</p>
                 </div>
             </div>
 
             {/* Form and Image */}
-            <div className="max-w-6xl mx-auto mt-12 grid md:grid-cols-2 gap-6">
+            <div className="max-w-6xl mx-auto mt-12 grid md:grid-cols-2 gap-6 bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100">
                 <img
                     src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80"
                     alt="Farmer"

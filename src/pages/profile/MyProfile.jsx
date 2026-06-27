@@ -26,12 +26,13 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-10 my-6" data-aos="fade-right">
+    <div className="max-w-2xl mx-auto p-10 my-6 " data-aos="fade-right">
       <h2 className="text-3xl font-bold text-orange-500 mb-6 text-center">
         My Profile
       </h2>
 
-      <div className="bg-white shadow-lg rounded-lg px-6 py-14 flex flex-col md:flex-row items-center md:items-start gap-6">
+      <div className="bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100 shadow-lg rounded-lg px-6 py-14 flex flex-col md:flex-row items-center md:items-start gap-6">
         <img
           src={`${user ? user.photoURL : userProfileImg}`}
           alt={user?.displayName || "User"}
@@ -55,14 +56,14 @@ const MyProfile = () => {
       {/* modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md relative">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-11/12 max-w-md relative">
             <h3 className="text-xl font-bold text-orange-500 mb-4 text-center">
               Update Profile
             </h3>
 
             <form onSubmit={handleUpdateProf} className="flex flex-col gap-4">
               <div>
-                <label className="block font-semibold text-gray-700">
+                <label className="block font-semibold text-gray-700 dark:text-gray-200">
                   Name
                 </label>
                 <input
@@ -74,7 +75,7 @@ const MyProfile = () => {
                 />
               </div>
               <div>
-                <label className="block font-semibold text-gray-700">
+                <label className="block font-semibold text-gray-700 dark:text-gray-200">
                   Image URL
                 </label>
                 <input

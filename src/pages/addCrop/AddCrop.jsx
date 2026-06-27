@@ -106,14 +106,14 @@ const AddCrop = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
         <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className=" bg-gray-100 py-8">
+    <div className=" py-8">
       <div className="relative h-96 md:h-[520px] overflow-hidden rounded-b-3xl shadow-2xl">
         <img
           src="https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTAxL3Jhd3BpeGVsX29mZmljZV8yOV9waG90b19vZl9hX3Byb3VkX2Zhcm1lcl9zdGFuZHNfaW5fYV92aWJyYW50X19kYmUwNDVjMC04ZjIyLTQyZDQtOGU1Zi1hYWNhMGM0YWJiM2ZfMS5qcGc.jpg"
@@ -137,8 +137,9 @@ const AddCrop = () => {
       <MyContainer >
         <div className="max-w-2xl mx-auto">
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <div className="my-8 ">
+            <h1 className="text-4xl font-bold dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100 mb-2">
               Add New Crop
             </h1>
             <p className="text-gray-600">
@@ -147,7 +148,7 @@ const AddCrop = () => {
           </div>
 
           {/* Form filed */}
-          <div className="bg-green-50 rounded-xl shadow-lg p-8">
+          <div className=" rounded-xl shadow-lg p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Crop Name */}
               <div>

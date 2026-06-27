@@ -143,7 +143,7 @@ const ReceivedInterests = ({ crop }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
         <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -151,12 +151,14 @@ const ReceivedInterests = ({ crop }) => {
 
   return (
     <>
-      <div className="bg-white rounded-xl shadow-lg p-8">
+      <div className="rounded-xl  dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100 shadow-lg p-8">
         <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center gap-2">
           <FaUserShield className="w-6 h-6" /> Received Interests
         </h2>
 
-        <div className="mb-4 bg-green-50 p-4 rounded-lg">
+        <div className="mb-4 bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100 p-4 rounded-lg">
           <p className="text-sm text-gray-600">
             <strong>Available Quantity:</strong> {localCrop.quantity}{" "}
             {localCrop.unit}
@@ -167,7 +169,8 @@ const ReceivedInterests = ({ crop }) => {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-green-50 border-b-2 border-green-200">
+                <tr className="bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100 border-b-2 border-green-200">
                   <th className="thead-th">Buyer Name </th>
                   <th className="thead-th">Quantity </th>
                   <th className="thead-th">Message </th>
@@ -179,7 +182,8 @@ const ReceivedInterests = ({ crop }) => {
                 {localCrop.interests.map((interest, i) => (
                   <tr
                     key={interest._id}
-                    className={`border-b hover:bg-gray-50 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                    className={`border-b bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"
                       }`}
                   >
                     <td className="px-6 py-4">

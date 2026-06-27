@@ -5,11 +5,14 @@ import { FaArrowRight, FaHandshake, FaUserPlus, FaUsers } from 'react-icons/fa';
 const HowItWorks = () => {
     return (
       <MyContainer>
-        <section className=" p-10 rounded-3xl mb-12">
-          <h2 className="text-4xl font-bold text-center text-emerald-800 mb-12">
+        <section className=" p-10 rounded-3xl mb-12 dark:bg-gray-800 
+            dark:text-gray-100">
+          <h2 className="text-4xl font-bold text-center text-emerald-800 mb-12 dark:bg-gray-800 
+            dark:text-gray-100">
             How It Works
           </h2>
-          <div className="flex flex-col md:flex-row items-center justify-center lg:w-11/12 gap-8">
+          <div className="flex flex-col md:flex-row items-center justify-center lg:w-11/12 gap-8 dark:bg-gray-800 
+            dark:text-gray-100">
             {[
               {
                 icon: FaUserPlus,
@@ -28,15 +31,19 @@ const HowItWorks = () => {
               },
             ].map((step, i) => (
               <React.Fragment key={i}>
-                <div className="bg-linear-to-br from-green-100 to-emerald-50 p-8 rounded-2xl text-center w-80 hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
+                <div className="dark:bg-gray-800 
+            dark:text-gray-100 p-8 rounded-2xl text-center w-80 hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
                   <step.icon className="text-5xl text-emerald-700 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-emerald-800 mb-2">
+                  <h3 className="text-2xl font-bold text-emerald-800 mb-2 dark:bg-gray-800 
+            dark:text-gray-100">
                     {step.title}
                   </h3>
-                  <p className="text-gray-700">{step.desc}</p>
+                  <p className="text-gray-700 dark:bg-gray-800 
+            dark:text-gray-100">{step.desc}</p>
                 </div>
                 {i < 2 && (
-                  <FaArrowRight className="text-4xl text-green-600 hidden md:block" />
+                  <FaArrowRight className="text-4xl text-green-600 hidden md:block dark:bg-gray-800 
+            dark:text-gray-100" />
                 )}
               </React.Fragment>
             ))}

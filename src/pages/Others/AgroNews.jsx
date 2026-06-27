@@ -22,26 +22,32 @@ const AgroNews = () => {
     ];
     return (
       <MyContainer>
-        <section className=" p-10  mb-12">
-          <h2 className="text-4xl font-bold text-center text-emerald-800 mb-12 flex items-center justify-center gap-3">
+        <section className=" p-10  mb-12 dark:bg-gray-800 
+            dark:text-gray-100">
+          <h2 className="text-4xl font-bold text-center text-emerald-800 mb-12 flex items-center justify-center gap-3 dark:bg-gray-800 
+            dark:text-gray-100">
             <FaNewspaper className="text-5xl" /> Agro News & Blogs
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {news.map((item, i) => (
               <div
                 key={i}
-                className="bg-linear-to-br from-lime-50 to-green-50 p-6 rounded-2xl border-l-4 border-green-600 hover:shadow-2xl transition-all duration-300"
+                className="dark:bg-gray-800 
+            dark:text-gray-100 p-6 rounded-2xl border-l-4 border-green-600 hover:shadow-2xl transition-all duration-300"
               >
-                <div className="flex items-center gap-2 text-green-700 text-sm mb-3">
+                <div className="flex items-center gap-2 text-green-700 text-sm mb-3 ">
                   <FaCalendarAlt /> {item.date}
                 </div>
-                <h3 className="text-xl font-bold text-emerald-800 mb-2">
+                <h3 className="text-xl font-bold text-emerald-800 mb-2 dark:bg-gray-800 
+            dark:text-gray-100">
                   {item.title}
                 </h3>
-                <p className="text-gray-700 mb-4">{item.excerpt}</p>
+                <p className="text-gray-700 mb-4 dark:bg-gray-800 
+            dark:text-gray-100">{item.excerpt}</p>
                 <a
                   href="#"
-                  className="text-green-700 font-bold hover:underline"
+                  className="text-green-700 font-bold hover:underline dark:bg-gray-800 
+            dark:text-gray-100"
                 >
                   Read More →
                 </a>

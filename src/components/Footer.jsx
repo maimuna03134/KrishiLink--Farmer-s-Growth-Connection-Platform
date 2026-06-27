@@ -7,10 +7,12 @@ import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
     return (
-      <footer className="bg-linear-to-b from-green-50 to-white border-t border-green-100 rounded-2xl">
+      <footer className=" dark:bg-gray-800 
+            dark:text-gray-100 border-t border-green-100 rounded-2xl">
         <MyContainer className={''}>
           {/* Logo */}
-          <div className="mb-8 px-2">
+          <div className="mb-8 px-2  
+            dark:text-gray-100 dark:brightness-200 dark:contrast-125">
             <Link to="/">
               <svg
                 width="36"
@@ -31,25 +33,28 @@ const Footer = () => {
                   strokeLinecap="round"
                 />
               </svg>
-              <span className="text-lg font-semibold text-gray-800">
+              <span className="text-lg font-semibold text-gray-800 dark:brightness-200 dark:contrast-125">
                 KrishiLink
               </span>
             </Link>
           </div>
 
           {/* Footer Links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 px-2">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 px-2 dark:bg-gray-800 
+            dark:text-gray-100">
             
             <div>
-              <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2">
+              <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2 dark:bg-gray-800 
+            dark:text-gray-100">
                 <FaSeedling className="text-green-600" />
                 Quick Links
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-3 ">
                 <li>
                   <Link
                     to="/"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     Home
                   </Link>
@@ -57,7 +62,8 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/all-crops"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     All Crops
                   </Link>
@@ -65,7 +71,8 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/add-crop"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     Add Crops
                   </Link >
@@ -73,7 +80,8 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/my-posts"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     My Posts
                   </Link>
@@ -81,7 +89,8 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/my-interests"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                    
                   >
                     My Interests
@@ -92,7 +101,8 @@ const Footer = () => {
 
             {/* Support */}
             <div>
-              <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2">
+              <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2 dark:bg-gray-800 
+            dark:text-gray-100">
                 <GiWheat className="text-green-600" />
                 Support
               </h3>
@@ -100,7 +110,8 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     Help Center
                   </a>
@@ -108,7 +119,8 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     User Guide
                   </a>
@@ -116,18 +128,19 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     Farming Tips
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                  <Link to={'/contact'}
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -135,22 +148,24 @@ const Footer = () => {
             {/* Company */}
             <div>
               <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2">
-                <GiCorn className="text-green-600" />
+                <GiCorn className="text-green-600 dark:bg-gray-800 
+            dark:text-gray-100" />
                 Company
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                  <Link to={'/about'}
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
                     href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     Agri Blog
                   </a>
@@ -158,7 +173,8 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     Success Stories
                   </a>
@@ -166,7 +182,8 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     News
                   </a>
@@ -177,14 +194,16 @@ const Footer = () => {
             {/* Legal */}
             <div>
               <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2">
-                <FaLeaf className="text-green-600" />
+                <FaLeaf className="text-green-600 dark:bg-gray-800 
+            dark:text-gray-100" />
                 Legal
               </h3>
               <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     Terms & Conditions
                   </a>
@@ -192,7 +211,8 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     Privacy Policy
                   </a>
@@ -200,7 +220,8 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-600 hover:text-green-700 transition-colors"
+                    className="text-gray-600 hover:text-green-700 transition-colors dark:bg-gray-800 
+            dark:text-gray-100"
                   >
                     Cookie Policy
                   </a>
@@ -210,18 +231,22 @@ const Footer = () => {
           </div>
 
           {/* Newsletter Section */}
-          <div className="border-t border-gray-200 pt-8 mb-8 px-2">
+          <div className="border-t border-gray-200 pt-8 mb-8 px-2 dark:bg-gray-800 
+            dark:text-gray-100">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
               <div className="flex-1">
-                <h3 className="font-semibold text-gray-900 mb-2">
+                <h3 className="font-semibold text-gray-900 mb-2 dark:bg-gray-800 
+            dark:text-gray-100">
                   Subscribe to our newsletter
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm dark:bg-gray-800 
+            dark:text-gray-100">
                   Get the latest agricultural news, tips, and updates straight
                   to your inbox.
                 </p>
               </div>
-              <div className="flex flex-col md:flex-row gap-3 md:min-w-[400px]">
+              <div className="flex flex-col md:flex-row gap-3 md:min-w-[400px] dark:bg-gray-800 
+            dark:text-gray-100">
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -235,8 +260,10 @@ const Footer = () => {
           </div>
 
           {/* Bottom Section */}
-          <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-gray-600 text-sm">
+          <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 dark:bg-gray-800 
+            dark:text-gray-100">
+            <p className="text-gray-600 text-sm dark:bg-gray-800 
+            dark:text-gray-100">
               © 2024 KrishiLink. All rights reserved.
             </p>
 

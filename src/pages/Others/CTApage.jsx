@@ -6,7 +6,7 @@ import { BsArrowRight } from 'react-icons/bs'
 export default function CTApage() {
   return (
       <div>
-          <section className="py-20 mb-20 bg-linear-to-r from-green-700 via-green-500 to-emerald-400">
+          <section className="py-20 mb-20 bg-linear-to-r from-green-900 via-green-600 to-emerald-400">
               <MyContainer className={"px-4 sm:px-6 lg:px-8 text-center"}>
                   <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                       Ready to Grow Your Farm <br />
@@ -17,7 +17,7 @@ export default function CTApage() {
                   </p>
                   <Link
                         to="/all-crops"
-                      className="px-10 py-5 bg-white text-green-800 rounded-2xl font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
+                      className="px-6 py-3 bg-transparent hover:bg-green-200 text-green-800 rounded-2xl font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
                   >
                       Get Started Now
                       <BsArrowRight className="w-5 h-5" />

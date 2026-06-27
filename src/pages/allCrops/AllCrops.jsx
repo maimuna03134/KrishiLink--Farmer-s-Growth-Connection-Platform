@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CropCard from "../../components/CropCard";
-import { useLoaderData } from "react-router";
+
 import MyContainer from "../../components/myContainer/MyContainer";
 import cropsNotFound from '../../assets/not_found.png'
 import { GoSearch } from "react-icons/go";
@@ -111,29 +111,33 @@ const AllCrops = () => {
 
 
   return (
-    <div className="bg-linear-to-br from-green-50 via-lime-50 to-green-50 py-8">
+    <div className="dark:bg-gray-800 
+            dark:text-gray-100 py-8">
 
       <MyContainer>
-        <h1 className="text-center text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg mb-3">
+        <h1 className="text-center text-4xl lg:text-6xl font-bold mb-3 dark:bg-gray-800 
+            dark:text-gray-100">
           Fresh Crops <br />
-          <span className="text-green-400">Direct from Farmers</span>
+          <span className="text-green-400 dark:bg-gray-800 
+            dark:text-gray-100 ">Direct from Farmers</span>
         </h1>
 
-        <p className="text-center text-lg md:text-xl mb-6 opacity-90 max-w-2xl drop-shadow px-3 mx-auto">
+        <p className="text-center text-lg md:text-xl mb-6 opacity-90 max-w-2xl drop-shadow px-3 mx-auto dark:bg-gray-800 
+            dark:text-gray-100">
           Connect with farmers across the country. Buy high-quality,
           organic, and affordable crops — straight to your table.
         </p>
         <div className="relative w-11/12 mx-auto">
           <GoSearch
             size={24}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-400"
           />
           <input
             type="text"
             placeholder="Search by crop name, type, or location..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-14 pr-6 py-4 rounded-full text-gray-900 border-2 border-green-300 text-lg shadow-xl focus:outline-none focus:ring-4 focus:ring-green-400 transition-all"
+            className="w-full pl-14 pr-6 py-4 rounded-full text-gray-900 dark:text-gray-400 border-2 border-green-300 text-lg shadow-xl focus:outline-none focus:ring-4 focus:ring-green-400 transition-all"
           />
         </div>
       </MyContainer>
@@ -142,10 +146,10 @@ const AllCrops = () => {
       <MyContainer className="py-8">
         <div className="flex flex-col md:flex-row justify-center items-center md:justify-between md:items-center md:px-4 gap-4 mb-8 ">
           <div>
-            <h1 className="text-4xl font-bold text-green-800 mb-2 ">
+            <h1 className="text-4xl font-bold text-green-800 dark:text-green-400 mb-2 ">
               All Crops
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-300">
               Showing {crops.length > 0 ? ((currentPage - 1) * itemsPerPage + 1) : 0}-
               {Math.min(currentPage * itemsPerPage, pagination.totalCrops)} of{" "}
               {pagination.totalCrops} crops
@@ -169,9 +173,9 @@ const AllCrops = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* filters sidebar */}
           <div className={`lg:w-80 ${showFilters ? "block" : "hidden"} lg:block`}>
-            <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-4">
+            <div className="bg-base-100 dark:bg-gray-800 rounded-2xl shadow-lg p-6 sticky top-4">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
                   <BiFilterAlt className="text-green-600" />
                   Filters
                 </h2>
@@ -188,13 +192,13 @@ const AllCrops = () => {
 
               {/* Category Filter */}
               <div className="mb-6">
-                <label className="block text-sm font-bold text-gray-700 mb-3">
+                <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-3">
                   Category
                 </label>
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition text-gray-900"
+                  className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition text-gray-900 dark:text-gray-100 dark:bg-gray-700"
                 >
                   <option value="">All Categories</option>
                   {categories.map((category) => (
@@ -207,13 +211,13 @@ const AllCrops = () => {
 
               {/* Location Filter */}
               <div className="mb-6">
-                <label className="block text-sm font-bold text-gray-700 mb-3">
+                <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-3">
                   Location
                 </label>
                 <select
                   value={selectedLocation}
                   onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition text-gray-900"
+                  className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition text-gray-900 dark:text-gray-100 dark:bg-gray-700"
                 >
                   <option value="">All Locations</option>
                   {locations.map((location) => (
@@ -225,14 +229,14 @@ const AllCrops = () => {
               </div>
 
               {hasActiveFilters && (
-                <div className="border-t pt-4">
-                  <p className="text-sm font-semibold text-gray-700 mb-3">
+                <div className="border-t dark:border-gray-600 pt-4">
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">
                     Active Filters:
                   </p>
                   <div className="space-y-2">
                     {searchTerm && (
-                      <div className="flex items-center justify-between bg-green-50 px-3 py-2 rounded-lg">
-                        <span className="text-sm text-gray-700">
+                      <div className="flex items-center justify-between bg-green-50 dark:bg-green-900/30 px-3 py-2 rounded-lg">
+                        <span className="text-sm text-gray-700 dark:text-gray-200">
                           Search: "{searchTerm}"
                         </span>
                         <button
@@ -244,8 +248,8 @@ const AllCrops = () => {
                       </div>
                     )}
                     {selectedCategory && (
-                      <div className="flex items-center justify-between bg-green-50 px-3 py-2 rounded-lg">
-                        <span className="text-sm text-gray-700">
+                      <div className="flex items-center justify-between bg-green-50 dark:bg-green-900/30 px-3 py-2 rounded-lg">
+                        <span className="text-sm text-gray-700 dark:text-gray-200">
                           Category: {selectedCategory}
                         </span>
                         <button
@@ -257,8 +261,8 @@ const AllCrops = () => {
                       </div>
                     )}
                     {selectedLocation && (
-                      <div className="flex items-center justify-between bg-green-50 px-3 py-2 rounded-lg">
-                        <span className="text-sm text-gray-700">
+                      <div className="flex items-center justify-between bg-green-50 dark:bg-green-900/30 px-3 py-2 rounded-lg">
+                        <span className="text-sm text-gray-700 dark:text-gray-200">
                           Location: {selectedLocation}
                         </span>
                         <button
@@ -279,16 +283,16 @@ const AllCrops = () => {
           <div className="flex-1">
             {
               crops.length === 0 && !loading ? (
-                <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-12 text-center">
                   <img
                     src={cropsNotFound}
                     alt="No Crops Found"
                     className="animate-pulse bg-transparent w-[300px] h-[300px]"
                   />
-                  <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                  <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">
                     No Crops Found
                   </h2>
-                  <p className="text-gray-600 mb-6 ">
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">
                     We couldn't find any crops matching your criteria. Try
                     adjusting your filters or search terms.
                   </p>
@@ -315,8 +319,8 @@ const AllCrops = () => {
 
                   {/* Pagination */}
                   {pagination.totalPages > 1 && !loading && (
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-2xl shadow-lg p-6">
-                      <div className="text-gray-600">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4  rounded-2xl shadow-lg p-6">
+                      <div className="text-gray-600 dark:text-gray-300">
                         Page {currentPage} of {pagination.totalPages}
                       </div>
 
@@ -325,7 +329,7 @@ const AllCrops = () => {
                           onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
                           disabled={!pagination.hasPrevPage}
                           className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition ${!pagination.hasPrevPage
-                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            ? " text-gray-500 cursor-not-allowed"
                             : "bg-green-600 text-white hover:bg-green-700"
                             }`}
                         >
@@ -345,13 +349,13 @@ const AllCrops = () => {
                             .map((page, index, array) => (
                               <React.Fragment key={page}>
                                 {index > 0 && array[index - 1] !== page - 1 && (
-                                  <span className="px-3 py-2 text-gray-400">...</span>
+                                  <span className="px-3 py-2 text-gray-400 dark:text-gray-500">...</span>
                                 )}
                                 <button
                                   onClick={() => setCurrentPage(page)}
                                   className={`px-4 py-2 rounded-lg font-semibold transition ${currentPage === page
                                     ? "bg-green-600 text-white"
-                                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                    : "text-gray-500 dark:text-gray-300 hover:bg-green-200 dark:hover:bg-green-800"
                                     }`}
                                 >
                                   {page}

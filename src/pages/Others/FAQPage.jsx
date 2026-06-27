@@ -39,16 +39,16 @@ function FAQItem({ question, answer }) {
     const [open, setOpen] = React.useState(false);
 
     return (
-        <div className="border-b border-gray-300 py-4">
+        <div className="border-b border-gray-300 dark:border-gray-600 py-4">
             <button
                 onClick={() => setOpen(!open)}
-                className="w-full flex justify-between items-center text-left text-gray-800 font-medium"
+                className="w-full flex justify-between items-center text-left text-gray-800 dark:text-gray-100 font-medium"
             >
                 {question}
                 <span className="text-xl">{open ? "-" : "+"}</span>
             </button>
             {open && (
-                <p className="mt-2 text-gray-600 text-sm">
+                <p className="mt-2 text-gray-600 dark:text-gray-300 text-sm">
                     {answer}
                 </p>
             )}
@@ -58,7 +58,8 @@ function FAQItem({ question, answer }) {
 
 export default function FAQPage() {
     return (
-        <div className="bg-gray-50 min-h-screen">
+        <div className="bg-gray-50 min-h-screen  dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100">
             {/* Hero Section */}
             <div
                 className="relative h-64 bg-cover bg-center"
@@ -73,12 +74,13 @@ export default function FAQPage() {
                 </div>
             </div>
 
-            <div className="max-w-4xl mx-auto py-16 px-4">
+            <div className="max-w-4xl mx-auto py-16 px-4 bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100">
                 {/* First Section */}
                 <div className="mb-12">
                     <p className="text-green-700 font-semibold mb-2">FAQs</p>
                     <h2 className="text-3xl font-bold mb-6">Your Farming Questions, Answered</h2>
-                    <div className="bg-white shadow-md rounded-md divide-y px-6">
+                    <div className="bg-white dark:bg-gray-700 shadow-md rounded-md divide-y px-6 ">
                         {faqs.map((item, i) => (
                             <FAQItem key={i} question={item.question} answer={item.answer} />
                         ))}
@@ -89,7 +91,7 @@ export default function FAQPage() {
                 <div>
                     <p className="text-green-700 font-semibold mb-2">FAQs</p>
                     <h2 className="text-3xl font-bold mb-6">Learn More About What We Do</h2>
-                    <div className="bg-white shadow-md rounded-md divide-y px-6">
+                    <div className="bg-white dark:bg-gray-700 shadow-md rounded-md divide-y px-6">
                         {faqs.map((item, i) => (
                             <FAQItem key={i} question={item.question} answer={item.answer} />
                         ))}

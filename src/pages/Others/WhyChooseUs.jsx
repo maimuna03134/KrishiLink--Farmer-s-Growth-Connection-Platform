@@ -5,39 +5,45 @@ import MyContainer from '../../components/myContainer/MyContainer';
 
 const WhyChooseUs = () => {
     return (
-        <section className="py-16 px-4">
+        <section className="py-16 px-4 ">
             <MyContainer>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ">
                     {/* Left Side - Content */}
                     <div className="space-y-8">
                         {/* Header */}
-                        <div>
+                        <div className=''>
                             <div className="flex items-center gap-2 mb-4">
                                 <BiLeaf className="w-6 h-6 text-green-600" />
-                                <span className="text-green-600 font-semibold uppercase tracking-wider text-sm">
+                                <span className="text-green-600 font-semibold uppercase tracking-wider text-sm dark:bg-gray-800 
+            dark:text-gray-100">
                                     Why Choose Us
                                 </span>
                             </div>
-                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4  dark:bg-gray-800 
+            dark:text-gray-100">
                                 We Are Different From Other Farming
                             </h2>
-                            <p className="text-gray-600 text-lg">
+                            <p className="text-gray-600 text-lg dark:bg-gray-800 
+            dark:text-gray-100">
                                 We have 15 years of agriculture & eco farming experience globally, work with professionals
                             </p>
                         </div>
 
                         {/* Feature Cards */}
-                        <div className="space-y-6">
+                        <div className="space-y-6 ">
                             {/* Feature 1 */}
-                            <div className="flex gap-4">
+                            <div className="flex gap-4 dark:bg-gray-800 
+            dark:text-gray-100">
                                 <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center shrink-0">
                                     <BiLeaf className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-2 dark:bg-gray-800 
+            dark:text-gray-100">
                                         Sustainable & Regenerative Agriculture
                                     </h3>
-                                    <p className="text-gray-600">
+                                    <p className="text-gray-600 dark:bg-gray-800 
+            dark:text-gray-100">
                                         Solution for small and large businesses with eco-friendly farming practices
                                     </p>
                                 </div>
@@ -49,10 +55,12 @@ const WhyChooseUs = () => {
                                     <BiPackage className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-2 dark:bg-gray-800 
+            dark:text-gray-100">
                                         Organic Agriculture & Food Production
                                     </h3>
-                                    <p className="text-gray-600">
+                                    <p className="text-gray-600 dark:bg-gray-800 
+            dark:text-gray-100">
                                         Solution for small and large businesses with quality organic products
                                     </p>
                                 </div>
@@ -63,19 +71,23 @@ const WhyChooseUs = () => {
                         <div className="grid grid-cols-2 gap-4">
                             <div className="flex items-center gap-2">
                                 <BiCheckCircle className="w-5 h-5 text-green-600 shrink-0" />
-                                <span className="text-gray-700 font-medium">100% Naturally</span>
+                                <span className="text-gray-700 font-medium dark:bg-gray-800 
+            dark:text-gray-100">100% Naturally</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <BiCheckCircle className="w-5 h-5 text-green-600 shrink-0" />
-                                <span className="text-gray-700 font-medium">High tech Processing</span>
+                                <span className="text-gray-700 font-medium dark:bg-gray-800 
+            dark:text-gray-100">High tech Processing</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <BiCheckCircle className="w-5 h-5 text-green-600 shrink-0" />
-                                <span className="text-gray-700 font-medium">Home Delivery Service</span>
+                                <span className="text-gray-700 font-mediu dark:bg-gray-800 
+            dark:text-gray-100">Home Delivery Service</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <BiCheckCircle className="w-5 h-5 text-green-600 shrink-0" />
-                                <span className="text-gray-700 font-medium">Best Quality Product</span>
+                                <span className="text-gray-700 font-medium dark:bg-gray-800 
+            dark:text-gray-100">Best Quality Product</span>
                             </div>
                         </div>
 

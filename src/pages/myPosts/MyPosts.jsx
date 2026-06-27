@@ -99,16 +99,16 @@ const MyPosts = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
         <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-100 py-8">
+    <div className=" py-8">
       <MyContainer>
-        <h1 className="text-3xl font-bold text-center text-green-800 mb-8">
+        <h1 className="text-3xl font-bold text-center text-green-800 dark:text-white mb-8">
           My Posts
         </h1>
 
@@ -119,9 +119,9 @@ const MyPosts = () => {
             </p>
           </div>
         ) : (
-          <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
+          <div className="rounded-xl shadow-lg overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-green-50">
+                <thead className=" hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white ">
                 <tr>
                   <th className="px-6 py-4 text-left">Image</th>
                   <th className="px-6 py-4 text-left">Name</th>
@@ -134,7 +134,7 @@ const MyPosts = () => {
               </thead>
               <tbody>
                 {crops && crops.map((crop) => (
-                  <tr key={crop._id} className="border-b hover:bg-gray-50">
+                  <tr key={crop._id} className="border-b hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white">
                     <td className="px-6 py-4">
                       <img
                         src={crop.image}
@@ -176,98 +176,70 @@ const MyPosts = () => {
 
         {/* Edit Modal */}
         {editingCrop && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <h2 className="text-2xl font-bold mb-6">Edit Crop</h2>
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-100 dark:border-gray-700">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Edit Crop</h2>
+                <button
+                  onClick={() => setEditingCrop(null)}
+                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
 
               <div className="space-y-4">
-                <div>
-                  <label className="block font-semibold mb-2">Name</label>
-                  <input
-                    type="text"
-                    value={editingCrop.name}
-                    onChange={(e) =>
-                      setEditingCrop({ ...editingCrop, name: e.target.value })
-                    }
-                    className="w-full px-4 py-2 border rounded-lg"
-                  />
-                </div>
+                {[
+                  { label: "Name", key: "name", type: "text" },
+                  { label: "Price per unit", key: "pricePerUnit", type: "number" },
+                  { label: "Quantity", key: "quantity", type: "number" },
+                  { label: "Location", key: "location", type: "text" },
+                ].map(({ label, key, type }) => (
+                  <div key={key}>
+                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
+                      {label}
+                    </label>
+                    <input
+                      type={type}
+                      value={editingCrop[key]}
+                      onChange={(e) =>
+                        setEditingCrop({
+                          ...editingCrop,
+                          [key]: type === "number" ? Number(e.target.value) : e.target.value,
+                        })
+                      }
+                      className="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition"
+                    />
+                  </div>
+                ))}
 
                 <div>
-                  <label className="block font-semibold mb-2">
-                    Price per unit
-                  </label>
-                  <input
-                    type="number"
-                    value={editingCrop.pricePerUnit}
-                    onChange={(e) =>
-                      setEditingCrop({
-                        ...editingCrop,
-                        pricePerUnit: Number(e.target.value),
-                      })
-                    }
-                    className="w-full px-4 py-2 border rounded-lg"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-semibold mb-2">Quantity</label>
-                  <input
-                    type="number"
-                    value={editingCrop.quantity}
-                    onChange={(e) =>
-                      setEditingCrop({
-                        ...editingCrop,
-                        quantity: Number(e.target.value),
-                      })
-                    }
-                    className="w-full px-4 py-2 border rounded-lg"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-semibold mb-2">Location</label>
-                  <input
-                    type="text"
-                    value={editingCrop.location}
-                    onChange={(e) =>
-                      setEditingCrop({
-                        ...editingCrop,
-                        location: e.target.value,
-                      })
-                    }
-                    className="w-full px-4 py-2 border rounded-lg"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-semibold mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                     Description
                   </label>
                   <textarea
                     value={editingCrop.description}
                     onChange={(e) =>
-                      setEditingCrop({
-                        ...editingCrop,
-                        description: e.target.value,
-                      })
+                      setEditingCrop({ ...editingCrop, description: e.target.value })
                     }
                     rows="4"
-                    className="w-full px-4 py-2 border rounded-lg"
+                    className="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition resize-none"
                   />
                 </div>
               </div>
 
-              <div className="flex gap-4 mt-6">
+              <div className="flex gap-3 mt-7">
                 <button
                   onClick={(e) => handleUpdate(e, editingCrop._id)}
-                  className="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700"
+                  className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2.5 rounded-xl font-semibold transition shadow-sm"
                 >
-                  Update
+                  Save Changes
                 </button>
                 <button
                   onClick={() => setEditingCrop(null)}
-                  className="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-400"
+                  className="flex-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 py-2.5 rounded-xl font-semibold transition"
                 >
                   Cancel
                 </button>

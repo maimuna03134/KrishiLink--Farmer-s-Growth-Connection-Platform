@@ -20,18 +20,23 @@ const Testimonials = () => {
     return (
       <MyContainer>
         <section className="p-10 rounded-3xl ">
-          <h2 className="text-4xl font-bold text-center text-emerald-800 mb-12">
+          <h2 className="text-4xl font-bold text-center text-emerald-800 mb-12 dark:bg-gray-800 
+            dark:text-gray-100">
             What Farmers Say
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className="bg-linear-to-br from-emerald-50 to-green-100 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow"
+                className="dark:bg-gray-800 
+            dark:text-gray-100  p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow"
               >
-                <FaQuoteLeft className="text-4xl text-green-600 mb-4" />
-                <p className="text-lg italic text-gray-800 mb-6">"{t.text}"</p>
-                <p className="text-right font-bold text-emerald-700">
+                <FaQuoteLeft className="text-4xl text-green-600 mb-4 dark:bg-gray-800 
+            dark:text-gray-100" />
+                <p className="text-lg italic text-gray-800 mb-6 dark:bg-gray-800 
+            dark:text-gray-100">"{t.text}"</p>
+                <p className="text-right font-bold text-emerald-700 dark:bg-gray-800 
+            dark:text-gray-100">
                   — {t.author}
                 </p>
               </div>

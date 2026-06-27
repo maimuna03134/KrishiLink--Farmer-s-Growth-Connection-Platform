@@ -34,7 +34,8 @@ const AboutUs = () => {
     <div className="w-full">
       {/* Hero Section */}
       <div
-        className="w-full h-64 bg-cover bg-center flex items-center justify-center text-white"
+        className="w-full h-64 bg-cover bg-center flex items-center justify-center text-white bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=1470&q=80')",
@@ -42,12 +43,14 @@ const AboutUs = () => {
       >
         <div className="text-center">
           <h1 className="text-4xl font-bold">About Us</h1>
-          <p className="bg-gray-200 p-2 text-green-900 font-semibold mt-2"><Link to='/'><span>Home</span></Link> / About Us</p>
+          <p className="bg-gray-200 p-2 text-green-900 font-semibold mt-2  dark:bg-gray-800 
+            dark:text-gray-100"><Link to='/'><span>Home</span></Link> / About Us</p>
         </div>
       </div>
 
       {/* About Section */}
-      <section className="bg-green-900 text-white py-16 px-6">
+      <section className="bg-green-900 text-white py-16 px-6 dark:bg-gray-800 
+            dark:text-gray-100">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-yellow-400 uppercase text-sm mb-2">About Us</h2>
@@ -76,9 +79,10 @@ const AboutUs = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="bg-amber-50 py-16 px-6">
+      <section className="bg-amber-50 py-16 px-6  dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-green-900 uppercase text-sm mb-2">Our Projects</h2>
+          <h2 className="text-green-500 font-bold uppercase text-sm mb-2">Our Projects</h2>
           <h1 className="text-3xl font-bold mb-8">
             Growing a Greener <span className="text-green-700">Future Together</span>
           </h1>
@@ -108,9 +112,10 @@ const AboutUs = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-amber-50 py-16 px-6">
+      <section className="bg-amber-50 py-16 px-6  dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-green-900 uppercase text-sm mb-2">FAQ</h2>
+          <h2 className="text-green-500 font-bold uppercase text-sm mb-2">FAQ</h2>
           <h1 className="text-3xl font-bold mb-8">
             Your Farming <span className="text-green-700">Questions, Answered</span>
           </h1>
@@ -119,7 +124,7 @@ const AboutUs = () => {
             {faq.map((q, index) => (
               <div
                 key={index}
-                className="border border-green-200 rounded p-4 cursor-pointer hover:bg-green-50 transition"
+                className="border border-green-200 rounded p-4 cursor-pointer hover:bg-green-50   dark:hover:bg-green-800 transition"
               >
                 {q}
               </div>
@@ -130,7 +135,8 @@ const AboutUs = () => {
 
       {/* Call To Action Section */}
       <section
-        className="w-full h-64 bg-cover bg-center flex flex-col items-center justify-center text-white text-center"
+        className="w-full h-64 bg-cover bg-center flex flex-col items-center justify-center text-white text-center bg-white dark:bg-gray-800 
+            dark:text-gray-100"
         style={{
           backgroundImage:
             "url('https://media.istockphoto.com/id/1824598485/photo/punjabi-sikh-farmer-in-the-mustard-farm-field.webp?a=1&b=1&s=612x612&w=0&k=20&c=xSzgEF4X0poMtm7AH1Kh2ey2H0cnS_W1wAzKrsZRods=')",

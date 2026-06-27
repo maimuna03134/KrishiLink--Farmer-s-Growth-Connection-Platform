@@ -19,11 +19,13 @@ const Home = () => {
   const data = useLoaderData();
   // console.log(data)
     return (
-      <div>
+      <div className='bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-gray-100'>
         <Banner />
         {/* latest section */}
         <MyContainer >
-          <div className="mt-10 text-center text-green-700 text-4xl font-bold ">Latest Model</div>
+          <div className="mt-10 text-center text-green-700 text-4xl font-bold dark:bg-gray-800 
+            dark:text-gray-100">Latest Model</div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-2 mt-6">
             {data.map((crop) => (
@@ -38,7 +40,7 @@ const Home = () => {
         </MyContainer>
 
        
-        <div>
+        <div className=''>
           <WhyChooseUs/>
         </div>
         <div>
