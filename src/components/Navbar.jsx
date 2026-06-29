@@ -54,6 +54,7 @@ const Navbar = () => {
     { to: "/about", label: "About", icon: HiOutlineInformationCircle },
     { to: "/faq", label: "FAQ", icon: HiOutlineQuestionMarkCircle },
     { to: "/contact", label: "Contact", icon: HiOutlineMail },
+    { to: "/join-us", label: "Join Us", icon: HiOutlineUserGroup },
   ];
 
   const userMenuLinks = user ? [
@@ -150,10 +151,6 @@ const Navbar = () => {
 
                 {!user ? (
                   <>
-                    <MyLinks to="/join-us" className="flex items-center gap-1.5 text-sm">
-                      <HiOutlineUserGroup className="w-4 h-4" />
-                      <span>Join Us</span>
-                    </MyLinks>
                     <Link
                       to="/auth/login"
                       className="flex items-center gap-1.5 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg transition shadow-sm shadow-green-200 dark:shadow-none"

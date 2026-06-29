@@ -16,7 +16,7 @@ const MyInterests = () => {
       setLoading(true);
 
       const res = await fetch(
-        `https://krisilink-farmer-growth-connection.vercel.app/interests/${user.email}`
+        `${import.meta.env.VITE_API_URL}/interests/${user.email}`
       );
 
       const data = await res.json();

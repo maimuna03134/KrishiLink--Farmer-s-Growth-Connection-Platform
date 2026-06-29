@@ -3,6 +3,7 @@ import HomeLayout from "../layouts/HomeLayout";
 import Home from "../pages/home/Home";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
+import JoinUs from "../pages/Auth/JoinUs";
 import AllCrops from "../pages/allCrops/AllCrops";
 import AddCrop from "../pages/addCrop/AddCrop";
 import MyPosts from "../pages/myPosts/MyPosts";
@@ -31,10 +32,11 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () =>
-          fetch(
-            "https://krisilink-farmer-growth-connection.vercel.app/latest-crops"
-          ),
+        loader: async () => {
+          const res = await fetch(`${import.meta.env.VITE_API_URL}/latest-crops`);
+          if (!res.ok) throw new Error("Failed to load crops");
+          return res;
+        },
       },
       {
         path: "/all-crops",
@@ -46,7 +48,7 @@ export const router = createBrowserRouter([
         element: <CropDetails />,
         loader: ({ params }) =>
           fetch(
-            `https://krisilink-farmer-growth-connection.vercel.app/crops/${params.id}`
+            `${import.meta.env.VITE_API_URL}/crops/${params.id}`
           ),
       },
       {
@@ -60,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: '/faq',
         element: <FAQPage />
+      },
+      {
+        path: '/join-us',
+        element: <JoinUs />
       },
     ],
   },

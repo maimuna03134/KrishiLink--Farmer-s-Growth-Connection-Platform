@@ -74,7 +74,7 @@ const InterestForm = ({ crop }) => {
   const confirmSubmit = () => {
     setSubmitted(true);
 
-    fetch('https://krisilink-farmer-growth-connection.vercel.app/interests', {
+    fetch(`${import.meta.env.VITE_API_URL}/interests`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -163,15 +163,15 @@ const InterestForm = ({ crop }) => {
   return (
     <MyContainer
       className={
-        "bg-linear-to-t from-white to-green-100 rounded-xl shadow-md p-3 my-10"
+        "bg-linear-to-t from-white dark:from-gray-800 to-green-100 dark:to-gray-700 rounded-xl shadow-md p-3 my-10"
       }
     >
-      <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center gap-2 mx-auto pt-3 justify-center">
+      <h2 className="text-2xl font-bold text-green-800 dark:text-green-400 mb-6 flex items-center gap-2 mx-auto pt-3 justify-center">
         Express Your Interest
       </h2>
 
       {/* interest form */}
-      <div className="card bg-linear-to-t from-green-100 to-white w-full max-w-sm shrink-0 ">
+      <div className="card bg-linear-to-t from-green-100 dark:from-gray-700 to-white dark:to-gray-800 w-full max-w-sm shrink-0 ">
         <form onSubmit={handleSubmit} className="card-body space-y-4">
           {/* quantity */}
           <div className="form-control">
@@ -188,7 +188,7 @@ const InterestForm = ({ crop }) => {
               className="input-style"
               required
             />
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               Available: {crop?.quantity} {crop?.unit}
             </p>
           </div>
@@ -209,11 +209,11 @@ const InterestForm = ({ crop }) => {
           </div>
 
           {/* total price count */}
-          <div className="bg--linear-to-r from-green-50 to-green-100 rounded-lg p-6 ">
+          <div className="bg-green-50 dark:bg-gray-700 rounded-lg p-6 border border-green-100 dark:border-gray-600">
             <div className="flex items-center justify-between ">
               <div className="flex items-center gap-2">
                 <BiCalculator className="w-6 h-6 text-green-600" />
-                <span className="text-lg font-semibold text-gray-700">
+                <span className="text-lg font-semibold text-gray-700 dark:text-gray-200">
                   Total Price:
                 </span>
               </div>

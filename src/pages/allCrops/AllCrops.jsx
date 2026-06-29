@@ -42,7 +42,7 @@ const AllCrops = () => {
   const fetchCategories = async () => {
     try {
       const res = await fetch(
-        "https://krisilink-farmer-growth-connection.vercel.app/crops/categories"
+        `${import.meta.env.VITE_API_URL}/crops/categories`
       );
       const data = await res.json();
       if (data.success) {
@@ -56,7 +56,7 @@ const AllCrops = () => {
   const fetchLocations = async () => {
     try {
       const res = await fetch(
-        "https://krisilink-farmer-growth-connection.vercel.app/crops/locations"
+        `${import.meta.env.VITE_API_URL}/crops/locations`
       );
       const data = await res.json();
       if (data.success) {
@@ -81,7 +81,7 @@ const AllCrops = () => {
       if (selectedLocation) params.append("location", selectedLocation);
 
       const res = await fetch(
-        `https://krisilink-farmer-growth-connection.vercel.app/crops?${params.toString()}`
+        `${import.meta.env.VITE_API_URL}/crops?${params.toString()}`
       );
       const data = await res.json();
       if (data.success) {

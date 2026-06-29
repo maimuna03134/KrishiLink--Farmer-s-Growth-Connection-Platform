@@ -38,20 +38,12 @@ const ReceivedInterests = ({ crop }) => {
     !!localCrop?.owner?.ownerEmail &&
     user.email === localCrop.owner.ownerEmail;
 
-
-
-  if (!isOwner) {
+  if (loading || !localCrop) {
     return (
-      <div className="bg-white rounded-xl shadow-lg p-8">
-        <p className="text-center text-gray-600">
-          Only crop owner can see interests
-        </p>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
-  }
-
-  if (!crop) {
-    return <div>Loading...</div>;
   }
 
   const handleAcceptReject = (interest, newStatus) => {
@@ -73,7 +65,7 @@ const ReceivedInterests = ({ crop }) => {
 
       // Single API call - backend handles quantity update
       const response = await fetch(
-        `https://krisilink-farmer-growth-connection.vercel.app/crops/${localCrop._id}/interests/${interest._id}`,
+        `${import.meta.env.VITE_API_URL}/crops/${localCrop._id}/interests/${interest._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -105,7 +97,7 @@ const ReceivedInterests = ({ crop }) => {
       }));
 
       setModalData(null);
-    } catch (err) {
+    } catch {
       toast.error("Failed to update interest");
     } finally {
       setUpdatingId(null);
@@ -129,7 +121,7 @@ const ReceivedInterests = ({ crop }) => {
         color: "bg-red-100 text-red-800",
       },
     };
-    const item = map[status];
+    const item = map[status] || { icon: null, label: status || "Unknown", color: "bg-gray-100 text-gray-800" };
     return (
       <span
         className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold ${item.color}`}
@@ -140,11 +132,12 @@ const ReceivedInterests = ({ crop }) => {
     );
   };
 
-
-  if (loading) {
+  if (!isOwner) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
-        <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+      <div className="rounded-xl shadow-lg p-8">
+        <p className="text-center text-gray-600 dark:text-gray-300">
+          Only crop owner can see interests
+        </p>
       </div>
     );
   }

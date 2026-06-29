@@ -46,7 +46,7 @@ const CropDetailsPage = ({ crop: propCrop }) => {
   const fetchCropDetails = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`https://krisilink-farmer-growth-connection.vercel.app/crops/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/crops/${id}`);
       const data = await response.json();
       if (data.success) {
         setCrop(data.data || data.result);
@@ -65,7 +65,7 @@ const CropDetailsPage = ({ crop: propCrop }) => {
     setRelatedLoading(true);
     try {
       const response = await fetch(
-        `https://krisilink-farmer-growth-connection.vercel.app/crops?category=${crop.type}&limit=4`
+        `${import.meta.env.VITE_API_URL}/crops?category=${crop.type}&limit=4`
       );
       const data = await response.json();
       if (data.success && data.data) {
@@ -146,11 +146,11 @@ const CropDetailsPage = ({ crop: propCrop }) => {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Breadcrumb */}
-        <div className="bg-white border-b py-4">
+        <div className="bg-white dark:bg-gray-800 border-b dark:border-gray-700 py-4">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
               <Link to="/" className="hover:text-green-600">Home</Link>
               <span>/</span>
               <Link to="/all-crops" className="hover:text-green-600">All Crops</Link>
@@ -159,19 +159,19 @@ const CropDetailsPage = ({ crop: propCrop }) => {
                 {crop.type}
               </Link>
               <span>/</span>
-              <span className="text-gray-900 font-medium">{crop.name}</span>
+              <span className="text-gray-900 dark:text-gray-100 font-medium">{crop.name}</span>
             </div>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 py-8">
           {/* Main Product Section */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden mb-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 lg:p-8">
               {/* Left: Image Gallery */}
               <div>
                 {/* Main Image */}
-                <div className="relative mb-4 rounded-xl overflow-hidden bg-gray-100">
+                <div className="relative mb-4 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-700">
                   <img
                     src={cropImages[selectedImage]}
                     alt={crop.name}
@@ -232,7 +232,7 @@ const CropDetailsPage = ({ crop: propCrop }) => {
 
               {/* Right: Product Info */}
               <div className="flex flex-col">
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                   {crop.name}
                 </h1>
 
@@ -242,14 +242,14 @@ const CropDetailsPage = ({ crop: propCrop }) => {
                     <div className="flex gap-1">
                       {renderStars(averageRating)}
                     </div>
-                    <span className="text-gray-600 font-medium">
+                    <span className="text-gray-600 dark:text-gray-400 font-medium">
                       {averageRating.toFixed(1)} ({reviews.length} reviews)
                     </span>
                   </div>
                 )}
 
                 {/* Price */}
-                <div className="bg-linear-to-br from-green-50 to-green-100 rounded-2xl p-6 mb-6 border-2 border-green-200">
+                <div className="bg-linear-to-br from-green-50 to-green-100 dark:from-gray-800 dark:to-gray-900  rounded-2xl p-6 mb-6 border-2 border-green-200 dark:border-gray-700">
                   <p className="text-sm text-green-700 mb-2 font-semibold uppercase tracking-wide">
                     Price per unit
                   </p>
@@ -265,41 +265,41 @@ const CropDetailsPage = ({ crop: propCrop }) => {
 
                 {/* Quick Info Grid */}
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                    <div className="flex items-center gap-2 text-gray-600 mb-2">
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-2">
                       <BiPackage className="w-5 h-5 text-green-600" />
                       <span className="text-xs font-semibold uppercase">Available</span>
                     </div>
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                       {crop.quantity} {crop.unit}
                     </p>
                   </div>
 
-                  <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                    <div className="flex items-center gap-2 text-gray-600 mb-2">
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-2">
                       <BiMapPin className="w-5 h-5 text-green-600" />
                       <span className="text-xs font-semibold uppercase">Location</span>
                     </div>
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                       {crop.location}
                     </p>
                   </div>
                 </div>
 
                 {/* Owner Info */}
-                <div className="bg-linear-to-r from-gray-50 to-gray-100 rounded-xl p-5 mb-6 border border-gray-200">
+                <div className="bg-linear-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-600 rounded-xl p-5 mb-6 border border-gray-200 dark:border-gray-600">
                   <div className="flex items-center gap-4">
                     <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
                       <BiUser className="w-8 h-8 text-white" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-xs text-gray-600 mb-1 uppercase tracking-wide">Crop Owner</p>
-                      <p className="text-xl font-bold text-gray-900">
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-1 uppercase tracking-wide">Crop Owner</p>
+                      <p className="text-xl font-bold text-gray-900 dark:text-gray-100">
                         {crop.owner.ownerName}
                       </p>
                       <div className="flex items-center gap-2 mt-2">
-                        <BiMailSend className="w-4 h-4 text-gray-600" />
-                        <span className="text-sm text-gray-600">
+                        <BiMailSend className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                        <span className="text-sm text-gray-600 dark:text-gray-400">
                           {crop.owner.ownerEmail}
                         </span>
                       </div>
@@ -313,7 +313,7 @@ const CropDetailsPage = ({ crop: propCrop }) => {
                     className="flex-1">
                     <button
 
-                      className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl">
+                      className="w-full bg-green-600 dark:bg-gray-700 hover:bg-green-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl">
                       Express Interest
                     </button>
                   </a>
@@ -322,17 +322,17 @@ const CropDetailsPage = ({ crop: propCrop }) => {
 
                 {/* Trust Indicators */}
                 <div className="grid grid-cols-3 gap-3 mt-6">
-                  <div className="text-center py-3 bg-green-50 rounded-lg">
-                    <BiCheckCircle className="w-6 h-6 text-green-600 mx-auto mb-1" />
-                    <p className="text-xs text-green-700 font-semibold">Verified</p>
+                  <div className="text-center py-3 bg-green-50 dark:bg-gray-800 rounded-lg">
+                    <BiCheckCircle className="w-6 h-6 text-green-600 dark:text-gray-200 mx-auto mb-1" />
+                    <p className="text-xs text-green-700 dark:text-gray-200  font-semibold">Verified</p>
                   </div>
-                  <div className="text-center py-3 bg-green-50 rounded-lg">
-                    <BiShield className="w-6 h-6 text-green-600 mx-auto mb-1" />
-                    <p className="text-xs text-green-700 font-semibold">Safe</p>
+                  <div className="text-center py-3 bg-green-50 dark:bg-gray-800 rounded-lg">
+                    <BiShield className="w-6 h-6 text-green-600 dark:text-gray-200 mx-auto mb-1" />
+                    <p className="text-xs text-green-700 dark:text-gray-200 font-semibold">Safe</p>
                   </div>
-                  <div className="text-center py-3 bg-green-50 rounded-lg">
-                    <BiTrendingUp className="w-6 h-6 text-green-600 mx-auto mb-1" />
-                    <p className="text-xs text-green-700 font-semibold">Quality</p>
+                  <div className="text-center py-3 bg-green-50 dark:bg-gray-800 rounded-lg">
+                    <BiTrendingUp className="w-6 h-6 text-green-600 dark:text-gray-200 mx-auto mb-1" />
+                    <p className="text-xs text-green-700 dark:text-gray-200 font-semibold">Quality</p>
                   </div>
                 </div>
               </div>
@@ -340,17 +340,17 @@ const CropDetailsPage = ({ crop: propCrop }) => {
           </div>
 
           {/* Tabs Section */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden mb-8">
             {/* Tab Headers */}
-            <div className="border-b border-gray-200">
+            <div className="border-b border-gray-200 dark:border-gray-700">
               <div className="flex overflow-x-auto">
                 {["overview", "specifications", ...(reviews.length > 0 ? ["reviews"] : [])].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={`px-8 py-4 font-semibold whitespace-nowrap transition ${activeTab === tab
-                      ? "text-green-600 border-b-2 border-green-600 bg-green-50"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      ? "text-green-600 border-b-2 border-green-600 bg-green-50 dark:bg-green-900/20"
+                      : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700"
                       }`}
                   >
                     {tab === "overview" && "Overview & Description"}
@@ -365,17 +365,17 @@ const CropDetailsPage = ({ crop: propCrop }) => {
             <div className="p-8">
               {activeTab === "overview" && (
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
                     <BsEye className="w-6 h-6 text-green-600" />
                     Detailed Description
                   </h2>
-                  <p className="text-gray-600 leading-relaxed text-lg mb-6">
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg mb-6">
                     {crop.description}
                   </p>
 
-                  <div className="bg-green-50 border-l-4 border-green-600 p-6 rounded-r-xl">
-                    <h3 className="font-bold text-gray-900 mb-2">Why Choose This Product?</h3>
-                    <ul className="space-y-2 text-gray-700">
+                  <div className="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-600 p-6 rounded-r-xl">
+                    <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-2">Why Choose This Product?</h3>
+                    <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                       <li className="flex items-start gap-2">
                         <BiCheckCircle className="w-5 h-5 text-green-600 mt-0.5 shrink-0" />
                         <span>Premium quality with organic certification</span>
@@ -399,43 +399,43 @@ const CropDetailsPage = ({ crop: propCrop }) => {
 
               {activeTab === "specifications" && (
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                     Technical Specifications
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                      <h3 className="font-bold text-gray-900 mb-4">Crop Details</h3>
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
+                      <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-4">Crop Details</h3>
                       <div className="space-y-3">
-                        <div className="flex justify-between border-b border-gray-200 pb-2">
-                          <span className="text-gray-600">Quality Grade</span>
-                          <span className="font-semibold text-gray-900">{specifications.quality}</span>
+                        <div className="flex justify-between border-b border-gray-200 dark:border-gray-600 pb-2">
+                          <span className="text-gray-600 dark:text-gray-400">Quality Grade</span>
+                          <span className="font-semibold text-gray-900 dark:text-gray-100">{specifications.quality}</span>
                         </div>
-                        <div className="flex justify-between border-b border-gray-200 pb-2">
-                          <span className="text-gray-600">Organic</span>
-                          <span className="font-semibold text-gray-900">
+                        <div className="flex justify-between border-b border-gray-200 dark:border-gray-600 pb-2">
+                          <span className="text-gray-600 dark:text-gray-400">Organic</span>
+                          <span className="font-semibold text-gray-900 dark:text-gray-100">
                             {specifications.organic ? "Yes" : "No"}
                           </span>
                         </div>
-                        <div className="flex justify-between border-b border-gray-200 pb-2">
-                          <span className="text-gray-600">Certified</span>
-                          <span className="font-semibold text-gray-900">
+                        <div className="flex justify-between border-b border-gray-200 dark:border-gray-600 pb-2">
+                          <span className="text-gray-600 dark:text-gray-400">Certified</span>
+                          <span className="font-semibold text-gray-900 dark:text-gray-100">
                             {specifications.certified ? "Yes" : "No"}
                           </span>
                         </div>
-                        <div className="flex justify-between border-b border-gray-200 pb-2">
-                          <span className="text-gray-600">Shelf Life</span>
-                          <span className="font-semibold text-gray-900">{specifications.shelfLife}</span>
+                        <div className="flex justify-between border-b border-gray-200 dark:border-gray-600 pb-2">
+                          <span className="text-gray-600 dark:text-gray-400">Shelf Life</span>
+                          <span className="font-semibold text-gray-900 dark:text-gray-100">{specifications.shelfLife}</span>
                         </div>
-                        <div className="flex justify-between ">
-                          <span className="text-gray-600">Harvest Date</span>
-                          <span className="font-semibold text-gray-900">{specifications.harvestDate}</span>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">Harvest Date</span>
+                          <span className="font-semibold text-gray-900 dark:text-gray-100">{specifications.harvestDate}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                      <h3 className="font-bold text-gray-900 mb-4">Storage & Handling</h3>
-                      <div className="space-y-3 text-gray-700">
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
+                      <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-4">Storage & Handling</h3>
+                      <div className="space-y-3 text-gray-700 dark:text-gray-300">
                         <p>• Store in a cool, dry place</p>
                         <p>• Keep away from direct sunlight</p>
                         <p>• Proper ventilation required</p>
@@ -450,18 +450,18 @@ const CropDetailsPage = ({ crop: propCrop }) => {
               {activeTab === "reviews" && reviews.length > 0 && (
                 <div>
                   <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                       Customer Reviews & Ratings
                     </h2>
-                    <div className="flex flex-col md:flex-row items-start md:items-center gap-8 bg-gray-50 rounded-xl p-6">
+                    <div className="flex flex-col md:flex-row items-start md:items-center gap-8 bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
                       <div className="text-center">
-                        <div className="text-5xl font-bold text-gray-900 mb-2">
+                        <div className="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-2">
                           {averageRating.toFixed(1)}
                         </div>
                         <div className="flex gap-1 justify-center mb-2">
                           {renderStars(averageRating)}
                         </div>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
                           Based on {reviews.length} reviews
                         </p>
                       </div>
@@ -471,14 +471,14 @@ const CropDetailsPage = ({ crop: propCrop }) => {
                           const percentage = (count / reviews.length) * 100;
                           return (
                             <div key={star} className="flex items-center gap-3 mb-2">
-                              <span className="text-sm text-gray-600 w-12">{star} star</span>
-                              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <span className="text-sm text-gray-600 dark:text-gray-400 w-12">{star} star</span>
+                              <div className="flex-1 bg-gray-200 dark:bg-gray-600 rounded-full h-2">
                                 <div
                                   className="bg-yellow-400 h-2 rounded-full"
                                   style={{ width: `${percentage}%` }}
                                 />
                               </div>
-                              <span className="text-sm text-gray-600 w-8">{count}</span>
+                              <span className="text-sm text-gray-600 dark:text-gray-400 w-8">{count}</span>
                             </div>
                           );
                         })}
@@ -488,17 +488,17 @@ const CropDetailsPage = ({ crop: propCrop }) => {
 
                   <div className="space-y-6">
                     {reviews.map((review) => (
-                      <div key={review._id} className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                      <div key={review._id} className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
                         <div className="flex items-start justify-between mb-3">
                           <div>
-                            <h4 className="font-bold text-gray-900">{review.userName}</h4>
-                            <p className="text-sm text-gray-600">{review.date}</p>
+                            <h4 className="font-bold text-gray-900 dark:text-gray-100">{review.userName}</h4>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">{review.date}</p>
                           </div>
                           <div className="flex gap-1">
                             {renderStars(review.rating)}
                           </div>
                         </div>
-                        <p className="text-gray-700">{review.comment}</p>
+                        <p className="text-gray-700 dark:text-gray-300">{review.comment}</p>
                       </div>
                     ))}
                   </div>
@@ -508,23 +508,22 @@ const CropDetailsPage = ({ crop: propCrop }) => {
           </div>
 
           {/* Related Products */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden px-4 py-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden px-4 py-4">
             <div className=" mb-3">
-              <h2 className=" text-2xl font-bold text-gray-900">
+              <h2 className=" text-2xl font-bold text-gray-900 dark:text-gray-100">
                 You may also like
               </h2>
-
             </div>
 
             {relatedLoading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-gray-100 rounded-xl overflow-hidden animate-pulse">
-                    <div className="h-48 bg-gray-200"></div>
+                  <div key={i} className="bg-gray-100 dark:bg-gray-700 rounded-xl overflow-hidden animate-pulse">
+                    <div className="h-48 bg-gray-200 dark:bg-gray-600"></div>
                     <div className="p-4">
-                      <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                      <div className="h-3 bg-gray-200 rounded w-2/3 mb-3"></div>
-                      <div className="h-6 bg-gray-200 rounded w-1/2"></div>
+                      <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded mb-2"></div>
+                      <div className="h-3 bg-gray-200 dark:bg-gray-600 rounded w-2/3 mb-3"></div>
+                      <div className="h-6 bg-gray-200 dark:bg-gray-600 rounded w-1/2"></div>
                     </div>
                   </div>
                 ))}
@@ -535,7 +534,7 @@ const CropDetailsPage = ({ crop: propCrop }) => {
                   <Link
                     key={product._id}
                     to={`/crop-details/${product._id}`}
-                    className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300"
+                    className="group bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300"
                   >
                     <div className="relative overflow-hidden">
                       <img
@@ -553,24 +552,24 @@ const CropDetailsPage = ({ crop: propCrop }) => {
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="font-bold text-gray-900 mb-2 group-hover:text-green-600 transition">
+                      <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-green-600 transition">
                         {product.name}
                       </h3>
-                      <p className="text-sm text-gray-600 mb-3 flex items-center gap-1">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 flex items-center gap-1">
                         📍 {product.location}
                       </p>
                       <div className="flex items-baseline gap-1">
                         <span className="text-2xl font-bold text-green-600">
                           ৳{product.pricePerUnit}
                         </span>
-                        <span className="text-gray-600">/{product.unit}</span>
+                        <span className="text-gray-600 dark:text-gray-400">/{product.unit}</span>
                       </div>
                     </div>
                   </Link>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 text-gray-500">
+              <div className="text-center py-12 text-gray-500 dark:text-gray-400">
                 <p>No related products found</p>
               </div>
             )}

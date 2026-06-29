@@ -80,7 +80,7 @@ const AddCrop = () => {
 
 
     try {
-      const res = await await fetch("https://krisilink-farmer-growth-connection.vercel.app/crops", {
+      const res = await await fetch(`${import.meta.env.VITE_API_URL}/crops`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

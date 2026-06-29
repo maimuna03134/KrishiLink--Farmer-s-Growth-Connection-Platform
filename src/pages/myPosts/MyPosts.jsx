@@ -21,7 +21,7 @@ const MyPosts = () => {
       setLoading(true);
 
       const res = await fetch(
-        `https://krisilink-farmer-growth-connection.vercel.app/my-crops/${user.email}`
+        `${import.meta.env.VITE_API_URL}/my-crops/${user.email}`
       );
 
       const data = await res.json();
@@ -49,7 +49,7 @@ const MyPosts = () => {
     }
 
     try {
-      const res = await fetch(`https://krisilink-farmer-growth-connection.vercel.app/crops/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/crops/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const MyPosts = () => {
     }
     try {
       const res = await fetch(
-        `https://krisilink-farmer-growth-connection.vercel.app/crops/${id}`,
+        `${import.meta.env.VITE_API_URL}/crops/${id}`,
         {
           method: "DELETE",
         }

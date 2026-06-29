@@ -109,27 +109,29 @@ const Login = () => {
           </div>
 
           {/* Password */}
-          <div className="form-control relative">
+          <div className="form-control">
             <label className="label">
               <span className="label-text text-green-600 font-bold">
                 Password
               </span>
             </label>
-            <input
-              type={showPass ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              className="input input-bordered"
-              required
-            />
-            <span
-              onClick={handleTogglePasswordShow}
-              className="absolute top-[50px] right-5 cursor-pointer"
-            >
-              {showPass ? <FaEyeSlash /> : <FaEye />}
-            </span>
-
+            <div className="relative">
+              <input
+                type={showPass ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                className="input input-bordered w-full pr-11"
+                required
+              />
+              <button
+                type="button"
+                onClick={handleTogglePasswordShow}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                {showPass ? <FaEyeSlash className="w-4 h-4" /> : <FaEye className="w-4 h-4" />}
+              </button>
+            </div>
             <label className="label">
               <Link
                 to="/auth/forgot-password"

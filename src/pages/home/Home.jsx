@@ -16,7 +16,8 @@ import MeetExpertMembers from '../Others/MeetExpertMembers';
 
 
 const Home = () => {
-  const data = useLoaderData();
+  const loaderData = useLoaderData();
+  const data = Array.isArray(loaderData) ? loaderData : (loaderData?.data ?? []);
   // console.log(data)
     return (
       <div className='bg-white dark:bg-gray-800 

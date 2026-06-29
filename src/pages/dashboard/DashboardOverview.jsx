@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Package, TrendingUp, MapPin, Calendar } from 'lucide-react';
 
-const API_BASE_URL = 'https://krisilink-farmer-growth-connection.vercel.app';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
 
