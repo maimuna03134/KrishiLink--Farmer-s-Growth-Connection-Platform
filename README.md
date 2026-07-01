@@ -6,7 +6,7 @@ KrishiLink is more than just a platform — it's a movement to strengthen the ag
 
 ---
 
-**Live Link:** https://client-maimuna.vercel.app/
+**Live Link:** https://client-eight-woad-63.vercel.app/
 
 <p align="center">
   <img src="./farmarlink ss.png" width="100%" alt="Banner" />
